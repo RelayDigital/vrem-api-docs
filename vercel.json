@@ -1,5 +1,5 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/api" }
-  ]
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "framework": "docusaurus-2"
 }

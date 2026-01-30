@@ -1,19 +1,31 @@
 {
-  "name": "api-docs",
+  "name": "vrem-api-docs",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "prebuild": "bash scripts/fetch-openapi.sh",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve"
   },
   "dependencies": {
-    "@scalar/express-api-reference": "^0.8.19",
-    "express": "^4.21.0"
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/preset-classic": "^3.7.0",
+    "clsx": "^2.1.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "redocusaurus": "^2.1.0"
   },
   "devDependencies": {
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.10.7",
-    "@vercel/node": "^5.1.8",
-    "tsx": "^4.19.0",
-    "typescript": "^5.7.3"
+    "@docusaurus/module-type-aliases": "^3.7.0",
+    "@docusaurus/tsconfig": "^3.7.0",
+    "typescript": "~5.7.0"
+  },
+  "browserslist": {
+    "production": [">0.5%", "not dead", "not op_mini all"],
+    "development": ["last 3 chrome version", "last 3 firefox version", "last 5 safari version"]
   }
 }
