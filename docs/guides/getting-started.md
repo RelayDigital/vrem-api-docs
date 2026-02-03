@@ -5,14 +5,14 @@ sidebar_position: 1
 
 # Getting Started
 
-This guide walks you through making your first API call to the VREM platform.
+This guide walks you through making your first API call to the Vremly platform.
 
 ## 1. Create an Account
 
 Register a new account using the `/auth/register` endpoint:
 
 ```bash
-curl -X POST https://api.vrem.com/auth/register \
+curl -X POST https://api.vremly.com/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "email": "you@example.com",
@@ -49,7 +49,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
 If you already have an account, obtain a token via `/auth/login`:
 
 ```bash
-curl -X POST https://api.vrem.com/auth/login \
+curl -X POST https://api.vremly.com/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "you@example.com",
@@ -62,7 +62,7 @@ curl -X POST https://api.vrem.com/auth/login \
 Most operations are scoped to an organization. List the ones you belong to:
 
 ```bash
-curl https://api.vrem.com/organizations \
+curl https://api.vremly.com/organizations \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -71,7 +71,7 @@ curl https://api.vrem.com/organizations \
 Pass the `x-org-id` header to access organization resources:
 
 ```bash
-curl https://api.vrem.com/projects \
+curl https://api.vremly.com/projects \
   -H "Authorization: Bearer <token>" \
   -H "x-org-id: <organization-id>"
 ```

@@ -5,7 +5,7 @@ sidebar_position: 6
 
 # Webhooks
 
-Webhooks allow your application to receive real-time notifications when events occur in VREM. Instead of polling the API, you register a URL and VREM sends HTTP POST requests to it when relevant events happen.
+Webhooks allow your application to receive real-time notifications when events occur in Vremly. Instead of polling the API, you register a URL and Vremly sends HTTP POST requests to it when relevant events happen.
 
 ## Event Types
 
@@ -43,7 +43,7 @@ All webhook payloads follow the same structure:
 Every webhook request includes a signature header for verification:
 
 ```
-X-VREM-Signature: sha256=<hmac-signature>
+X-Vremly-Signature: sha256=<hmac-signature>
 ```
 
 Verify the signature using your webhook secret:
@@ -62,7 +62,7 @@ function verifyWebhookSignature(payload, signature, secret) {
 
 ## Retry Policy
 
-If your endpoint returns a non-2xx response, VREM retries the delivery:
+If your endpoint returns a non-2xx response, Vremly retries the delivery:
 
 | Attempt | Delay |
 |---------|-------|
@@ -84,5 +84,5 @@ The webhook subscription API is under development. You will be able to register 
 
 - **Respond quickly** — Return a 200 status within 5 seconds. Process the event asynchronously if needed.
 - **Handle duplicates** — Webhook deliveries may be retried, so use the `id` field to deduplicate.
-- **Verify signatures** — Always verify the `X-VREM-Signature` header to ensure the request is from VREM.
+- **Verify signatures** — Always verify the `X-Vremly-Signature` header to ensure the request is from Vremly.
 - **Use HTTPS** — Webhook endpoints must use HTTPS in production.

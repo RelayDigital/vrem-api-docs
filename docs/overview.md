@@ -5,14 +5,14 @@ slug: /
 sidebar_position: 1
 ---
 
-# VREM API Documentation
+# Vremly API Documentation
 
-The VREM (VX Real Estate Media) API lets you build integrations with our real estate media production platform — from scheduling photo and video shoots to managing deliveries and client communications.
+The Vremly API lets you build integrations with our real estate media production platform — from scheduling photo and video shoots to managing deliveries and client communications.
 
 ## Base URL
 
 ```
-https://api.vrem.com
+https://api.vremly.com
 ```
 
 ## Authentication
@@ -20,7 +20,7 @@ https://api.vrem.com
 All authenticated endpoints require a **Bearer JWT token** in the `Authorization` header. Many endpoints also require an **organization context** via the `x-org-id` header.
 
 ```bash
-curl https://api.vrem.com/projects \
+curl https://api.vremly.com/projects \
   -H "Authorization: Bearer <token>" \
   -H "x-org-id: <organization-id>"
 ```

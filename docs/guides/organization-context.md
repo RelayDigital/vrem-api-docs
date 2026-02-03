@@ -5,14 +5,14 @@ sidebar_position: 3
 
 # Organization Context
 
-Most VREM API resources are scoped to an organization. This guide explains how organization context works and when it's required.
+Most Vremly API resources are scoped to an organization. This guide explains how organization context works and when it's required.
 
 ## The x-org-id Header
 
 Pass the organization ID in the `x-org-id` header to access org-scoped resources:
 
 ```bash
-curl https://api.vrem.com/projects \
+curl https://api.vremly.com/projects \
   -H "Authorization: Bearer <token>" \
   -H "x-org-id: org_abc123"
 ```

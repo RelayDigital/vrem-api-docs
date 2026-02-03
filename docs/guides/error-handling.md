@@ -5,7 +5,7 @@ sidebar_position: 7
 
 # Error Handling
 
-The VREM API uses standard HTTP status codes and returns structured error responses.
+The Vremly API uses standard HTTP status codes and returns structured error responses.
 
 ## HTTP Status Codes
 

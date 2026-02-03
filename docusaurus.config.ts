@@ -2,10 +2,10 @@ import type { Config } from '@docusaurus/types';
 import type { Options as PresetOptions, ThemeConfig } from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'VREM API Documentation',
-  tagline: 'VX Real Estate Media — Developer Documentation',
+  title: 'Vremly API Documentation',
+  tagline: 'Vremly — Developer Documentation',
   favicon: 'img/favicon.ico',
-  url: 'https://docs.vrem.com',
+  url: 'https://docs.vremly.com',
   baseUrl: '/',
   organizationName: 'RelayDigital',
   projectName: 'vrem-api-docs',
@@ -60,7 +60,7 @@ const config: Config = {
 
   themeConfig: {
     navbar: {
-      title: 'VREM',
+      title: 'Vremly',
       items: [
         {
           type: 'docSidebar',
@@ -99,12 +99,12 @@ const config: Config = {
         {
           title: 'Resources',
           items: [
-            { label: 'VREM Platform', href: 'https://app.vrem.com' },
+            { label: 'Vremly Platform', href: 'https://app.vremly.com' },
             { label: 'GitHub', href: 'https://github.com/RelayDigital/vrem-api-docs' },
           ],
         },
       ],
-      copyright: `Copyright ${new Date().getFullYear()} VX Real Estate Media. All rights reserved.`,
+      copyright: `Copyright ${new Date().getFullYear()} Vremly. All rights reserved.`,
     },
     prism: {
       additionalLanguages: ['bash', 'json'],

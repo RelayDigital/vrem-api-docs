@@ -5,7 +5,7 @@ sidebar_position: 5
 
 # Media Management
 
-VREM handles various media types associated with real estate projects.
+Vremly handles various media types associated with real estate projects.
 
 ## Media Types
 

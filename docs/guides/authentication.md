@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # Authentication
 
-The VREM API uses **JWT Bearer tokens** for authentication. Tokens are obtained through registration, login, or OAuth flows.
+The Vremly API uses **JWT Bearer tokens** for authentication. Tokens are obtained through registration, login, or OAuth flows.
 
 ## Obtaining a Token
 

@@ -5,7 +5,7 @@ sidebar_position: 4
 
 # Projects Workflow
 
-Projects are the core resource in VREM, representing a real estate media production job from booking through delivery.
+Projects are the core resource in Vremly, representing a real estate media production job from booking through delivery.
 
 ## Project Lifecycle
 

@@ -5,7 +5,7 @@ sidebar_position: 8
 
 # Rate Limits
 
-The VREM API enforces rate limits to ensure fair usage and platform stability.
+The Vremly API enforces rate limits to ensure fair usage and platform stability.
 
 ## Default Limits
 
