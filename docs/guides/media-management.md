@@ -21,14 +21,12 @@ Vremly handles various media types associated with real estate projects.
 Media files are uploaded to a project via the media endpoints:
 
 ```bash
-POST /media/upload
-Authorization: Bearer <token>
-x-org-id: <organization-id>
-Content-Type: multipart/form-data
-
-projectId=<project-id>
-file=@photo.jpg
-type=PHOTO
+curl -X POST https://api.vremly.com/media/upload \
+  -H "Authorization: Bearer <token>" \
+  -H "x-org-id: <organization-id>" \
+  -F "projectId=<project-id>" \
+  -F "file=@photo.jpg" \
+  -F "type=PHOTO"
 ```
 
 ## Accessing Media
@@ -43,9 +41,9 @@ Uploaded media is stored in S3 and served via CloudFront CDN. Each media item in
 ## Listing Media for a Project
 
 ```bash
-GET /media?projectId=<project-id>
-Authorization: Bearer <token>
-x-org-id: <organization-id>
+curl https://api.vremly.com/media?projectId=<project-id> \
+  -H "Authorization: Bearer <token>" \
+  -H "x-org-id: <organization-id>"
 ```
 
 Returns all media items associated with the project.

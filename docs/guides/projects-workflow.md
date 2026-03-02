@@ -25,17 +25,16 @@ BOOKED → SHOOTING → EDITING → DELIVERED
 ## Creating a Project
 
 ```bash
-POST /projects
-Authorization: Bearer <token>
-x-org-id: <organization-id>
-Content-Type: application/json
-
-{
-  "address": "123 Main St, Austin, TX",
-  "scheduledDate": "2025-03-15T10:00:00Z",
-  "packageId": "pkg_abc123",
-  "customerId": "cust_xyz789"
-}
+curl -X POST https://api.vremly.com/projects \
+  -H "Authorization: Bearer <token>" \
+  -H "x-org-id: <organization-id>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "address": "123 Main St, Austin, TX",
+    "scheduledDate": "2025-03-15T10:00:00Z",
+    "packageId": "pkg_abc123",
+    "customerId": "cust_xyz789"
+  }'
 ```
 
 ## Assigning Team Members
@@ -43,8 +42,19 @@ Content-Type: application/json
 Projects can have **technicians** (photographers/videographers) and **editors** assigned:
 
 ```bash
-PATCH /projects/:id/assign-technician
-PATCH /projects/:id/assign-editor
+curl -X PATCH https://api.vremly.com/projects/:id/assign-technician \
+  -H "Authorization: Bearer <token>" \
+  -H "x-org-id: <organization-id>" \
+  -H "Content-Type: application/json" \
+  -d '{ "userId": "<user-id>" }'
+```
+
+```bash
+curl -X PATCH https://api.vremly.com/projects/:id/assign-editor \
+  -H "Authorization: Bearer <token>" \
+  -H "x-org-id: <organization-id>" \
+  -H "Content-Type: application/json" \
+  -d '{ "userId": "<user-id>" }'
 ```
 
 ## Status Transitions

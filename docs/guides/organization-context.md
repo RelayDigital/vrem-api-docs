@@ -42,8 +42,8 @@ This means agent-specific endpoints (like fetching assigned projects) only requi
 To find your available organization IDs:
 
 ```bash
-GET /organizations
-Authorization: Bearer <token>
+curl https://api.vremly.com/organizations \
+  -H "Authorization: Bearer <token>"
 ```
 
 Returns an array of organizations you belong to, each with an `id` field you can use as the `x-org-id` value.

@@ -14,27 +14,25 @@ The Vremly API uses **JWT Bearer tokens** for authentication. Tokens are obtaine
 **Register** a new account:
 
 ```bash
-POST /auth/register
-Content-Type: application/json
-
-{
-  "email": "user@example.com",
-  "name": "Jane Doe",
-  "password": "secure-password",
-  "accountType": "AGENT"
-}
+curl -X POST https://api.vremly.com/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "user@example.com",
+    "name": "Jane Doe",
+    "password": "secure-password",
+    "accountType": "AGENT"
+  }'
 ```
 
 **Login** to an existing account:
 
 ```bash
-POST /auth/login
-Content-Type: application/json
-
-{
-  "email": "user@example.com",
-  "password": "secure-password"
-}
+curl -X POST https://api.vremly.com/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "user@example.com",
+    "password": "secure-password"
+  }'
 ```
 
 Both return a response with a `token` field.
@@ -44,23 +42,21 @@ Both return a response with a `token` field.
 Authenticate with a third-party provider:
 
 ```bash
-POST /auth/oauth/google
-Content-Type: application/json
-
-{
-  "token": "<google-id-token>",
-  "accountType": "AGENT"
-}
+curl -X POST https://api.vremly.com/auth/oauth/google \
+  -H "Content-Type: application/json" \
+  -d '{
+    "token": "<google-id-token>",
+    "accountType": "AGENT"
+  }'
 ```
 
 ```bash
-POST /auth/oauth/facebook
-Content-Type: application/json
-
-{
-  "token": "<facebook-access-token>",
-  "accountType": "AGENT"
-}
+curl -X POST https://api.vremly.com/auth/oauth/facebook \
+  -H "Content-Type: application/json" \
+  -d '{
+    "token": "<facebook-access-token>",
+    "accountType": "AGENT"
+  }'
 ```
 
 The `accountType` field is only required for first-time sign-ups.
