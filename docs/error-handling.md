@@ -62,7 +62,7 @@ Include `Authorization: Bearer <token>` on all authenticated endpoints.
 403 Forbidden — Not a member of the specified organization
 ```
 
-Include `x-org-id: <organization-id>` on org-scoped endpoints. See [Organization Context](/guides/guides/organization-context).
+Include `x-org-id: <organization-id>` on org-scoped endpoints. See [Organization Context](/guides/organization-context).
 
 ### Resource Not Found
 
@@ -78,4 +78,4 @@ The resource ID doesn't exist or you don't have access to it within the current 
 429 Too Many Requests
 ```
 
-You've exceeded the rate limit. Wait and retry. See [Rate Limits](/guides/guides/rate-limits).
+You've exceeded the rate limit. Wait and retry. See [Rate Limits](/guides/rate-limits).

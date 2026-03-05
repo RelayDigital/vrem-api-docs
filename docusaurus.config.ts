@@ -91,8 +91,8 @@ const config: Config = {
         {
           title: 'Documentation',
           items: [
-            { label: 'Getting Started', to: '/guides/guides/getting-started' },
-            { label: 'Authentication', to: '/guides/guides/authentication' },
+            { label: 'Getting Started', to: '/guides/getting-started' },
+            { label: 'Authentication', to: '/guides/authentication' },
             { label: 'API Reference', to: '/api-reference' },
           ],
         },

@@ -7,34 +7,36 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Getting Started',
       items: [
-        'guides/getting-started',
-        'guides/authentication',
-        'guides/organization-context',
+        'getting-started',
+        'authentication',
+        'organization-context',
       ],
     },
     {
       type: 'category',
       label: 'Core Concepts',
       items: [
-        'guides/projects-workflow',
-        'guides/media-management',
+        'projects-workflow',
+        'media-management',
       ],
     },
     {
       type: 'category',
       label: 'Integrations',
       items: [
-        'guides/webhooks',
+        'webhooks',
       ],
     },
     {
       type: 'category',
       label: 'Reference',
       items: [
-        'guides/error-handling',
-        'guides/rate-limits',
+        'error-handling',
+        'rate-limits',
       ],
     },
+    'troubleshooting',
+    'changelog',
   ],
 };
 

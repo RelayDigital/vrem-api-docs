@@ -84,4 +84,4 @@ The API uses two security schemes:
 | **Bearer** | `Authorization: Bearer <token>` | Identifies the user |
 | **x-org-id** | `x-org-id: <organization-id>` | Scopes the request to an organization |
 
-Some endpoints require only Bearer auth (e.g., `/users/me`), while most resource endpoints require both. See [Organization Context](/guides/guides/organization-context) for details.
+Some endpoints require only Bearer auth (e.g., `/users/me`), while most resource endpoints require both. See [Organization Context](/guides/organization-context) for details.

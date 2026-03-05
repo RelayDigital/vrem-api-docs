@@ -20,7 +20,7 @@ const features = [
   {
     title: 'Webhooks',
     description: 'Subscribe to real-time events like project updates, delivery notifications, and message activity.',
-    link: '/guides/guides/webhooks',
+    link: '/guides/webhooks',
     linkText: 'Learn about Webhooks',
   },
 ];
@@ -36,7 +36,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/guides/guides/getting-started"
+            to="/guides/getting-started"
           >
             Get Started
           </Link>

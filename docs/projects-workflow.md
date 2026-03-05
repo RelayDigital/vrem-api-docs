@@ -67,4 +67,4 @@ Status changes are role-dependent:
 
 ## Delivery
 
-When a project reaches the DELIVERED status, the client receives access to the final media assets. See [Media Management](/guides/guides/media-management) for details on media types and delivery.
+When a project reaches the DELIVERED status, the client receives access to the final media assets. See [Media Management](/guides/media-management) for details on media types and delivery.

@@ -25,7 +25,7 @@ curl https://api.vremly.com/projects \
   -H "x-org-id: <organization-id>"
 ```
 
-See the [Authentication guide](/guides/guides/authentication) for details on obtaining tokens and the [Organization Context guide](/guides/guides/organization-context) for how org scoping works.
+See the [Authentication guide](/guides/authentication) for details on obtaining tokens and the [Organization Context guide](/guides/organization-context) for how org scoping works.
 
 ## API Format
 
@@ -35,7 +35,9 @@ See the [Authentication guide](/guides/guides/authentication) for details on obt
 
 ## Quick Links
 
-- [Getting Started](/guides/guides/getting-started) — Make your first API call
-- [Authentication](/guides/guides/authentication) — JWT tokens and OAuth flows
+- [Getting Started](/guides/getting-started) — Make your first API call
+- [Authentication](/guides/authentication) — JWT tokens and OAuth flows
 - [API Reference](/api-reference) — Full endpoint documentation
-- [Webhooks](/guides/guides/webhooks) — Subscribe to real-time events
+- [Webhooks](/guides/webhooks) — Subscribe to real-time events
+- [Troubleshooting](/guides/troubleshooting) — Common issues and solutions
+- [Changelog](/guides/changelog) — API updates and releases

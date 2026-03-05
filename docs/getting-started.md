@@ -78,6 +78,6 @@ curl https://api.vremly.com/projects \
 
 ## Next Steps
 
-- [Authentication](/guides/guides/authentication) — OAuth flows and token lifecycle
-- [Organization Context](/guides/guides/organization-context) — How org scoping works
+- [Authentication](/guides/authentication) — OAuth flows and token lifecycle
+- [Organization Context](/guides/organization-context) — How org scoping works
 - [API Reference](/api-reference) — Explore all endpoints
