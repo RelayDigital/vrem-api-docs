@@ -61,6 +61,13 @@ const config: Config = {
   themeConfig: {
     navbar: {
       title: 'Vremly',
+      logo: {
+        alt: 'Vremly',
+        src: 'img/logo.png',
+        srcDark: 'img/logo-dark.png',
+        width: 28,
+        height: 28,
+      },
       items: [
         {
           type: 'docSidebar',
