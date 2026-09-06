@@ -1,22 +1,139 @@
+/**
+ * Vremly documentation theme.
+ *
+ * The palette is the landing site's, not a docs-specific invention: gold
+ * (#c5a05e / #dbb978 / #a67c3d) on near-black (#0c0c0e), with #f5f5f7 text and
+ * #8b8b93 / #a1a1aa for muted copy. A developer's first look at Vremly is often
+ * this site, so it should read as the same product as vremly.com.
+ *
+ * ── WHY LIGHT AND DARK USE DIFFERENT GOLDS ──────────────────────────────────
+ *
+ * The brand gold #c5a05e is a mid-tone. On the near-black ground it is bright
+ * and easily legible, but as link text on white it lands around 2.6:1 — below
+ * the 4.5:1 WCAG AA threshold for body text. Documentation is read for long
+ * stretches by people scanning for one line in a code block, so light mode uses
+ * a darkened gold (#8a6530) for text-weight elements and keeps the true brand
+ * gold for larger, non-text accents where contrast rules do not bind.
+ *
+ * That is not a deviation from the brand — it is the brand rendered legibly.
+ * Shipping #c5a05e links on white would look correct in a screenshot and fail
+ * the person actually reading it.
+ */
+
 :root {
-  --ifm-color-primary: #1a1a2e;
-  --ifm-color-primary-dark: #141422;
-  --ifm-color-primary-darker: #111120;
-  --ifm-color-primary-darkest: #0b0b15;
-  --ifm-color-primary-light: #20203a;
-  --ifm-color-primary-lighter: #23233e;
-  --ifm-color-primary-lightest: #2d2d50;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Text-weight gold, darkened for contrast on white. */
+  --ifm-color-primary: #8a6530;
+  --ifm-color-primary-dark: #7c5b2b;
+  --ifm-color-primary-darker: #755629;
+  --ifm-color-primary-darkest: #604722;
+  --ifm-color-primary-light: #987035;
+  --ifm-color-primary-lighter: #a67c3d;
+  --ifm-color-primary-lightest: #c5a05e;
+
+  /* The true brand gold, for accents that are not body text. */
+  --vremly-gold: #c5a05e;
+  --vremly-gold-bright: #dbb978;
+  --vremly-gold-deep: #a67c3d;
+
+  --ifm-code-font-size: 92%;
+  --ifm-heading-font-weight: 650;
+  --ifm-navbar-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  --docusaurus-highlighted-code-line-bg: rgba(197, 160, 94, 0.14);
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #a8b2d1;
-  --ifm-color-primary-dark: #8e9bc4;
-  --ifm-color-primary-darker: #8191bd;
-  --ifm-color-primary-darkest: #5b70a8;
-  --ifm-color-primary-light: #c2c9de;
-  --ifm-color-primary-lighter: #cfd5e5;
-  --ifm-color-primary-lightest: #ebedf2;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* On #0c0c0e the brighter gold carries easily and stays on-brand. */
+  --ifm-color-primary: #dbb978;
+  --ifm-color-primary-dark: #d2ab60;
+  --ifm-color-primary-darker: #cda453;
+  --ifm-color-primary-darkest: #b98b34;
+  --ifm-color-primary-light: #e4c790;
+  --ifm-color-primary-lighter: #e9d09d;
+  --ifm-color-primary-lightest: #f2e3c4;
+
+  /* The landing page's ground, not Docusaurus' default slate. */
+  --ifm-background-color: #0c0c0e;
+  --ifm-background-surface-color: #141417;
+  --ifm-navbar-background-color: #0c0c0e;
+  --ifm-footer-background-color: #0a0a0c;
+  --ifm-font-color-base: #f5f5f7;
+  --ifm-heading-color: #f5f5f7;
+  --ifm-toc-border-color: rgba(245, 245, 247, 0.08);
+  --ifm-navbar-shadow: 0 1px 0 rgba(245, 245, 247, 0.07);
+
+  --ifm-color-emphasis-600: #8b8b93;
+  --ifm-color-emphasis-700: #a1a1aa;
+
+  --docusaurus-highlighted-code-line-bg: rgba(219, 185, 120, 0.16);
+}
+
+/* Sidebar: the active page is the one thing worth colouring. */
+.menu__link--active:not(.menu__link--sublist) {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+[data-theme='dark'] .menu__link:hover,
+[data-theme='dark'] .navbar__link:hover {
+  color: var(--vremly-gold-bright);
+}
+
+/* A gold hairline under the navbar — the landing page's shine border, quieted
+   down to something that can sit above text all day without competing. */
+.navbar {
+  border-bottom: 1px solid rgba(197, 160, 94, 0.22);
+}
+
+/* Code is the primary content of an API reference; give it room and stop it
+   inheriting the body's line height, which leaves dense blocks cramped. */
+.theme-code-block,
+pre code {
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+[data-theme='dark'] .theme-code-block {
+  border: 1px solid rgba(245, 245, 247, 0.08);
+}
+
+/* Inline code reads as a token, not as a link — it was inheriting enough
+   colour to be mistaken for one. */
+code {
+  border-radius: 4px;
+}
+
+[data-theme='dark'] code {
+  background-color: rgba(245, 245, 247, 0.06);
+  border-color: rgba(245, 245, 247, 0.1);
+}
+
+/* Tables carry most of the reference detail (event names, scopes, headers), so
+   they get real column separation rather than Docusaurus' default zebra. */
+table th {
+  font-weight: 620;
+  letter-spacing: 0.01em;
+}
+
+[data-theme='dark'] table tr:nth-child(2n) {
+  background-color: rgba(245, 245, 247, 0.03);
+}
+
+/* Admonitions: keep the semantic colours (warning/caution must stay readable as
+   warnings) but let `tip` carry the brand, since that is where the "use this
+   event, not that one" guidance lives. */
+[data-theme='dark'] .theme-admonition-tip {
+  border-color: rgba(197, 160, 94, 0.4);
+}
+
+/* Respect the reader's motion preference — Docusaurus animates sidebar and
+   dropdown transitions by default. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
