@@ -5,84 +5,168 @@ sidebar_position: 6
 
 # Webhooks
 
-Webhooks allow your application to receive real-time notifications when events occur in Vremly. Instead of polling the API, you register a URL and Vremly sends HTTP POST requests to it when relevant events happen.
+Webhooks let your system react to things happening in Vremly without polling.
+You register a URL, choose the events you care about, and Vremly `POST`s to it
+when they occur.
 
 ## Event Types
 
-| Event | Description |
-|-------|-------------|
-| `project.assigned` | A user has been assigned to a project (technician or editor) |
-| `project.status_changed` | A project's status has changed (e.g., BOOKED → SHOOTING) |
-| `project.delivered` | Final assets have been delivered to the client |
-| `delivery.approved` | The client has approved the delivered assets |
-| `delivery.changes_requested` | The client has requested changes to delivered assets |
-| `delivery.comment_added` | A new comment has been added to a delivery |
-| `message.created` | A new message was sent in a project channel |
-| `order.completed` | A payment order has been completed |
-| `order.failed` | A payment order has failed |
+Event names are upper snake case, and are sent verbatim in the payload's `event`
+field and the `X-Webhook-Event` header.
+
+| Event | Fires when |
+|-------|------------|
+| `PROJECT_CREATED` | A project is created |
+| `PROJECT_ASSIGNED` | A user is assigned to a project (technician or editor) |
+| `PROJECT_STATUS_CHANGED` | A project's status changes (e.g. BOOKED → SHOOTING) |
+| `PROJECT_DELIVERED` | Final assets are delivered to the client |
+| `DELIVERY_APPROVED` | The client signs off on the delivery |
+| `INVOICE_CREATED` | An invoice is created |
+| `INVOICE_SENT` | An invoice is sent to the customer |
+| `INVOICE_PAID` | An invoice is paid |
+| `INVOICE_VOIDED` | An invoice is voided |
+| `CUSTOMER_CREATED` | A customer is created |
+| `CUSTOMER_UPDATED` | A customer's details change |
+
+:::tip `PROJECT_DELIVERED` and `DELIVERY_APPROVED` are not the same moment
+`PROJECT_DELIVERED` fires when your team **sends** the work. `DELIVERY_APPROVED`
+fires when the client **accepts** it — and a sent delivery can still come back as
+a revision request. If you are advancing a CRM deal to a closed or fulfilled
+stage, approval is almost always the signal you want. It is also the moment a
+property website goes live.
+:::
+
+## Registering a Webhook
+
+```bash
+curl -X POST https://api.vremly.com/webhooks/subscriptions \
+  -H "x-api-key: <your-api-key>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://example.com/hooks/vremly",
+    "events": ["DELIVERY_APPROVED", "INVOICE_PAID"]
+  }'
+```
+
+The response includes the signing **secret**. Store it — it is what proves a
+request came from Vremly.
+
+| Method | Path | Purpose |
+|---|---|---|
+| `POST` | `/webhooks/subscriptions` | Create a subscription |
+| `GET` | `/webhooks/subscriptions` | List your subscriptions |
+| `PATCH` | `/webhooks/subscriptions/:id` | Change the URL, events, or active state |
+| `DELETE` | `/webhooks/subscriptions/:id` | Remove a subscription |
+| `GET` | `/webhooks/subscriptions/:id/deliveries` | Inspect recent delivery attempts |
+| `POST` | `/webhooks/subscriptions/:id/test` | Send a test event to your URL |
+
+Managing subscriptions with an API key requires the `WEBHOOKS` scope. See
+[Authentication](/guides/authentication).
 
 ## Payload Format
 
-All webhook payloads follow the same structure:
-
 ```json
 {
-  "id": "evt_abc123",
-  "type": "project.delivered",
-  "timestamp": "2025-03-15T10:30:00Z",
+  "id": "6f1c2a5e-2f4a-4c1e-9f0b-1d2e3f4a5b6c",
+  "event": "DELIVERY_APPROVED",
+  "timestamp": "1710500460",
   "data": {
+    "event": "DELIVERY_APPROVED",
+    "orgId": "org_abc123",
     "projectId": "proj_xyz789",
-    "organizationId": "org_abc123",
-    "status": "DELIVERED"
+    "deliveryToken": "tok_abc123",
+    "customerId": "cust_456",
+    "customerEmail": "jane@example.com",
+    "approvedByUserId": "user_789",
+    "approvedAt": "2026-09-05T12:00:00.000Z",
+    "project": {
+      "address": "123 Main St",
+      "city": "Edmonton",
+      "region": "AB",
+      "status": "DELIVERED",
+      "deliveryUrl": "https://downloads.example.com/delivery/tok_abc123"
+    }
   }
 }
 ```
 
+`timestamp` is Unix seconds, as a string, and is the value the signature is
+computed over. The event-specific fields live under `data`.
+
+Requests also carry:
+
+| Header | Value |
+|---|---|
+| `X-Webhook-Id` | The delivery id, same as `id` in the body |
+| `X-Webhook-Event` | The event name |
+| `X-Webhook-Signature` | `t=<timestamp>,v1=<hmac>` |
+
 ## Signature Verification
 
-Every webhook request includes a signature header for verification:
+The signature is an HMAC-SHA256 over the string `` `${timestamp}.${rawBody}` ``,
+keyed with your subscription secret, hex encoded.
 
-```
-X-Vremly-Signature: sha256=<hmac-signature>
-```
-
-Verify the signature using your webhook secret:
+:::warning Verify against the raw body
+Compute the HMAC over the exact bytes you received, before any JSON parsing.
+Re-serialising a parsed object changes key order and whitespace, and the
+signature will never match.
+:::
 
 ```javascript
 const crypto = require('crypto');
 
-function verifyWebhookSignature(payload, signature, secret) {
+function verifyWebhookSignature(rawBody, signatureHeader, secret) {
+  // "t=1710500460,v1=abc123..."
+  const parts = Object.fromEntries(
+    signatureHeader.split(',').map((p) => p.split('=')),
+  );
+  if (!parts.t || !parts.v1) return false;
+
   const expected = crypto
     .createHmac('sha256', secret)
-    .update(payload)
+    .update(`${parts.t}.${rawBody}`)
     .digest('hex');
-  return `sha256=${expected}` === signature;
+
+  // Constant-time compare — a plain === leaks timing information.
+  const a = Buffer.from(expected);
+  const b = Buffer.from(parts.v1);
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 ```
 
+Reject anything whose `t` is far from your own clock — a few minutes is a
+reasonable window — so a captured request cannot be replayed indefinitely.
+
 ## Retry Policy
 
-If your endpoint returns a non-2xx response, Vremly retries the delivery:
+Vremly waits up to **10 seconds** for a response. Any non-2xx status, timeout or
+connection error is retried:
 
-| Attempt | Delay |
-|---------|-------|
-| 1st retry | 1 minute |
-| 2nd retry | 5 minutes |
-| 3rd retry | 30 minutes |
-| 4th retry | 2 hours |
-| 5th retry | 24 hours |
+| Attempt | Delay after the previous try |
+|---------|------------------------------|
+| 1st retry | 30 seconds |
+| 2nd retry | 2 minutes |
+| 3rd retry | 10 minutes |
+| 4th retry | 30 minutes |
+| 5th retry | 2 hours |
 
-After 5 failed attempts, the webhook is marked as failed and no further retries are made.
+After the final attempt the delivery is marked `FAILED` and is not retried
+again. Use `GET /webhooks/subscriptions/:id/deliveries` to see what happened.
 
-## Registering a Webhook
-
-:::info Coming Soon
-The webhook subscription API is under development. You will be able to register webhooks programmatically via the API. In the meantime, contact support to configure webhooks for your organization.
+:::caution Delivery is at-least-once
+A retry can arrive after your endpoint has already processed the event — for
+example if you succeeded but responded too slowly. **Deduplicate on the `id`
+field**, which is stable across every attempt of the same delivery.
 :::
 
 ## Best Practices
 
-- **Respond quickly** — Return a 200 status within 5 seconds. Process the event asynchronously if needed.
-- **Handle duplicates** — Webhook deliveries may be retried, so use the `id` field to deduplicate.
-- **Verify signatures** — Always verify the `X-Vremly-Signature` header to ensure the request is from Vremly.
-- **Use HTTPS** — Webhook endpoints must use HTTPS in production.
+- **Respond fast, work later** — acknowledge with a 2xx immediately and process
+  asynchronously. Anything slower than 10 seconds is treated as a failure and
+  retried.
+- **Deduplicate on `id`** — deliveries are at-least-once, never exactly-once.
+- **Verify every request** — check the signature before trusting a payload, and
+  compare in constant time.
+- **Use HTTPS** — endpoints must be HTTPS in production.
+- **Treat events as notifications, not as data** — read the current state back
+  from the API when it matters; events can arrive out of order.
