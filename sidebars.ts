@@ -25,6 +25,7 @@ const sidebars: SidebarsConfig = {
       label: 'Integrations',
       items: [
         'webhooks',
+        'mcp',
       ],
     },
     {

@@ -290,14 +290,25 @@ function Agents() {
     <section className={styles.section}>
       <div className={styles.wrap}>
         <div className={styles.agentCard}>
-          <h2 className={styles.h2}>Built to be read by machines too</h2>
+          <h2 className={styles.h2}>Built to be used by agents</h2>
           <p className={styles.body}>
-            The reference is generated from the backend’s own source, and an{' '}
-            <a href="pathname:///llms.txt">llms.txt</a> index sits at the site root for
-            coding agents. Point a model at the specification rather than at
-            prose — it is the authority whenever the two disagree.
+            Vremly ships an <Link to="/guides/mcp">MCP server</Link>, so an AI
+            assistant can work with your projects, customers and invoices
+            directly. It exposes three tools — search, describe, call — which
+            reach every endpoint without a thousand-entry tool list. What the
+            assistant may do is decided by the API key you give it and enforced
+            server-side, so a read-only key cannot be talked into writing.
+          </p>
+          <p className={styles.body}>
+            For everything else there is an{' '}
+            <a href="pathname:///llms.txt">llms.txt</a> index and the
+            specification itself, which is the authority whenever prose
+            disagrees with it.
           </p>
           <div className={styles.actions}>
+            <Link className={styles.btnPrimary} to="/guides/mcp">
+              Set up the MCP server
+            </Link>
             <a className={styles.btnGhost} href="pathname:///llms.txt">
               llms.txt
             </a>

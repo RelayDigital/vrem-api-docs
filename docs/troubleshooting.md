@@ -98,24 +98,40 @@ X-RateLimit-Reset: 1710500460
 
 ## Media Upload Issues
 
-### Upload returns an error
+### There is no single upload endpoint
 
-**Cause**: Incorrect content type or missing required fields.
+**Cause**: Posting a file to the API directly. Uploading is three steps —
+`POST /media/presign`, a `PUT` of the bytes to the returned S3 URL, then
+`POST /media/confirm-upload`. See [Media Management](/guides/media-management).
+
+### The S3 PUT returns 403 SignatureDoesNotMatch
+
+**Cause**: The request does not match what was signed.
 
 **Solution**:
 
-- Use `multipart/form-data` (not `application/json`) for uploads.
-- Include all required fields: `projectId`, `file`, and `type`.
-- Ensure the `type` value is one of: `PHOTO`, `VIDEO`, `FLOORPLAN`, `DOCUMENT`.
+- Send **no Vremly headers** on the S3 PUT — not `x-api-key`, not
+  `Authorization`. The signature covers the request, and an unexpected header
+  invalidates it.
+- Send the same `Content-Type` you passed as `contentType` when presigning.
+- Check the URL has not expired. It is valid for one hour.
 
-```bash
-curl -X POST https://api.vremly.com/media/upload \
-  -H "Authorization: Bearer <token>" \
-  -H "x-org-id: <organization-id>" \
-  -F "projectId=<project-id>" \
-  -F "file=@photo.jpg" \
-  -F "type=PHOTO"
-```
+### The upload succeeded but the file is not in the app
+
+**Cause**: Step 3 was skipped. S3 does not tell Vremly the object arrived, so
+without `POST /media/confirm-upload` the bytes sit in the bucket with no media
+record pointing at them.
+
+**Solution**: Confirm it, passing back the `key` and `cdnUrl` from the presign
+response, plus `projectId`, `filename`, `size` and `type`.
+
+### 400 on the presign request
+
+**Cause**: A missing or invalid field. All four of `projectId`, `filename`,
+`contentType` and `mediaType` are required.
+
+**Solution**: `mediaType` must be one of `PHOTO`, `VIDEO`, `FLOORPLAN`,
+`VIRTUAL_TOUR`, `PROPERTY_WEBSITE`, `BROCHURE`, `DOCUMENT`.
 
 ## Webhook Issues
 

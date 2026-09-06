@@ -54,6 +54,7 @@ at-least-once — deduplicate on the `id` field.
 - [Projects Workflow](https://docs.vremly.com/guides/projects-workflow): the shoot lifecycle and its statuses.
 - [Media Management](https://docs.vremly.com/guides/media-management): uploading, variants and delivery.
 - [Webhooks](https://docs.vremly.com/guides/webhooks): events, payloads, signature verification, retries.
+- [MCP Server](https://docs.vremly.com/guides/mcp): the Model Context Protocol server, for agents that would rather call tools than construct HTTP.
 - [Error Handling](https://docs.vremly.com/guides/error-handling): status codes and error shapes.
 - [Rate Limits](https://docs.vremly.com/guides/rate-limits): windows, buckets and backoff.
 - [Troubleshooting](https://docs.vremly.com/guides/troubleshooting): common failures.
@@ -65,6 +66,15 @@ at-least-once — deduplicate on the `id` field.
   own source rather than written by hand, so it is the authority whenever this
   file or a guide disagrees with it. Regenerated on release, not per request —
   if an endpoint here does not behave as described, trust the server.
+
+## MCP
+
+There is a Model Context Protocol server at `apps/mcp-server` in the Vremly
+repository. Three tools — `vremly_search_endpoints`,
+`vremly_describe_endpoint`, `vremly_request` — cover every operation without a
+per-endpoint tool list. It authenticates with the same `x-api-key`, and the
+key's scopes are enforced server-side, so a READ key cannot write regardless of
+what the agent is instructed to do.
 
 ## Notes for agents
 

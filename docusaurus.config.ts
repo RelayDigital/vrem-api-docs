@@ -75,6 +75,28 @@ const config: Config = {
     ],
   ],
 
+  themes: [
+    // Search, built at compile time into a static index served from our own
+    // origin. Deliberately not Algolia DocSearch: that needs an approved
+    // application and an account whose outage takes search down with it, for a
+    // site this size. Nothing here leaves the reader's browser.
+    //
+    // It indexes the GUIDES only. /api-reference is a single client-rendered
+    // route with no server-rendered prose to crawl — Scalar ships its own
+    // search over the specification, which is the better tool for finding an
+    // endpoint anyway.
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        docsRouteBasePath: '/guides',
+        indexBlog: false,
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+      },
+    ],
+  ],
+
   plugins: [
     [
       '@scalar/docusaurus',
