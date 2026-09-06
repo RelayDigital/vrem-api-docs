@@ -125,6 +125,49 @@ table th {
   border-color: rgba(197, 160, 94, 0.4);
 }
 
+/* ── Scalar API reference ───────────────────────────────────────────────────
+ *
+ * The /api-reference route is Scalar's app, loaded from its CDN, and it keeps
+ * its OWN light/dark state that knows nothing about the Docusaurus toggle. Left
+ * alone it renders a light reference under this site's dark navbar.
+ *
+ * So its palette is driven from here instead of from the plugin's `customCss`
+ * option, keyed on `html[data-theme=…]` — the attribute Docusaurus actually
+ * flips. The `html` in the selector is load-bearing, not decoration: it makes
+ * these rules (0,2,1) outrank Scalar's own `.dark-mode .scalar-app` (0,2,0), so
+ * they win regardless of which stylesheet the CDN injects last.
+ *
+ * Colours are the same tokens as the rest of the site: light mode uses the
+ * darkened gold for contrast, dark mode the bright one.
+ */
+html[data-theme='light'] .scalar-app {
+  --scalar-color-accent: #8a6530;
+  --scalar-color-1: #16161a;
+  --scalar-color-2: #4a4a52;
+  --scalar-color-3: #6b6b73;
+  --scalar-background-1: #ffffff;
+  --scalar-background-2: #f7f6f3;
+  --scalar-background-3: #efece6;
+  --scalar-border-color: rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme='dark'] .scalar-app {
+  --scalar-color-accent: #dbb978;
+  --scalar-color-1: #f5f5f7;
+  --scalar-color-2: #c4c4cc;
+  --scalar-color-3: #a1a1aa;
+  --scalar-background-1: #0c0c0e;
+  --scalar-background-2: #141417;
+  --scalar-background-3: #1c1c21;
+  --scalar-border-color: rgba(245, 245, 247, 0.1);
+}
+
+html[data-theme='light'] .scalar-app,
+html[data-theme='dark'] .scalar-app {
+  --scalar-radius: 6px;
+  --scalar-radius-lg: 9px;
+}
+
 /* Respect the reader's motion preference — Docusaurus animates sidebar and
    dropdown transitions by default. */
 @media (prefers-reduced-motion: reduce) {

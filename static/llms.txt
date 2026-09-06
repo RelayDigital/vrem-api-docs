@@ -47,7 +47,7 @@ at-least-once — deduplicate on the `id` field.
 
 ## Docs
 
-- [Overview](https://docs.vremly.com/guides/overview): what the API covers.
+- [Overview](https://docs.vremly.com/guides/): what the API covers.
 - [Getting Started](https://docs.vremly.com/guides/getting-started): first request.
 - [Authentication](https://docs.vremly.com/guides/authentication): API keys, scopes, bearer tokens, refresh.
 - [Organization Context](https://docs.vremly.com/guides/organization-context): the `x-org-id` header and when it is needed.
@@ -61,8 +61,10 @@ at-least-once — deduplicate on the `id` field.
 ## API reference
 
 - [OpenAPI specification](https://docs.vremly.com/openapi/openapi.json): the
-  complete machine-readable contract. Generated from the server, so it is the
-  authority whenever this file or a guide disagrees with it.
+  complete machine-readable contract, 854 routes. Generated from the backend's
+  own source rather than written by hand, so it is the authority whenever this
+  file or a guide disagrees with it. Regenerated on release, not per request —
+  if an endpoint here does not behave as described, trust the server.
 
 ## Notes for agents
 

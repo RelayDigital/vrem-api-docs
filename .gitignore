@@ -6,3 +6,6 @@ dist/
 .cache-loader/
 *.log
 .vercel
+
+# macOS
+.DS_Store

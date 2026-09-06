@@ -1,34 +1,447 @@
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+/**
+ * Home page styles.
+ *
+ * Colour comes from the tokens in src/css/custom.css, never from literals
+ * repeated here — `--vremly-gold` and friends are defined once, and light mode
+ * deliberately uses a darkened gold for anything text-weight because the brand
+ * mid-tone fails WCAG AA on white. See the comment at the top of custom.css.
+ *
+ * The one thing this file does own is the near-black panel, which stays dark
+ * in BOTH themes: it is a terminal. A terminal that turns white in light mode
+ * reads as a bug, and every developer's own terminal is dark anyway.
+ */
+
+.wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-.buttons {
-  display: flex;
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+
+.hero {
+  padding: 5.5rem 0 4rem;
+  border-bottom: 1px solid var(--ifm-toc-border-color, rgba(0, 0, 0, 0.08));
+  /* A single gold wash behind the copy, not a full-bleed gradient banner —
+     the page has one accent and spends it on the panel border and the CTA. */
+  background:
+    radial-gradient(
+      60rem 28rem at 12% -10%,
+      rgba(197, 160, 94, 0.13),
+      transparent 60%
+    );
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3.5rem;
   align-items: center;
-  justify-content: center;
-  margin-top: 1.5rem;
 }
 
-.features {
-  display: flex;
-  align-items: center;
-  padding: 3rem 0;
+.eyebrow {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin: 0 0 1rem;
 }
 
-.featureCard {
-  padding: 1.5rem;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: 8px;
-  height: 100%;
+.title {
+  font-size: clamp(2.1rem, 4.4vw, 3.15rem);
+  line-height: 1.08;
+  letter-spacing: -0.032em;
+  font-weight: 680;
+  text-wrap: balance;
+  margin: 0 0 1.25rem;
 }
 
-.featureCard h3 {
-  margin-bottom: 0.5rem;
-}
-
-.featureCard p {
+.lede {
+  font-size: 1.1rem;
+  line-height: 1.6;
   color: var(--ifm-color-emphasis-700);
+  max-width: 34rem;
+  margin: 0 0 1.75rem;
+}
+
+.heroNote {
+  margin: 1.5rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ifm-color-emphasis-600);
+  max-width: 32rem;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btnPrimary,
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 7px;
+  padding: 0.62rem 1.15rem;
+  font-size: 0.94rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.btnPrimary {
+  background: var(--ifm-color-primary);
+  color: #fff;
+  border: 1px solid var(--ifm-color-primary);
+}
+
+.btnPrimary:hover {
+  background: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Dark mode's primary is the bright gold, which needs dark text on it. */
+[data-theme='dark'] .btnPrimary {
+  color: #0c0c0e;
+}
+
+[data-theme='dark'] .btnPrimary:hover {
+  color: #0c0c0e;
+}
+
+.btnGhost {
+  background: transparent;
+  color: var(--ifm-font-color-base);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.btnGhost:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.textLink {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ── Terminal panel ───────────────────────────────────────────────────────── */
+
+.panel {
+  /* Dark in both themes, on purpose — see the file header. */
+  background: #0c0c0e;
+  border: 1px solid rgba(197, 160, 94, 0.28);
+  border-radius: 11px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px -22px rgba(0, 0, 0, 0.55);
+}
+
+.panelBar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 0.95rem;
+  background: rgba(245, 245, 247, 0.04);
+  border-bottom: 1px solid rgba(245, 245, 247, 0.08);
+}
+
+.panelDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(245, 245, 247, 0.16);
+}
+
+.panelTitle {
+  margin-left: 0.4rem;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: #8b8b93;
+}
+
+.code {
+  margin: 0;
+  padding: 1.05rem 1.1rem;
+  background: transparent;
+  font-size: 0.795rem;
+  line-height: 1.62;
+  /* The hero's shell lines are long; let them scroll inside the panel rather
+     than widen the page. */
+  overflow-x: auto;
+}
+
+.code code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #d7d7dd;
+  font-family: var(--ifm-font-family-monospace);
+  white-space: pre;
+}
+
+.ln {
+  display: block;
+}
+
+.prompt {
+  color: var(--vremly-gold);
+  user-select: none;
+  margin-right: 0.4rem;
+}
+
+.str {
+  color: #b7d3a8;
+}
+
+.key {
+  color: var(--vremly-gold-bright);
+}
+
+.punc {
+  color: #8b8b93;
+}
+
+.panelSplit {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1.1rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  color: #8b8b93;
+}
+
+.panelSplit::before,
+.panelSplit::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(245, 245, 247, 0.09);
+}
+
+/* ── Sections ─────────────────────────────────────────────────────────────── */
+
+.section {
+  padding: 4rem 0;
+}
+
+.section + .section {
+  border-top: 1px solid var(--ifm-toc-border-color, rgba(0, 0, 0, 0.07));
+}
+
+.h2 {
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.022em;
+  font-weight: 660;
+  text-wrap: balance;
+  margin: 0 0 1rem;
+}
+
+.body {
+  font-size: 1rem;
+  line-height: 1.68;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0 0 1rem;
+  max-width: 38rem;
+}
+
+.bodyWide {
+  composes: body;
+  max-width: 52rem;
+}
+
+/* ── Route cards ──────────────────────────────────────────────────────────── */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  position: relative;
+  display: block;
+  padding: 1.6rem 1.5rem 2.6rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 10px;
+  color: inherit;
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(-2px);
+}
+
+.cardTitle {
+  font-size: 1.08rem;
+  font-weight: 640;
+  letter-spacing: -0.012em;
+  margin: 0 0 0.55rem;
+}
+
+.cardBody {
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0;
+}
+
+.cardGo {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 1.4rem;
+  color: var(--ifm-color-primary);
+  font-size: 1.05rem;
+  transition: transform 0.15s ease;
+}
+
+.card:hover .cardGo {
+  transform: translateX(3px);
+}
+
+/* ── Events ───────────────────────────────────────────────────────────────── */
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.splitCopy {
+  min-width: 0;
+}
+
+.chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-content: flex-start;
+}
+
+.chip {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.775rem;
+  letter-spacing: 0.01em;
+  padding: 0.34rem 0.62rem;
+  border-radius: 5px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  color: var(--ifm-color-emphasis-700);
+  white-space: nowrap;
+}
+
+/* ── Scopes ───────────────────────────────────────────────────────────────── */
+
+.scopeList {
+  margin: 1.75rem 0;
+  padding: 0;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.scopeRow {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.scopeName {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+  margin: 0;
+}
+
+.scopeGrants {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* ── Agents ───────────────────────────────────────────────────────────────── */
+
+.agentCard {
+  padding: 2.25rem 2rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  background: radial-gradient(
+    40rem 18rem at 100% 0%,
+    rgba(197, 160, 94, 0.09),
+    transparent 65%
+  );
+}
+
+.agentCard .h2 {
+  margin-top: 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 996px) {
+  .heroGrid,
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .scopeRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cardGo,
+  .btnPrimary,
+  .btnGhost {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card:hover .cardGo {
+    transform: none;
+  }
 }
