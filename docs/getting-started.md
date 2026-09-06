@@ -5,79 +5,92 @@ sidebar_position: 1
 
 # Getting Started
 
-This guide walks you through making your first API call to the Vremly platform.
+Your first successful request, in about two minutes.
 
-## 1. Create an Account
+## 1. Create an API key
 
-Register a new account using the `/auth/register` endpoint:
+In the Vremly app, go to **Settings → API Keys** and create one. Give it the
+least it needs — `READ` if the integration only reads.
+
+:::warning You see the key once
+The response contains the only copy. Vremly stores a hash, so a lost key cannot
+be recovered — revoke it and issue another.
+:::
+
+## 2. Make a request
 
 ```bash
-curl -X POST https://api.vremly.com/auth/register \
+curl https://api.vremly.com/projects \
+  -H "x-api-key: $VREMLY_API_KEY"
+```
+
+That is the whole setup. **No `x-org-id` header**: a key belongs to one
+organization and the server derives it from the key, so there is no tenant
+header to get wrong — and no way for the key to reach another organization's
+data.
+
+A `200` with your projects means you are done. If not, see
+[Troubleshooting](/guides/troubleshooting).
+
+## 3. React to things happening
+
+Rather than polling, subscribe to events:
+
+```bash
+curl -X POST https://api.vremly.com/webhooks/subscriptions \
+  -H "x-api-key: $VREMLY_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "email": "you@example.com",
-    "name": "Your Name",
-    "password": "your-password",
-    "accountType": "AGENT"
+    "url": "https://example.com/hooks/vremly",
+    "events": ["DELIVERY_APPROVED"]
   }'
 ```
 
-Valid account types for self-serve registration: `AGENT`, `PROVIDER`.
+The response contains the signing secret — store it, it is what proves a
+request came from Vremly. See [Webhooks](/guides/webhooks) for the payloads and
+how to verify the signature.
 
-The response includes a JWT token:
+Managing subscriptions needs a key with the `WEBHOOKS` scope.
 
-```json
-{
-  "token": "eyJhbGciOiJIUzI1NiIs...",
-  "user": {
-    "id": "user-id",
-    "email": "you@example.com",
-    "name": "Your Name",
-    "accountType": "AGENT"
-  }
-}
-```
+## Before you write much code
 
-## 2. Authenticate
+Two things about this API that will otherwise cost you an afternoon:
 
-For subsequent requests, include the token in the `Authorization` header:
+- **Unknown body fields are dropped, not rejected.** Validation runs with
+  `whitelist: true`, so a misspelled field is silently discarded and the
+  request still succeeds. A `201` is not proof the server received what you
+  meant to send. Check field names in the [API Reference](/api-reference).
+- **A scope you do not hold returns `403`**, naming what was needed and what
+  your key has. That is a credential problem, not a bug — reissue the key with
+  the scope it names.
 
-```bash
-Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
-```
+## Building a user-facing app instead?
 
-If you already have an account, obtain a token via `/auth/login`:
+If people sign in to your product with their own Vremly accounts, they need
+tokens rather than a shared key.
 
 ```bash
 curl -X POST https://api.vremly.com/auth/login \
   -H "Content-Type: application/json" \
-  -d '{
-    "email": "you@example.com",
-    "password": "your-password"
-  }'
+  -d '{ "email": "you@example.com", "password": "your-password" }'
 ```
 
-## 3. List Your Organizations
+Registration is `POST /auth/register`, taking `email`, `name`, `password` and
+`accountType`. `accountType` is one of `AGENT`, `PROVIDER` or `COMPANY`, though
+only `AGENT` and `PROVIDER` are offered in the app's own sign-up.
 
-Most operations are scoped to an organization. List the ones you belong to:
+Bearer tokens identify a **person**, so they also need an `x-org-id` header
+naming which organization the request is for. See
+[Organization Context](/guides/organization-context).
 
-```bash
-curl https://api.vremly.com/organizations \
-  -H "Authorization: Bearer <token>"
-```
+:::danger Do not store a user's password to mint tokens for a server
+It ties your integration to one employee's account and stops working the day
+they leave. Use an API key.
+:::
 
-## 4. Make an Org-Scoped Request
+## Next
 
-Pass the `x-org-id` header to access organization resources:
-
-```bash
-curl https://api.vremly.com/projects \
-  -H "Authorization: Bearer <token>" \
-  -H "x-org-id: <organization-id>"
-```
-
-## Next Steps
-
-- [Authentication](/guides/authentication) — OAuth flows and token lifecycle
-- [Organization Context](/guides/organization-context) — How org scoping works
-- [API Reference](/api-reference) — Explore all endpoints
+- [Authentication](/guides/authentication) — keys, scopes, tokens, refresh
+- [Projects Workflow](/guides/projects-workflow) — the shoot lifecycle
+- [MCP Server](/guides/mcp) — connect an AI assistant instead of writing a client
+- [API Reference](/api-reference) — all 854 endpoints, with a live console

@@ -5,11 +5,22 @@ sidebar_position: 3
 
 # Organization Context
 
-Most Vremly API resources are scoped to an organization. This guide explains how organization context works and when it's required.
+Most Vremly resources belong to an organization, so a request has to say which
+one it is for.
 
-## The x-org-id Header
+:::tip Using an API key? You can skip this page.
+A key belongs to exactly one organization and the server derives it from the
+key. **Do not send `x-org-id`** — it is not required, and a value you supply is
+replaced. This is also why a key can never reach another organization's data,
+however it is called.
 
-Pass the organization ID in the `x-org-id` header to access org-scoped resources:
+The rest of this page is about Bearer tokens, which identify a person who may
+belong to several organizations.
+:::
+
+## The `x-org-id` header
+
+With a Bearer token, name the organization explicitly:
 
 ```bash
 curl https://api.vremly.com/projects \
@@ -17,33 +28,55 @@ curl https://api.vremly.com/projects \
   -H "x-org-id: org_abc123"
 ```
 
-Without this header, org-scoped endpoints return a **403 Forbidden** error.
+## What happens if you leave it out
 
-## Which Endpoints Require It?
+It does not simply fail. The server falls back to your **personal
+organization** — so the request usually succeeds, against a different
+organization than you meant. An integration that forgets the header does not
+error; it quietly reads an empty workspace, which is a much harder bug to spot.
 
-| Scope | Example Endpoints | Headers Required |
-|-------|-------------------|------------------|
-| **User-only** | `/users/me`, `/auth/login` | Bearer token |
-| **Org-scoped** | `/projects`, `/orders`, `/customers`, `/media` | Bearer token + `x-org-id` |
-| **Public** | `/auth/register`, `/inquiries` (create) | None |
+Send it explicitly on every org-scoped call.
 
-## Agent Access Pattern
+## The errors you can get
 
-Agents have a special access model. Agents can:
+| Status | Meaning |
+|---|---|
+| `401` | No valid credential on the request at all. |
+| `404` | The `x-org-id` names an organization that does not exist. |
+| `403` | The organization exists, but you are not a member of it. |
 
-- Access their own assigned projects **without** the `x-org-id` header
-- Work across multiple organizations without being a member of each one
-- View project details for any project they're assigned to
+`404` rather than `403` for an unknown id is deliberate: answering "that
+organization exists, you just cannot see it" would let anyone confirm which
+organization ids are real.
 
-This means agent-specific endpoints (like fetching assigned projects) only require the Bearer token.
+## Which endpoints need it
 
-## Listing Organizations
+| Kind | Examples | With a Bearer token |
+|---|---|---|
+| Public | `POST /auth/register`, `POST /auth/login`, `POST /inquiries` | Nothing |
+| About the user | `/users/me`, `/auth/me`, `/me/notifications` | Token only |
+| Org-scoped | `/projects`, `/orders`, `/customers`, `/media` | Token + `x-org-id` |
 
-To find your available organization IDs:
+When in doubt, check the endpoint in the [API Reference](/api-reference) — each
+operation lists the credentials it accepts.
+
+## Finding your organization ids
 
 ```bash
 curl https://api.vremly.com/organizations \
   -H "Authorization: Bearer <token>"
 ```
 
-Returns an array of organizations you belong to, each with an `id` field you can use as the `x-org-id` value.
+Each entry has an `id` to use as the `x-org-id` value.
+
+`GET /auth/me/bootstrap` returns the signed-in user together with the
+organizations they can reach, which is usually what an app wants on start-up
+rather than two separate calls.
+
+## Agents reach work across organizations
+
+An agent — the client an organization shoots for — can be given access to
+specific projects without being a member of the organization that runs them.
+Those routes are about the person rather than an organization, so they take the
+token alone and **must not** be sent `x-org-id`; adding it puts the request
+through organization membership checks the agent deliberately does not satisfy.
