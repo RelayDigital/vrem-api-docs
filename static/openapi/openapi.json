@@ -657,6 +657,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get current authenticated user",
@@ -693,6 +696,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bootstrap user session — ensures provisioning and returns app state",
@@ -826,6 +832,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Complete SSO onboarding — set account type",
@@ -846,6 +855,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Exchange a backend JWT (even recently expired) for a fresh one",
@@ -866,6 +878,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Revoke all backend JWTs; returns a fresh token for this device",
@@ -905,6 +920,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List the user's active browser sessions and devices",
@@ -934,6 +952,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Revoke a single session or registered device",
@@ -963,6 +984,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Revoke all sessions/devices except the current one",
@@ -1922,6 +1946,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get my notifications",
@@ -1951,6 +1978,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Accept an invitation",
@@ -1980,6 +2010,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Decline an invitation",
@@ -2009,6 +2042,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark a notification as read",
@@ -2029,6 +2065,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark all notifications as read",
@@ -2049,6 +2088,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete all notifications",
@@ -2078,6 +2120,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a notification",
@@ -2098,6 +2143,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get unread notification count",
@@ -2127,6 +2175,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get public organization info",
@@ -2157,6 +2208,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Register push token",
@@ -2186,6 +2240,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Unregister push token",
@@ -2206,6 +2263,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List my push tokens (debug)",
@@ -2226,6 +2286,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send test push to my devices (debug)",
@@ -2246,6 +2309,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get the VAPID public key for browser push",
@@ -2285,6 +2351,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Register a browser push subscription",
@@ -2313,6 +2382,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove a browser push subscription",
@@ -2342,6 +2414,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get my notification preferences",
@@ -2370,6 +2445,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update my notification preference",
@@ -2399,6 +2477,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get my notification preferences grid",
@@ -2429,6 +2510,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update my notification event preference",
@@ -2459,6 +2543,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark promo onboarding as shown",
@@ -2749,6 +2836,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List audit log entries",
@@ -2778,6 +2868,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Distinct filter options (actions, types, actors)",
@@ -2833,6 +2926,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update current user profile",
@@ -2861,6 +2957,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Permanently delete current user account",
@@ -2881,6 +2980,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Toggle two-factor authentication",
@@ -2908,6 +3010,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Acknowledge the beta disclaimer",
@@ -2938,6 +3043,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Deactivate current user account",
@@ -2958,6 +3066,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reactivate current user account",
@@ -2988,6 +3099,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get current user use cases",
@@ -3026,6 +3140,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update current user use cases",
@@ -3056,6 +3173,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Save value-first onboarding quiz answers",
@@ -3076,6 +3196,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get notification preferences",
@@ -3104,6 +3227,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update notification preferences",
@@ -3124,6 +3250,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List linked SSO providers",
@@ -3153,6 +3282,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Unlink an SSO provider",
@@ -3183,6 +3315,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Switch account type (AGENT ↔ PROVIDER, PROVIDER → COMPANY)",
@@ -3210,6 +3345,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get org context for org switcher UI",
@@ -3239,6 +3377,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Customer-portal sign-in eligibility for a locked org",
@@ -3278,6 +3419,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a user (admin)",
@@ -3314,6 +3458,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List all users (admin)",
@@ -3352,6 +3499,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get user by ID (admin)",
@@ -3398,6 +3548,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update user by ID (admin)",
@@ -3434,6 +3587,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete user by ID (admin)",
@@ -3461,6 +3617,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get onboarding status for current user",
@@ -3491,6 +3650,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get customer organizations for agent ordering",
@@ -3511,6 +3673,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Which calendar providers the server can connect",
@@ -3531,6 +3696,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List the current user's connected calendars",
@@ -3551,6 +3719,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Whether this member is checked for calendar conflicts",
@@ -3588,6 +3759,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "External calendar events for the org's technicians",
@@ -3625,6 +3799,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Team connected-calendar health (elevated)",
@@ -3670,6 +3847,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "A technician's external events with Free flags (elevated)",
@@ -3707,6 +3887,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark a technician external event Free/Busy (elevated)",
@@ -3727,6 +3910,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "The signed-in user's external-calendar busy rules",
@@ -3755,6 +3941,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update the signed-in user's external-calendar busy rules",
@@ -3785,6 +3974,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Connect a read-only iCal (.ics) feed for conflict detection",
@@ -3838,6 +4030,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Start Cronofy OAuth; returns the auth URL (temporary)",
@@ -3939,6 +4134,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Start Google/Microsoft OAuth; returns the auth URL",
@@ -4016,6 +4214,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Disconnect a connected calendar",
@@ -4046,6 +4247,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Upload on-device (EventKit) busy blocks",
@@ -4066,6 +4270,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Turn off the on-device (Apple) calendar connection",
@@ -4426,6 +4633,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List all projects in organization",
@@ -4654,6 +4864,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get project counts by status",
@@ -4683,6 +4896,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Service areas + travel fee zones for the projects filter bar",
@@ -5043,6 +5259,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Technicians / editors / project managers actually assigned on a project, for the projects filter bar",
@@ -5413,6 +5632,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get all project IDs matching filters",
@@ -5773,6 +5995,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get project metrics",
@@ -5802,6 +6027,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get nearest scheduled project date",
@@ -5831,6 +6059,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List delivery templates for org",
@@ -5858,6 +6089,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a delivery template",
@@ -5896,6 +6130,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a delivery template",
@@ -5932,6 +6169,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a delivery template",
@@ -5977,6 +6217,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Attach Vremly Scan results (tour URL, floorplan) to project",
@@ -6015,6 +6258,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List media for a project",
@@ -6061,6 +6307,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add media to a project",
@@ -6107,6 +6356,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List media on another job that can be imported",
@@ -6162,6 +6414,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Import media from another job",
@@ -6217,6 +6472,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Import files from the order's Drive folder",
@@ -6263,6 +6521,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete media from a project",
@@ -6623,6 +6884,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List current user projects",
@@ -6669,6 +6933,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get messages for a project",
@@ -6715,6 +6982,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a message to a project",
@@ -6753,6 +7023,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get activity (audit) history for a project",
@@ -6799,6 +7072,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a new project",
@@ -6844,6 +7120,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get project by ID",
@@ -6890,6 +7169,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a project",
@@ -6926,6 +7208,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Permanently delete an archived project",
@@ -6964,6 +7249,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Re-geocode this project",
@@ -7012,6 +7300,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Assign technician and editor to a project",
@@ -7060,6 +7351,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update MLS listing status (live / sold)",
@@ -7098,6 +7392,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a project’s notes",
@@ -7153,6 +7450,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Cancel a project",
@@ -7191,6 +7491,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Archive a cancelled project",
@@ -7229,6 +7532,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Unarchive a project",
@@ -7268,6 +7574,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bulk delete projects",
@@ -7313,6 +7622,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Assign technician to a project",
@@ -7351,6 +7663,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Route-aware technician distances for a project",
@@ -7396,6 +7711,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Assign customer to a project",
@@ -7441,6 +7759,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Assign project manager",
@@ -7479,6 +7800,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get technicians from agent past jobs for this project",
@@ -7524,6 +7848,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Agent requests a different technician from past jobs",
@@ -7577,6 +7904,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove technician from a project",
@@ -7630,6 +7960,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove editor from a project",
@@ -7683,6 +8016,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove customer from a project",
@@ -7728,6 +8064,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Assign editor to a project",
@@ -7767,6 +8106,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bulk add/remove editors across projects",
@@ -7805,6 +8147,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Flush a bulk-assignment notification batch",
@@ -7843,6 +8188,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Schedule a project",
@@ -7898,6 +8246,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update project status",
@@ -7943,6 +8294,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "tags": [
@@ -7987,6 +8341,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Confirm editing work has begun on a project",
@@ -8032,6 +8389,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Record technician workflow acknowledgements",
@@ -8077,6 +8437,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Technician hand-off — raw files are in",
@@ -8115,6 +8478,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Toggle showcase flag on a project",
@@ -8153,6 +8519,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Unlock or re-lock the delivery paywall for a project",
@@ -8191,6 +8560,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get delivery status for a project",
@@ -8253,6 +8625,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Render the exact delivery email for a project (including the project-details block) without sending it",
@@ -8301,6 +8676,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Enable delivery for a project",
@@ -8339,6 +8717,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Disable delivery for a project",
@@ -8377,6 +8758,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Regenerate delivery token",
@@ -8415,6 +8799,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Rotate delivery token",
@@ -8453,6 +8840,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List visits for a project",
@@ -8506,6 +8896,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a visit for a project",
@@ -8554,6 +8947,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a shoot (visit) to an order with a pricing intent (multi-appointments)",
@@ -8617,6 +9013,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a visit",
@@ -8669,6 +9068,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Cancel a visit (soft) or permanently delete it (?permanent=true)",
@@ -8732,6 +9134,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Approve or reject a visit",
@@ -8778,6 +9183,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Per-crew-member start locations for one shoot",
@@ -8842,6 +9250,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Set one crew member's start location for this shoot",
@@ -8894,6 +9305,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Clear a start location (falls back to home base)",
@@ -8923,6 +9337,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Backfill service areas for projects missing one",
@@ -8952,6 +9369,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Backfill the initial visit for scheduled orders missing one",
@@ -8990,6 +9410,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Backfill the derived service-area / travel-fee-zone filter columns (dry-run unless apply=true)",
@@ -9028,6 +9451,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Backfill Project.firstDeliveredAt from delivery history (dry-run unless apply=true)",
@@ -9057,6 +9483,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Fix projects with bad coordinates by re-geocoding",
@@ -9137,6 +9566,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get technician availability slots",
@@ -9191,6 +9623,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Check if a specific time slot is available",
@@ -9237,6 +9672,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a presigned S3 upload URL for project media",
@@ -9283,6 +9721,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a presigned S3 upload URL for non-project files (avatars, logos)",
@@ -9322,6 +9763,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Confirm a media upload",
@@ -9360,6 +9804,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get media for a project",
@@ -9398,6 +9845,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get media by ID",
@@ -9434,6 +9884,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete media by ID",
@@ -9463,6 +9916,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reorder media items within a project",
@@ -9501,6 +9957,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Backfill thumbnails for media missing them in a project",
@@ -9539,6 +9998,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Rename a media item",
@@ -9577,6 +10039,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Toggle showcase flag on a media item",
@@ -9597,6 +10062,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get this org's Drive folder configuration",
@@ -9625,6 +10093,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Point this org at a parent Drive folder",
@@ -9643,6 +10114,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Stop creating folders for this org",
@@ -9695,6 +10169,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "What is inside this order's Drive folder",
@@ -9732,6 +10209,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Thumbnail for one file in the order folder",
@@ -9761,6 +10241,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create this order's Drive folder now",
@@ -9788,6 +10271,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get current user availability settings",
@@ -9825,6 +10311,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update availability status",
@@ -9862,6 +10351,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update work hours for a specific day",
@@ -9900,6 +10392,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update all work hours at once",
@@ -9939,6 +10434,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a webhook subscription",
@@ -9966,6 +10464,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List webhook subscriptions",
@@ -10014,6 +10515,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a webhook subscription",
@@ -10050,6 +10554,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a webhook subscription",
@@ -10154,6 +10661,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List delivery log for a subscription",
@@ -10192,6 +10702,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send a test ping to a subscription",
@@ -10231,6 +10744,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send a message",
@@ -10277,6 +10793,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get messages for a project (cursor-paginated)",
@@ -10325,6 +10844,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Toggle an emoji reaction on a message",
@@ -10363,6 +10885,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get message by ID",
@@ -10409,6 +10934,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Edit a message (author only)",
@@ -10445,6 +10973,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a message",
@@ -10677,6 +11208,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List invoices for organization",
@@ -10721,6 +11255,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a new invoice",
@@ -10750,6 +11287,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Run a bulk operation on a selection of invoices",
@@ -10779,6 +11319,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Revenue summary for the Reports page",
@@ -10815,6 +11358,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Committed-but-not-collected pipeline for the Reports page",
@@ -10851,6 +11397,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Read-only Stripe reconciliation probe for imported invoices",
@@ -10905,6 +11454,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Tax collected aggregated by type and period",
@@ -10934,6 +11486,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get invoice counts + totals grouped by status",
@@ -10973,6 +11528,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List invoices issued to the current user as a customer",
@@ -11021,6 +11579,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create native PaymentSheet bundle to pay an invoice",
@@ -11069,6 +11630,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a hosted Checkout session to pay an invoice (authenticated)",
@@ -11129,6 +11693,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get invoice by project ID",
@@ -11174,6 +11741,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get invoice by ID",
@@ -11220,6 +11790,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update an invoice",
@@ -11296,6 +11869,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Fetch Stripe-hydrated payment details for an invoice",
@@ -11334,6 +11910,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Record a non-Stripe refund for audit",
@@ -11370,6 +11949,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List manual refunds recorded against an invoice.\nGET /invoices/:id/manual-refunds",
@@ -11418,6 +12000,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Refund an invoice through Stripe",
@@ -11464,6 +12049,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "View or download invoice as PDF (inline by default)",
@@ -11510,6 +12098,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "View or download invoice as PDF (inline by default)",
@@ -11668,6 +12259,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create invoice from project package",
@@ -11706,6 +12300,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reconcile invoice refund state from Stripe",
@@ -11751,6 +12348,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Preview rebuilding a draft from its project",
@@ -11799,6 +12399,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Rebuild a draft invoice from its project",
@@ -11844,6 +12447,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Differences between a job's invoices and the job as it stands",
@@ -11892,6 +12498,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a sent invoice after a package change",
@@ -11940,6 +12549,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Raise a supplementary invoice for a post-payment package change",
@@ -11985,6 +12597,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send invoice to customer",
@@ -12023,6 +12638,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send the customer a payment link (email + SMS)",
@@ -12068,6 +12686,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Void an invoice",
@@ -12123,6 +12744,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark an invoice paid (off-platform payment)",
@@ -12161,6 +12785,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get customer payment methods for invoice",
@@ -12206,6 +12833,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Charge customer card on file",
@@ -12244,6 +12874,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delta between an invoice and what was collected",
@@ -12289,6 +12922,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Return the overpayment on a credit note",
@@ -12327,6 +12963,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Record a manual return against a credit note",
@@ -12382,6 +13021,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Apply a coupon / discount to an invoice",
@@ -12427,6 +13069,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove the applied coupon / discount from an invoice",
@@ -12456,6 +13101,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Start Stripe Connect onboarding",
@@ -12492,6 +13140,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get Stripe Connect status",
@@ -12521,6 +13172,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Refresh Stripe Connect onboarding link",
@@ -12550,6 +13204,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Start Stripe Connect OAuth to link an EXISTING account",
@@ -12619,6 +13276,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Disconnect the org's Stripe Connect account",
@@ -12648,6 +13308,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a Stripe Identity verification session",
@@ -12677,6 +13340,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get current identity verification status",
@@ -12706,6 +13372,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get saved payment methods",
@@ -12735,6 +13404,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create setup intent to add a new card",
@@ -12764,6 +13436,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "PaymentSheet bundle for native card add",
@@ -12801,6 +13476,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove a payment method",
@@ -12831,6 +13509,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Open Stripe Billing Portal",
@@ -12860,6 +13541,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get the current subscription status for the org",
@@ -12889,6 +13573,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a Stripe Checkout session for Enterprise subscription",
@@ -12918,6 +13605,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Cancel the org subscription at period end",
@@ -12947,6 +13637,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List recent Stripe payouts for the org",
@@ -12976,6 +13669,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get the org connected account balance",
@@ -13005,6 +13701,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get my referral code for an org",
@@ -13034,6 +13733,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get my referral stats for an org",
@@ -13063,6 +13765,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get my affiliate dashboard stats for an org",
@@ -13093,6 +13798,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Redeem a referral code",
@@ -13123,6 +13831,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Customize my affiliate referral token",
@@ -13161,6 +13872,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get one customer's referral/affiliate overview (admin)",
@@ -13216,6 +13930,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Preview a word-of-mouth referral attribution (admin, read-only)",
@@ -13262,6 +13979,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Record a word-of-mouth referral and reward both sides (admin)",
@@ -13315,6 +14035,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a member's weekly shift schedule",
@@ -13376,6 +14099,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Replace a member's weekly shift schedule",
@@ -13412,6 +14138,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "This listing's AI video scripts",
@@ -13458,6 +14187,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Leave feedback on this listing's video scripts",
@@ -13504,6 +14236,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Generate AI video scripts for this listing",
@@ -13548,6 +14283,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Pick the script this listing will use",
@@ -13568,6 +14306,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List all booking forms for the current org",
@@ -13596,6 +14337,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a new booking form",
@@ -13625,6 +14369,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a booking form by ID",
@@ -13662,6 +14409,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a booking form",
@@ -13689,6 +14439,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a booking form",
@@ -13718,6 +14471,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Duplicate a booking form",
@@ -13745,6 +14501,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get the portal-facing default booking form for the current org",
@@ -13985,6 +14744,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get capture dashboard data for the organization",
@@ -14031,6 +14793,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List properties for the organization",
@@ -14077,6 +14842,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a property capture (standalone or project-linked)",
@@ -14122,6 +14890,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Attach a standalone property to a project",
@@ -14167,6 +14938,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get property by ID",
@@ -14220,6 +14994,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update property",
@@ -14256,6 +15033,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete property",
@@ -14301,6 +15081,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get property for a project",
@@ -14344,6 +15127,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Find or create property for a project (idempotent)",
@@ -14389,6 +15175,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reconcile a project to the Property that holds its scan canvas",
@@ -14437,6 +15226,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List every floor on a property (floor management)",
@@ -14490,6 +15282,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a floor to a property",
@@ -14546,6 +15341,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a floor",
@@ -14597,6 +15395,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a floor",
@@ -14660,6 +15461,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Hide or un-hide a floor (reversible)",
@@ -14723,6 +15527,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a room to a floor",
@@ -14786,6 +15593,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a room",
@@ -14830,6 +15640,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a room",
@@ -14893,6 +15706,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Save wall measurements for a room (batch upsert)",
@@ -14956,6 +15772,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Save walk (Smart Room) measurements — creates room from continuous walk data",
@@ -14994,6 +15813,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Solve geometry: compute room polygons, areas, and layout",
@@ -15040,6 +15862,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get floor canvas (wall-first data)",
@@ -15096,6 +15921,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Save floor canvas (wall-first data)",
@@ -15154,6 +15982,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Save floor canvas (strict schema)",
@@ -15207,6 +16038,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get floor DRAFT canvas (web editor lane; Phase 1b)",
@@ -15257,6 +16091,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Save floor DRAFT canvas (web editor lane; Phase 1b)",
@@ -15295,6 +16132,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bake perimeter-scale correction into every floor of a property (batch)",
@@ -15341,6 +16181,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Floor DRAFT version-history timeline (metadata + capture baseline)",
@@ -15402,6 +16245,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Full canvas of one floor-draft snapshot (preview); versionId=capture for baseline",
@@ -15456,6 +16302,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Restore a floor-draft snapshot as the new current draft (non-destructive)",
@@ -15494,6 +16343,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Wipe all floors + canvas geometry for a property (Start fresh)",
@@ -15539,6 +16391,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get floorplan layout data (JSON)",
@@ -15583,6 +16438,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get floorplan as SVG",
@@ -15628,6 +16486,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get square footage breakdown",
@@ -15666,6 +16527,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Export floorplan as DXF (AutoCAD)",
@@ -15734,6 +16598,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Export floorplan as SVG (professional layout)",
@@ -15778,6 +16645,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Export all floors on one page as SVG (summary view)",
@@ -15828,6 +16698,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Export floorplan as PNG",
@@ -15872,6 +16745,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Export floorplan as PDF (all floors, one page each)",
@@ -15910,6 +16786,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Render floor JPGs + report PDFs (imperial & metric) and add them to the project media (Floorplans + Documents)",
@@ -15968,6 +16847,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Render an unsaved (POSTed) floor canvas to svg/png/pdf — read-only, does not persist",
@@ -16012,6 +16894,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Render POSTed per-floor canvases to a whole-property (all-floors) PDF — read-only, does not persist",
@@ -16056,6 +16941,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Deliver floorplan — generate all four variants (PNG+PDF, imperial+metric) and persist as Media for the project",
@@ -16101,6 +16989,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Validate property geometry",
@@ -16146,6 +17037,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Finalize property (transition to COMPLETE with guards)",
@@ -16191,6 +17085,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get public floorplan layout data",
@@ -16235,6 +17132,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get public floorplan as SVG",
@@ -16279,6 +17179,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get public floorplan as PDF (all floors, RMS)",
@@ -16329,6 +17232,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get public floorplan as PNG (single floor, detailed export)",
@@ -16453,6 +17359,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Quote a Build-Your-Own custom cart (subtotal and tax)",
@@ -16506,6 +17415,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List all packages including inactive",
@@ -16543,6 +17455,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a package",
@@ -16572,6 +17487,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List all add-ons including inactive",
@@ -16609,6 +17527,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create an add-on",
@@ -16647,6 +17568,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Duplicate a package",
@@ -16695,6 +17619,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a package",
@@ -16731,6 +17658,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a package",
@@ -16779,6 +17709,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update an add-on",
@@ -16815,6 +17748,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete an add-on",
@@ -16853,6 +17789,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Auto-hide preview for an add-on",
@@ -16901,6 +17840,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "A member's reliability audit trail (events + baseline markers)",
@@ -16949,6 +17891,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "One shoot's reliability records, for correcting its reported status (ADMIN/OWNER only)",
@@ -17007,6 +17952,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Override one reliability event's outcome/reason (ADMIN/OWNER only)",
@@ -17058,6 +18006,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reset a member's reliability baseline (ADMIN/OWNER only)",
@@ -17106,6 +18057,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Upsert tracking ping (technician only)",
@@ -17157,6 +18111,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get current tracking snapshot",
@@ -17201,6 +18158,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Clear own stale tracking row (technician only)",
@@ -17240,6 +18200,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Register a Live Activity push token for a project",
@@ -17279,6 +18242,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "POST /tracking/live-activity-start-token  { pushToStartToken }\n\nDevice-level ActivityKit push-to-start token (iOS 17.2+). Lets the\nbackend launch the viewer's trip Live Activity remotely when a trip\nstarts — no project scope, just the signed-in user's device.",
@@ -17318,6 +18284,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List active tracking rows for the org",
@@ -17375,6 +18344,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Aggregated per-technician driving km for completed trips in a date range",
@@ -17423,6 +18395,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Force-complete or force-cancel a live trip (owner/admin only)",
@@ -17826,6 +18801,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List who this order is shared with",
@@ -17879,6 +18857,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Share this order with someone",
@@ -17935,6 +18916,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Change a share role",
@@ -17979,6 +18963,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Revoke a share",
@@ -18025,6 +19012,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Resend a pending invitation",
@@ -18071,6 +19061,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Cancel a pending invitation",
@@ -18198,6 +19191,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List all inquiries (paginated)",
@@ -18243,6 +19239,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get inquiry by ID",
@@ -18289,6 +19288,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update an inquiry",
@@ -18327,6 +19329,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Convert inquiry to a project",
@@ -18406,6 +19411,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get dashboard metrics and analytics",
@@ -18444,6 +19452,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Validate an invite code (public)",
@@ -18498,6 +19509,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get public organization info",
@@ -18536,6 +19550,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get public team roster for an organization",
@@ -18574,6 +19591,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Search provider (COMPANY) organizations by name",
@@ -18612,6 +19632,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add self as customer of a provider organization",
@@ -18679,6 +19702,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get public portfolio media for an organization",
@@ -18738,6 +19764,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get public reviews for an organization",
@@ -18776,6 +19805,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get showcase projects for an organization",
@@ -18814,6 +19846,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get business hours for this organization",
@@ -18850,6 +19885,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update business hours for this organization",
@@ -18888,6 +19926,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List closures / blackout dates for this organization",
@@ -18924,6 +19965,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a closure / blackout period",
@@ -18970,6 +20014,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove a closure / blackout period",
@@ -19048,6 +20095,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Check if a location is within an org service area",
@@ -19168,6 +20218,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get public availability for an organization",
@@ -19206,6 +20259,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get pending invitations by email (public)",
@@ -19245,6 +20301,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a new organization",
@@ -19282,6 +20341,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List my organizations",
@@ -19335,6 +20397,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Resolve a custom domain or subdomain slug to an organization (public)",
@@ -19390,6 +20455,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Invite a user to an organization",
@@ -19428,6 +20496,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List persistent invite codes for an organization",
@@ -19474,6 +20545,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a persistent invite code",
@@ -19520,6 +20594,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Rotate a persistent invite code",
@@ -19566,6 +20643,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a persistent invite code",
@@ -19605,6 +20685,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Accept an organization invite",
@@ -19650,6 +20733,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get organization by ID",
@@ -19695,6 +20781,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Plan, fee and feature entitlements for the org",
@@ -19751,6 +20840,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List organization members",
@@ -19789,6 +20881,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Analytics for the org (revenue, orders, AOV, trend)",
@@ -19827,6 +20922,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Geographic revenue/order report for the org",
@@ -19873,6 +20971,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Order placement attribution (app and door)",
@@ -19918,6 +21019,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "AI-assisted TAM/SAM market research for the org",
@@ -19980,6 +21084,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get ratings for a specific organization member",
@@ -20026,6 +21133,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Start a \"View as\" preview of a member (OWNER/ADMIN only)",
@@ -20074,6 +21184,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update organization settings",
@@ -20112,6 +21225,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List cancellation-insurance plans (incl. inactive)",
@@ -20158,6 +21274,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a cancellation-insurance plan",
@@ -20214,6 +21333,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a cancellation-insurance plan",
@@ -20258,6 +21380,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete (deactivate) a cancellation-insurance plan",
@@ -20321,6 +21446,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a member role",
@@ -20377,6 +21505,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a member employment type",
@@ -20433,6 +21564,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Set a member availability (OWNER/ADMIN)",
@@ -20489,6 +21623,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Toggle a member as a service provider (OWNER/ADMIN)",
@@ -20545,6 +21682,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Set which service areas a member covers (OWNER/ADMIN)",
@@ -20601,6 +21741,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Set which media types a member is auto-routed (OWNER/ADMIN). Routing only — never a permission",
@@ -20639,6 +21782,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Read the org's editor media-type routing configuration",
@@ -20685,6 +21831,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update the org's editor media-type routing configuration (OWNER/ADMIN)",
@@ -20802,6 +21951,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Explain the booking calendar for a date/package/address (elevated)",
@@ -20840,6 +21992,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bookable technician pool per service area (elevated)",
@@ -20896,6 +22051,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Set a member's calendar event colour (OWNER/ADMIN)",
@@ -20952,6 +22110,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Restrict a member to assigned projects only (OWNER/ADMIN)",
@@ -20998,6 +22159,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove a member from organization",
@@ -21061,6 +22225,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a member split configuration",
@@ -21099,6 +22266,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get the calling user's own home-base address on the active org",
@@ -21145,6 +22315,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update the calling user's own home-base address on the active org",
@@ -21208,6 +22381,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a member address (org-level, does not affect personal org)",
@@ -21246,6 +22422,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List pending invitations (Aryeo-migrated team members)",
@@ -21292,6 +22471,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send a pending invitation (email + notification)",
@@ -21338,6 +22520,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update pending invitation role",
@@ -21384,6 +22569,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a pending invitation",
@@ -21422,6 +22610,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List payout entitlements for paid projects",
@@ -21460,6 +22651,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List Stripe Connect payouts (recent deposits to bank)",
@@ -21498,6 +22692,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get custom email domain configuration",
@@ -21534,6 +22731,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a custom email domain",
@@ -21570,6 +22770,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove custom email domain",
@@ -21608,6 +22811,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Verify custom email domain DNS records",
@@ -21646,6 +22852,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get custom app domain configuration",
@@ -21682,6 +22891,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a custom app domain",
@@ -21718,6 +22930,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove custom app domain",
@@ -21756,6 +22971,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Verify custom app domain DNS",
@@ -21794,6 +23012,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List an org's custom page domains",
@@ -21830,6 +23051,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add/replace a custom domain for a page type",
@@ -21876,6 +23100,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Verify a custom page domain (CNAME + SSL)",
@@ -21922,6 +23149,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove a custom page domain",
@@ -21970,6 +23200,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get email template definitions and org overrides",
@@ -22018,6 +23251,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get email template definitions catalog",
@@ -22064,6 +23300,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update or create a custom email template",
@@ -22108,6 +23347,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reset an email template to defaults",
@@ -22146,6 +23388,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List this company's AI provider keys (masked)",
@@ -22202,6 +23447,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Install or rotate an AI provider key for this company",
@@ -22246,6 +23494,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove this company AI provider key",
@@ -22291,6 +23542,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "This company's own Stripe credentials (masked — never the key)",
@@ -22344,6 +23598,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Install or rotate this company's own Stripe keys",
@@ -22380,6 +23637,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove this company's Stripe credentials and return it to the platform account",
@@ -22428,6 +23688,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Route this company's payments through its own Stripe account (or back)",
@@ -22466,6 +23729,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mint a new webhook endpoint URL for this company's Stripe account",
@@ -22747,6 +24013,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List inventory items (models) with units + status breakdown",
@@ -22791,6 +24060,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create an inventory item (optionally with initial units)",
@@ -22836,6 +24108,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a single inventory item with its units",
@@ -22889,6 +24164,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update an inventory item (model fields)",
@@ -22925,6 +24203,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete an inventory item (cascades its units)",
@@ -22980,6 +24261,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add N units to an item",
@@ -23035,6 +24319,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Set how many of an item's units are in each status",
@@ -23083,6 +24370,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a single inventory unit",
@@ -23119,6 +24409,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a single inventory unit",
@@ -23148,6 +24441,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List active inventory categories for the org (lazy-seeded)",
@@ -23185,6 +24481,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create an inventory category",
@@ -23233,6 +24532,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update an inventory category",
@@ -23269,6 +24571,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete (soft-archive) an inventory category",
@@ -23308,6 +24613,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List kits",
@@ -23352,6 +24660,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a kit",
@@ -23397,6 +24708,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a kit",
@@ -23450,6 +24764,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a kit",
@@ -23486,6 +24803,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a kit",
@@ -23524,6 +24844,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Compute kit availability from AVAILABLE units (per-slot fulfilled/short)",
@@ -23580,6 +24903,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List kit assignments (optionally by member or kit)",
@@ -23624,6 +24950,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Assign a kit to a member (soft-reserve matching AVAILABLE units)",
@@ -23662,6 +24991,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Unassign a kit (return its units to AVAILABLE)",
@@ -23691,6 +25023,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bulk-import inventory items (one row per model + quantity) from CSV",
@@ -23720,6 +25055,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Inventory items CSV template",
@@ -23749,6 +25087,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bulk-import kits + slots from CSV",
@@ -23778,6 +25119,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Kits CSV template",
@@ -23893,6 +25237,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get customer metrics",
@@ -24008,6 +25355,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List customers (with optional search)",
@@ -24052,6 +25402,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a customer",
@@ -24177,6 +25530,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get all customer IDs matching filters (for select-all)",
@@ -24216,6 +25572,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Preview eligible returning customers (migrated, not yet activated)",
@@ -24255,6 +25614,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Migrate eligible returning customers — create accounts + send set-up emails",
@@ -24293,6 +25655,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a single customer with hydrated stats",
@@ -24339,6 +25704,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a customer",
@@ -24375,6 +25743,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a customer",
@@ -24423,6 +25794,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "A customer's active sessions and devices (IP redacted)",
@@ -24461,6 +25835,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Top customers by lifetime spend for Reports",
@@ -24520,6 +25897,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Customer value segmentation over a time frame, for Reports",
@@ -24558,6 +25938,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send platform invite to a customer",
@@ -24597,6 +25980,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bulk send platform invites to customers",
@@ -24635,6 +26021,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send a password reset email to a customer",
@@ -24673,6 +26062,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List saved payment methods for a customer",
@@ -24711,6 +26103,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Start a card-capture session for a customer (staff-run)",
@@ -24749,6 +26144,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Email the customer a link to add a card on file",
@@ -24795,6 +26193,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove a saved payment method from a customer",
@@ -24841,6 +26242,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Set a customer's default payment method",
@@ -24880,6 +26284,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bulk delete customers",
@@ -24926,6 +26333,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Import customers + their agent teams from a CSV",
@@ -24965,6 +26375,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send team invitations created by a CSV import",
@@ -25004,6 +26417,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Team invitations still waiting to be sent",
@@ -25043,6 +26459,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send portal invitations flagged by a CSV import",
@@ -25420,6 +26839,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Submit a public booking order",
@@ -25466,6 +26888,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Quote a booking total including sales tax",
@@ -25512,6 +26937,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a new order",
@@ -25551,6 +26979,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create Stripe checkout session for an order",
@@ -25590,6 +27021,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create native iOS PaymentSheet bundle for booking",
@@ -25628,6 +27062,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get order status by Stripe session ID",
@@ -25709,6 +27146,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get order metrics",
@@ -25780,6 +27220,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List unfinished checkouts for the organization",
@@ -25809,6 +27252,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List the caller's unfinished bookings",
@@ -25847,6 +27293,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Find the cart behind a Stripe checkout session",
@@ -25885,6 +27334,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Load an unfinished booking and re-check its slot",
@@ -25921,6 +27373,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Discard an unfinished booking",
@@ -25959,6 +27414,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Release an unfinished booking from checkout",
@@ -26082,6 +27540,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List all orders for organization",
@@ -26120,6 +27581,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get provider payment mode",
@@ -26158,6 +27622,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Prefill a new booking from a past order",
@@ -26196,6 +27663,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Capture held payment for an agent-booked project",
@@ -26234,6 +27704,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Release held payment for an agent-booked project",
@@ -26292,6 +27765,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Cancel an order as customer",
@@ -26333,6 +27809,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get cancellation fee policy for a project",
@@ -26374,6 +27853,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "3DS retry for a failed cancellation fee",
@@ -26415,6 +27897,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "PaymentSheet bundle to pay the cancellation fee",
@@ -26456,6 +27941,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Set up a card so a no-card customer can pay the cancel fee",
@@ -26507,6 +27995,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Save the customer card for the cancel-fee path",
@@ -26555,6 +28046,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Record the customer accepting the cancellation policy",
@@ -26633,6 +28127,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a comment to a delivery",
@@ -26828,6 +28325,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Staff per-file download URLs for a delivery",
@@ -26867,6 +28367,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Staff bulk download request for a delivery",
@@ -26904,6 +28407,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Staff bulk download status for a delivery",
@@ -26933,6 +28439,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Approve a delivery",
@@ -26972,6 +28481,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Request changes on a delivery",
@@ -27011,6 +28523,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Submit project ratings",
@@ -27094,6 +28609,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Submit survey response",
@@ -27188,6 +28706,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Retry a failed artifact generation",
@@ -27218,6 +28739,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List surveys for organization",
@@ -27253,6 +28777,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create survey",
@@ -27289,6 +28816,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get survey by ID",
@@ -27333,6 +28863,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update survey",
@@ -27360,6 +28893,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete survey",
@@ -27399,6 +28935,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get survey responses (analytics)",
@@ -27419,6 +28958,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List review platforms",
@@ -27447,6 +28989,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create review platform",
@@ -27486,6 +29031,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update review platform",
@@ -27513,6 +29061,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete review platform",
@@ -27542,6 +29093,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List disputes for the active org",
@@ -27571,6 +29125,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get user tour status and progress",
@@ -27608,6 +29165,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get progress for a tour track",
@@ -27647,6 +29207,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update progress for a tour step",
@@ -27684,6 +29247,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark a tour track as completed",
@@ -27721,6 +29287,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Skip a tour track",
@@ -27750,6 +29319,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark setup as complete",
@@ -27779,6 +29351,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Dismiss the setup guide",
@@ -27808,6 +29383,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reset all tour progress",
@@ -27844,6 +29422,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a demo project for tour",
@@ -27878,6 +29459,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get demo project",
@@ -27905,6 +29489,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete demo project",
@@ -27952,6 +29539,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List org discounts (all, or ?active=true)",
@@ -27998,6 +29588,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create an org discount / coupon",
@@ -28054,6 +29647,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update an org discount / coupon",
@@ -28098,6 +29694,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete (or deactivate if referenced) an org discount",
@@ -28144,6 +29743,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create marketplace listing with service slots",
@@ -28310,6 +29912,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List marketplace jobs feed",
@@ -28478,6 +30083,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List marketplace jobs created by current user",
@@ -28516,6 +30124,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get marketplace job details with all slots",
@@ -28552,6 +30163,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a marketplace listing",
@@ -28590,6 +30204,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a marketplace listing (POST fallback)",
@@ -28635,6 +30252,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List an existing project on the marketplace",
@@ -28683,6 +30303,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Place or update a bid on a marketplace slot",
@@ -28721,6 +30344,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Instantly claim an open marketplace slot",
@@ -28750,6 +30376,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Every marketplace conversation you are party to",
@@ -28796,6 +30425,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "One marketplace conversation",
@@ -28852,6 +30484,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Post to a marketplace conversation",
@@ -28898,6 +30533,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark a marketplace conversation as read",
@@ -28961,6 +30599,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Agent proposes a different price on a bid",
@@ -29024,6 +30665,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Provider proposes a different price back",
@@ -29070,6 +30714,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Provider accepts the agent's counter-offer, assigning the slot",
@@ -29116,6 +30763,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Withdraw your own bid on a marketplace slot",
@@ -29162,6 +30812,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Accept a bid on a marketplace slot",
@@ -29200,6 +30853,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get booking confirmation state for a slot",
@@ -29245,6 +30901,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Confirm booking for a marketplace slot",
@@ -29293,6 +30952,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Decline booking confirmation for a marketplace slot",
@@ -29331,6 +30993,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Provider delivers work for a marketplace slot",
@@ -29369,6 +31034,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Request revision on a delivered marketplace slot",
@@ -29407,6 +31075,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Approve and complete a marketplace slot",
@@ -29455,6 +31126,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create rating for a completed marketplace slot",
@@ -29504,6 +31178,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Cancel a marketplace slot",
@@ -29553,6 +31230,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Cancel a whole marketplace job",
@@ -29692,6 +31372,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Search marketplace providers",
@@ -29740,6 +31423,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Authorize escrow payment for a marketplace slot",
@@ -29778,6 +31464,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Release escrow funds for a marketplace slot",
@@ -29824,6 +31513,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get provider earnings summary and transaction history",
@@ -29853,6 +31545,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get current user provider profile",
@@ -29897,6 +31592,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update current user provider profile",
@@ -29935,6 +31633,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get provider profile by user id",
@@ -29974,6 +31675,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a new API key",
@@ -30001,6 +31705,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List all active API keys for organization",
@@ -30039,6 +31746,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Revoke an API key",
@@ -30085,6 +31795,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Batch import customers",
@@ -30131,6 +31844,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Batch import projects/orders",
@@ -30180,6 +31896,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Batch import invoices",
@@ -30219,6 +31938,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Test Aryeo API key connection",
@@ -30255,6 +31977,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get Aryeo connection status for current organization",
@@ -30300,6 +32025,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Preview sample Aryeo data for an entity",
@@ -30336,6 +32064,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Analyze Aryeo order packages against company packages",
@@ -30382,6 +32113,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Queue Aryeo migration from API",
@@ -30411,6 +32145,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Cancel a running Aryeo migration",
@@ -30447,6 +32184,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get current or recent Aryeo migration status for org",
@@ -30492,6 +32232,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a specific Aryeo migration task by ID",
@@ -30521,6 +32264,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Enable Aryeo webhooks for live sync",
@@ -30550,6 +32296,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Disable Aryeo webhooks",
@@ -30586,6 +32335,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get Aryeo webhook settings",
@@ -30640,6 +32392,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List Aryeo inbound webhook logs",
@@ -30678,6 +32433,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Refresh a single project from Aryeo",
@@ -31117,6 +32875,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get listing status",
@@ -31155,6 +32916,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Toggle listing published state",
@@ -31200,6 +32964,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get listing details",
@@ -31246,6 +33013,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Upsert listing details",
@@ -31291,6 +33061,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get property-website config",
@@ -31337,6 +33110,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Upsert property-website config",
@@ -31419,6 +33195,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Lock or unlock customer website editing",
@@ -31457,6 +33236,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get listing analytics",
@@ -31496,6 +33278,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "The company's default pixels and its installed conversion tokens",
@@ -31545,6 +33330,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Set the house-default pixel IDs for every property website",
@@ -31594,6 +33382,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Install or rotate a Conversions API access token for one pixel",
@@ -31649,6 +33440,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove a Conversions API token",
@@ -31688,6 +33482,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Generate AI copy for a property website section",
@@ -31726,6 +33523,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get tour data for a property",
@@ -31762,6 +33562,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Unpublish (delete every tour node + hotspot for a property)",
@@ -31806,6 +33609,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Save the tour DRAFT — web editor lane (Phase 1b)",
@@ -31844,6 +33650,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Patch tour DRAFT node positions/rotation — floorplan minimap (Phase 1b)",
@@ -31882,6 +33691,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Tour DRAFT version-history timeline (metadata + capture baseline)",
@@ -31935,6 +33747,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Full tour JSON of one draft snapshot (preview); versionId=capture for baseline",
@@ -31981,6 +33796,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Restore a tour-draft snapshot as the new current draft (non-destructive)",
@@ -32019,6 +33837,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Server-computed branded viewer URL for the tour",
@@ -32057,6 +33878,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Merge freshly published capture nodes/links into an existing tour draft",
@@ -32112,6 +33936,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a tour node",
@@ -32175,6 +34002,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a tour node",
@@ -32219,6 +34049,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a tour node",
@@ -32282,6 +34115,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Apply non-destructive image edits (lighting + censor blur) to a pano",
@@ -32338,6 +34174,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a hotspot to a tour node",
@@ -32394,6 +34233,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reposition/rename a hotspot (marks it manual)",
@@ -32445,6 +34287,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a hotspot",
@@ -32483,6 +34328,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Toggle whether the tour is public on the web",
@@ -32531,6 +34379,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update published-viewer settings for the tour",
@@ -32577,6 +34428,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Set (or clear) the starting node for a floor",
@@ -32615,6 +34469,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Auto-generate wall-aware proximity hotspots (immediate walkable neighbours only)",
@@ -32653,6 +34510,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Auto-orient the compass for every pano on the tour",
@@ -32763,6 +34623,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a presigned S3 upload URL for a tour panorama",
@@ -32897,6 +34760,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Published pano positions, for resuming a publish",
@@ -32935,6 +34801,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get aggregated tour view stats",
@@ -32985,6 +34854,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Available AI enhancement options",
@@ -33181,6 +35053,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List AI Studio projects",
@@ -33209,6 +35084,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create AI Studio project",
@@ -33245,6 +35123,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get AI Studio project detail",
@@ -33274,6 +35155,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Generate shareable link for AI Studio project",
@@ -33301,6 +35185,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Revoke shareable link",
@@ -33340,6 +35227,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Submit AI revision for an AI Studio result (authenticated)",
@@ -33400,6 +35290,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get the org's monthly AI usage + quota",
@@ -33438,6 +35331,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Retry a failed AI processing job",
@@ -33467,6 +35363,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Trigger AI processing queue (cron)",
@@ -33505,6 +35404,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "AI processing status for a project (internal)",
@@ -33553,6 +35455,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send a job's media through the AI pipeline (internal)",
@@ -33601,6 +35506,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Merge bracketed exposure sets on a job (internal)",
@@ -33639,6 +35547,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Per-photo AI edit state for a project (internal)",
@@ -33695,6 +35606,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Apply an AI treatment to one photo (internal)",
@@ -33741,6 +35655,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove the AI edit and restore the original photo",
@@ -33787,6 +35704,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Choose one staging/removal option as the delivered edit",
@@ -33833,6 +35753,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Discard one staging/removal option",
@@ -33862,6 +35785,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List available brochure templates",
@@ -33901,6 +35827,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a brochure generation job",
@@ -33939,6 +35868,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List brochure jobs for a project",
@@ -33977,6 +35909,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a single brochure job",
@@ -34013,6 +35948,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a brochure job and generated file",
@@ -34051,6 +35989,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a generated brochure to the project Files",
@@ -34089,6 +36030,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Retry a failed brochure job",
@@ -34137,6 +36081,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List onboarding courses for org",
@@ -34181,6 +36128,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create onboarding course",
@@ -34236,6 +36186,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update onboarding course",
@@ -34272,6 +36225,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete onboarding course",
@@ -34320,6 +36276,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add step to course",
@@ -34368,6 +36327,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update step",
@@ -34404,6 +36366,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete step",
@@ -34452,6 +36417,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reorder steps within a course",
@@ -34481,6 +36449,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get active onboarding courses for customer",
@@ -34519,6 +36490,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark course as completed",
@@ -34565,6 +36539,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark a single lesson complete for the customer",
@@ -34609,6 +36586,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Un-mark a single lesson for the customer",
@@ -34638,6 +36618,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Live announcements for the customer portal banner",
@@ -34667,6 +36650,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List all announcements for the org (management)",
@@ -34704,6 +36690,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create an announcement",
@@ -34752,6 +36741,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update an announcement",
@@ -34788,6 +36780,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete an announcement",
@@ -34817,6 +36812,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List team training courses for the active org with my completion status",
@@ -34855,6 +36853,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a single training course with steps",
@@ -34893,6 +36894,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark a training course as completed for the current user",
@@ -34939,6 +36943,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark a single training lesson complete for the current user",
@@ -34983,6 +36990,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Un-mark a single training lesson for the current user",
@@ -35022,6 +37032,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List specialties",
@@ -35059,6 +37072,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create specialty",
@@ -35107,6 +37123,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update specialty",
@@ -35143,6 +37162,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete specialty",
@@ -35191,6 +37213,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List certification levels",
@@ -35228,6 +37253,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create certification level",
@@ -35276,6 +37304,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update certification level",
@@ -35312,6 +37343,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete certification level",
@@ -35360,6 +37394,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List training courses",
@@ -35397,6 +37434,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create training course",
@@ -35442,6 +37482,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a training course (with modules + lessons)",
@@ -35488,6 +37531,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update training course",
@@ -35524,6 +37570,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete training course",
@@ -35572,6 +37621,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add module to course",
@@ -35620,6 +37672,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update module",
@@ -35656,6 +37711,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete module",
@@ -35704,6 +37762,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add lesson to module",
@@ -35752,6 +37813,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update lesson",
@@ -35788,6 +37852,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete lesson",
@@ -35843,6 +37910,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Upsert quiz (replaces all questions/options)",
@@ -35879,6 +37949,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get presigned upload URL for lesson asset",
@@ -35908,6 +37981,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "My certification roadmap",
@@ -35946,6 +38022,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Hydrated cert level detail (modules + lessons + progress)",
@@ -35984,6 +38063,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark lesson complete for current user",
@@ -36032,6 +38114,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Submit a quiz attempt",
@@ -36070,6 +38155,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Aggregated technician profile (certs + assigned + checkouts + debriefs + ready-for kits)",
@@ -36099,6 +38187,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "My technician profile",
@@ -36163,6 +38254,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List practical evaluations",
@@ -36200,6 +38294,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Open a new practical evaluation",
@@ -36248,6 +38345,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Decide a practical evaluation",
@@ -36294,6 +38394,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Revoke a certification",
@@ -36340,6 +38443,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Renew an expired/revoked certification",
@@ -36378,6 +38484,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Trainee: start re-certification for myself",
@@ -36434,6 +38543,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List cert audit events",
@@ -36463,6 +38575,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bulk-import curriculum from CSV",
@@ -36492,6 +38607,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Curriculum CSV template (download)",
@@ -36521,6 +38639,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Bulk-import practical evaluations from CSV",
@@ -36550,6 +38671,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Practical evals CSV template (download)",
@@ -36589,6 +38713,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List all resources (admin) for the org",
@@ -36633,6 +38760,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a new SOP or checklist resource",
@@ -36678,6 +38808,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a single resource (admin)",
@@ -36731,6 +38864,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a resource template",
@@ -36767,6 +38903,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Hard-delete a resource (and all runs)",
@@ -36829,6 +38968,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List resources available to the team member",
@@ -36875,6 +39017,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a single resource detail with my run state",
@@ -36920,6 +39065,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Start (or resume) a checklist run scoped to a project for the current user",
@@ -36983,6 +39131,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Tick or un-tick an item on a checklist run",
@@ -37028,6 +39179,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Force-mark a checklist run as complete",
@@ -37066,6 +39220,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get the pre-shoot readiness blueprint for a job",
@@ -37112,6 +39269,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Submit pre-shoot readiness check",
@@ -37160,6 +39320,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Submit post-shoot debrief",
@@ -37198,6 +39361,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Check whether the calling user has submitted the post-shoot debrief",
@@ -37262,6 +39428,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Admin: list recent post-shoot debriefs for curriculum review",
@@ -37300,6 +39469,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Dispatcher: list eligible technicians for a project",
@@ -37362,6 +39534,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Dispatcher: rank technicians for a proposed shoot date",
@@ -37391,6 +39566,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List active debrief questions for capture app",
@@ -37420,6 +39598,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List debrief questions (admin)",
@@ -37447,6 +39628,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create debrief question",
@@ -37485,6 +39669,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update debrief question",
@@ -37521,6 +39708,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete debrief question",
@@ -37623,6 +39813,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Admin: list all customer Aryeo migrations for org",
@@ -37661,6 +39854,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Admin: get Aryeo migration status for a customer",
@@ -37697,6 +39893,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Admin: manually run Aryeo migration for a customer",
@@ -37717,6 +39916,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List question sets for the current org",
@@ -37745,6 +39947,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a new question set",
@@ -37774,6 +39979,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a question set by ID",
@@ -37811,6 +40019,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a question set",
@@ -37838,6 +40049,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a question set (detaches from packages)",
@@ -37924,6 +40138,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List technician requests for a project",
@@ -37963,6 +40180,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Resolve a technician request — accept (reassigns) or decline",
@@ -37992,6 +40212,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List the org pipeline stages (materializes defaults)",
@@ -38029,6 +40252,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a pipeline stage",
@@ -38083,6 +40309,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reorder pipeline stages",
@@ -38131,6 +40360,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a pipeline stage",
@@ -38167,6 +40399,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a pipeline stage",
@@ -38196,6 +40431,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List the org room types (materializes defaults)",
@@ -38233,6 +40471,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a custom room type",
@@ -38272,6 +40513,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reorder room types",
@@ -38310,6 +40554,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reset a built-in room type to its default label + color",
@@ -38358,6 +40605,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a room type (label + fillColor)",
@@ -38394,6 +40644,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a custom room type",
@@ -38603,6 +40856,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "tags": [
@@ -38647,6 +40903,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "tags": [
@@ -38675,6 +40934,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "tags": [
@@ -38703,6 +40965,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Claim a ShadowCompany and convert it into a real Organization owned by the caller",
@@ -38723,6 +40988,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Trigger GMB discovery for an area",
@@ -38753,6 +41021,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a new shadow job (service request)",
@@ -38841,6 +41112,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List shadow jobs for the authenticated agent",
@@ -38870,6 +41144,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get a single shadow job by ID",
@@ -38909,6 +41186,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update the status of a shadow job",
@@ -38945,6 +41225,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send outreach email for a shadow job",
@@ -38974,6 +41257,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Send a message on a shadow job thread",
@@ -39001,6 +41287,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Get all messages for a shadow job",
@@ -39031,6 +41320,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Submit user feedback",
@@ -39061,6 +41353,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Submit a whitelabel app request for the current organization",
@@ -39079,6 +41374,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List whitelabel app requests for the current organization",
@@ -39108,6 +41406,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Reconcile a request against App Store Connect now (company OWNER/ADMIN). Returns the request and whether ASC auto-sync is configured.",
@@ -39128,6 +41429,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Whether this org has connected its App Store Connect API key (returns non-secret metadata only).",
@@ -39156,6 +41460,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Connect / replace this org's App Store Connect API key so it can poll its app's store status.",
@@ -39174,6 +41481,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Disconnect this org's App Store Connect API key (poll half).",
@@ -39194,6 +41504,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Enable / regenerate this org's real-time App Store Connect webhook. Returns the URL token + secret to paste into ASC.",
@@ -39212,6 +41525,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Disable this org's real-time App Store Connect webhook.",
@@ -39242,6 +41558,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List every whitelabel app request (platform admin only)",
@@ -39281,6 +41600,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a whitelabel app request (platform admin only)",
@@ -39310,6 +41632,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Build the tenant.json payload for a whitelabel request — consumed by the CI workflow's build-tenant step (platform admin only)",
@@ -39363,6 +41688,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "List saved views for the current user",
@@ -39391,6 +41719,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Create a saved view",
@@ -39421,6 +41752,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Upsert a saved view by (pageKey, name)",
@@ -39460,6 +41794,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Update a saved view",
@@ -39487,6 +41824,9 @@
         "security": [
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Delete a saved view",
@@ -41293,6 +43633,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "The drafting queue: every outstanding floor plan and virtual tour in the org, bucketed by whether the capture data has landed",
@@ -41343,6 +43686,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Per-lane delivery/SLA state for a PAGE of projects — the kanban board chips",
@@ -41384,6 +43730,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "A project's per-media-type completion state, SLA deadlines and ready-for-QC stamp",
@@ -41435,6 +43784,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Mark one media type complete on a project",
@@ -41486,6 +43838,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Add a delivery media type to a project",
@@ -41537,6 +43892,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove a delivery media type from a project",
@@ -41588,6 +43946,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Un-mark one media type on a project (records who reopened it; corrects a mistaken or legacy automatic completion)",
@@ -41639,6 +44000,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Assign a person to one media type of a project (manual override — locks the slot against auto-routing)",
@@ -41690,6 +44054,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Remove a person from one media type of a project (recorded, not erased)",
@@ -41741,6 +44108,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Re-enable automatic routing for one media type",
@@ -41817,6 +44187,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "The org's SLA performance: on-time stage rate, turnaround, breaches by tier, overall-project rate, per-role and per-media-type breakdowns",
@@ -41883,6 +44256,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "One member's SLA KPIs (owned-stage rates + credited counts)",
@@ -41935,6 +44311,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "The stages behind one member's SLA numbers (base + effective outcome, inferred flag, override trail)",
@@ -41993,6 +44372,9 @@
           },
           {
             "bearer": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Override one SLA stage's outcome (OWNER/ADMIN only; audited)",
@@ -42039,6 +44421,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Who receives this listing's weekly analytics report",
@@ -42093,6 +44478,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "Turn the weekly analytics report on or off for one recipient",
@@ -42146,6 +44534,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "The link in the email footer. Token only — no project id, no email address.\n\nA GET that mutates is normally wrong, and it is right here: mail clients\nand their link scanners follow links with GET, and an unsubscribe that\nneeds a form submission is an unsubscribe most people never complete. The\nblast radius is one subscription row turning OFF, which is the direction a\nmis-fire should always fail in.",
@@ -42182,6 +44573,9 @@
           },
           {
             "x-org-id": []
+          },
+          {
+            "x-api-key": []
           }
         ],
         "summary": "RFC 8058 one-click target, named by the `List-Unsubscribe-Post` header the\nmailer sets. Gmail and Yahoo POST here when the recipient taps their\nclient's own unsubscribe control; if this did not really unsubscribe, the\nheader would be a lie and the provider would eventually treat it as one.\n\nReturns 200 with no body — the caller is a mail provider, not a browser.",
