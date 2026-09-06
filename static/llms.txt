@@ -1,0 +1,74 @@
+# Vremly API
+
+> Vremly is a real-estate media production platform. Its REST API covers
+> projects (shoots), customers, media delivery, invoicing and webhooks. This
+> file is the machine-readable index of the developer documentation, following
+> the llms.txt convention.
+
+Base URL: `https://api.vremly.com`
+
+## Authenticating
+
+Two credentials. Integrations should use an API key.
+
+- **API key** — send `x-api-key: <key>`. Belongs to one organization; the server
+  derives the org from the key, so `x-org-id` is not required and is ignored if
+  sent. Scoped: `READ` covers GET/HEAD/OPTIONS, `WRITE` covers mutations and
+  implies READ, `ADMIN` covers everything, `BULK_IMPORT` and `WEBHOOKS` are
+  narrow and do not grant general writes. A missing scope returns 403 naming
+  what was needed and what the key holds.
+- **JWT bearer** — send `Authorization: Bearer <token>` plus `x-org-id: <id>`.
+  Identifies a person, expires, and is the wrong choice for a server.
+
+## Rate limits
+
+Three windows apply simultaneously: 3 requests/second, 20 per 10 seconds, 100
+per minute. The burst limit is the one most callers hit first. API-key traffic
+is bucketed **per key**, not per IP, so hosted automation platforms sharing
+egress addresses do not compete for one allowance. Bearer-authenticated requests
+are not rate limited. Responses carry `X-RateLimit-Limit`,
+`X-RateLimit-Remaining` and `X-RateLimit-Reset`; a 429 carries `Retry-After`.
+
+## Webhooks
+
+Register at `POST /webhooks/subscriptions`. Events are upper snake case:
+`PROJECT_CREATED`, `PROJECT_ASSIGNED`, `PROJECT_STATUS_CHANGED`,
+`PROJECT_DELIVERED`, `DELIVERY_APPROVED`, `INVOICE_CREATED`, `INVOICE_SENT`,
+`INVOICE_PAID`, `INVOICE_VOIDED`, `CUSTOMER_CREATED`, `CUSTOMER_UPDATED`.
+
+`PROJECT_DELIVERED` fires when the company sends the work; `DELIVERY_APPROVED`
+fires when the client accepts it. They are different moments and a sent delivery
+can still come back as a revision request.
+
+Signature: `X-Webhook-Signature: t=<unix-seconds>,v1=<hmac>`, an HMAC-SHA256 over
+the string `timestamp` + `.` + `rawBody`, keyed with the subscription secret, hex
+encoded. Verify against the raw bytes, not a re-serialised object. Delivery is
+at-least-once — deduplicate on the `id` field.
+
+## Docs
+
+- [Overview](https://docs.vremly.com/guides/overview): what the API covers.
+- [Getting Started](https://docs.vremly.com/guides/getting-started): first request.
+- [Authentication](https://docs.vremly.com/guides/authentication): API keys, scopes, bearer tokens, refresh.
+- [Organization Context](https://docs.vremly.com/guides/organization-context): the `x-org-id` header and when it is needed.
+- [Projects Workflow](https://docs.vremly.com/guides/projects-workflow): the shoot lifecycle and its statuses.
+- [Media Management](https://docs.vremly.com/guides/media-management): uploading, variants and delivery.
+- [Webhooks](https://docs.vremly.com/guides/webhooks): events, payloads, signature verification, retries.
+- [Error Handling](https://docs.vremly.com/guides/error-handling): status codes and error shapes.
+- [Rate Limits](https://docs.vremly.com/guides/rate-limits): windows, buckets and backoff.
+- [Troubleshooting](https://docs.vremly.com/guides/troubleshooting): common failures.
+
+## API reference
+
+- [OpenAPI specification](https://docs.vremly.com/openapi/openapi.json): the
+  complete machine-readable contract. Generated from the server, so it is the
+  authority whenever this file or a guide disagrees with it.
+
+## Notes for agents
+
+- Read the OpenAPI spec rather than inferring routes from these summaries.
+- Never place an API key in a URL or query string; it belongs in the `x-api-key`
+  header.
+- A 403 mentioning a scope is a credential problem, not a permissions bug —
+  the key needs re-issuing with the scope named in the message.
+- Respect `Retry-After` on 429 and back off; the burst limit is 3 per second.
