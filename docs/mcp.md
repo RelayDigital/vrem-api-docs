@@ -15,20 +15,21 @@ and no more.
 
 ## Install
 
+Create an API key under **Settings → API Keys** in the Vremly app, then:
+
 ```bash
-cd apps/mcp-server
-npm install
-npm run build
+claude mcp add vremly --env VREMLY_API_KEY=your-api-key \
+  -- npx -y github:RelayDigital/vremly-mcp
 ```
 
-Then register it with your assistant. For Claude Code, in your MCP settings:
+Or add it to your MCP host's config directly:
 
 ```json
 {
   "mcpServers": {
     "vremly": {
-      "command": "node",
-      "args": ["/absolute/path/to/apps/mcp-server/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "github:RelayDigital/vremly-mcp"],
       "env": {
         "VREMLY_API_KEY": "your-api-key"
       }
@@ -37,7 +38,15 @@ Then register it with your assistant. For Claude Code, in your MCP settings:
 }
 ```
 
-Create the key under **Settings → API Keys** in the Vremly app.
+There is nothing to clone or build — `npx` fetches
+[the repository](https://github.com/RelayDigital/vremly-mcp) and compiles it on
+first run. Node 18 or newer.
+
+:::tip Pin a version if you want reproducibility
+`github:RelayDigital/vremly-mcp` tracks the default branch, so you get the
+current server on every fresh install. Append a tag or commit to hold still:
+`github:RelayDigital/vremly-mcp#v0.1.0`.
+:::
 
 ### Configuration
 
@@ -104,12 +113,15 @@ Requests are rate limited per key — 3/second, 20/10 seconds, 100/minute. See
 
 ## Keeping it current
 
-The OpenAPI document ships with the server and is refreshed from the backend:
+The OpenAPI document ships inside the server, so a fresh `npx` install always
+carries the specification as of the last release. `npx -y` re-resolves the
+repository, so removing the cached copy picks up the newest server:
 
 ```bash
-cd apps/backend && npm run openapi:emit
-cd ../mcp-server && npm run build
+rm -rf ~/.npm/_npx && # then restart your assistant
 ```
+
+Pin a tag instead if you would rather decide when that happens.
 
 ## Other agent-readable resources
 

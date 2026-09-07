@@ -294,10 +294,16 @@ function Agents() {
           <p className={styles.body}>
             Vremly ships an <Link to="/guides/mcp">MCP server</Link>, so an AI
             assistant can work with your projects, customers and invoices
-            directly. It exposes three tools — search, describe, call — which
-            reach every endpoint without a thousand-entry tool list. What the
-            assistant may do is decided by the API key you give it and enforced
-            server-side, so a read-only key cannot be talked into writing.
+            directly. One command, nothing to clone:
+          </p>
+          <pre className={styles.installLine}>
+            <code>npx -y github:RelayDigital/vremly-mcp</code>
+          </pre>
+          <p className={styles.body}>
+            It exposes three tools — search, describe, call — which reach every
+            endpoint without a thousand-entry tool list. What the assistant may
+            do is decided by the API key you give it and enforced server-side,
+            so a read-only key cannot be talked into writing.
           </p>
           <p className={styles.body}>
             For everything else there is an{' '}

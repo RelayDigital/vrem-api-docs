@@ -400,6 +400,28 @@
   margin-top: 0;
 }
 
+/* The install command, sized to read as something you copy rather than as
+   prose. Scrolls inside itself on narrow screens instead of widening the
+   card. */
+.installLine {
+  margin: 0 0 1.25rem;
+  padding: 0.85rem 1rem;
+  background: #0c0c0e;
+  border: 1px solid rgba(197, 160, 94, 0.28);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.installLine code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--vremly-gold-bright);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.86rem;
+  white-space: pre;
+}
+
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 
 @media (max-width: 996px) {

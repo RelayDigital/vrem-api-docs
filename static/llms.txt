@@ -69,8 +69,10 @@ at-least-once — deduplicate on the `id` field.
 
 ## MCP
 
-There is a Model Context Protocol server at `apps/mcp-server` in the Vremly
-repository. Three tools — `vremly_search_endpoints`,
+There is a Model Context Protocol server at
+https://github.com/RelayDigital/vremly-mcp, installable with
+`npx -y github:RelayDigital/vremly-mcp` and configured with a `VREMLY_API_KEY`
+environment variable. Three tools — `vremly_search_endpoints`,
 `vremly_describe_endpoint`, `vremly_request` — cover every operation without a
 per-endpoint tool list. It authenticates with the same `x-api-key`, and the
 key's scopes are enforced server-side, so a READ key cannot write regardless of
