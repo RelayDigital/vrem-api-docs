@@ -137,7 +137,11 @@ const config: Config = {
       },
     ],
     colorMode: {
-      defaultMode: 'dark',
+      // Light, because vremly.com is light — near-white ground, black buttons,
+      // green only as an ambient wash. A dark-first docs site looked like a
+      // different product, which is how this drifted into another tenant's
+      // palette in the first place. Dark remains available via the toggle.
+      defaultMode: 'light',
       respectPrefersColorScheme: true,
     },
     navbar: {

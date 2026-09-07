@@ -1,57 +1,97 @@
 /**
  * Vremly documentation theme.
  *
- * The palette is the landing site's, not a docs-specific invention: gold
- * (#c5a05e / #dbb978 / #a67c3d) on near-black (#0c0c0e), with #f5f5f7 text and
- * #8b8b93 / #a1a1aa for muted copy. A developer's first look at Vremly is often
- * this site, so it should read as the same product as vremly.com.
+ * ── THE BRAND IS NEAR-WHITE, BLACK, AND EMERALD. THERE IS NO GOLD. ──────────
  *
- * ── WHY LIGHT AND DARK USE DIFFERENT GOLDS ──────────────────────────────────
+ * This site previously used #c5a05e gold as its dominant accent on a near-black
+ * ground. That was wrong in a specific way worth recording so nobody repeats it:
  *
- * The brand gold #c5a05e is a mid-tone. On the near-black ground it is bright
- * and easily legible, but as link text on white it lands around 2.6:1 — below
- * the 4.5:1 WCAG AA threshold for body text. Documentation is read for long
- * stretches by people scanning for one line in a code block, so light mode uses
- * a darkened gold (#8a6530) for text-weight elements and keeps the true brand
- * gold for larger, non-text accents where contrast rules do not bind.
+ *   #C5A05E is Virtual Xposure's primaryColor
+ *   (apps/vremly-ios/tenants/virtual-xposure/tenant.json)
  *
- * That is not a deviation from the brand — it is the brand rendered legibly.
- * Shipping #c5a05e links on white would look correct in a screenshot and fail
- * the person actually reading it.
+ * VX is a customer running on Vremly, not Vremly. Gold does appear in Vremly's
+ * own tokens, where apps/frontend/app/globals.css labels it
+ * "serif italic accent (rare)" — but saturating a rare accent that happens to be
+ * another company's primary is exactly what makes a page read as that company.
+ *
+ * Every value below was read from the computed styles of vremly.com itself, not
+ * from a memory, a summary, or a component file:
+ *
+ *   --background #fcfcfc   --foreground #1a1a1a   --border #e5e5e5
+ *   --surface #ffffff      --muted #525252        --muted-light #737373
+ *   primary button: #1a1a1a fill, #ffffff label
+ *   greens present: #d1fae5 #a7f3d0 #6ee7b7 #34d399 #059669, logo mark #4e9f5d
+ *
+ * Note what that means: on the marketing site the greens are PALE AMBIENT
+ * WASHES and the logo mark. The actionable UI is black on white. Green is an
+ * accent for links and active states here, never the button fill.
+ *
+ * ── CONTRAST IS MEASURED, NOT EYEBALLED ─────────────────────────────────────
+ *
+ * The brand's own #059669 on #fcfcfc is 3.67:1 — under the 4.5:1 AA needs for
+ * body text, so it cannot be the link colour however on-brand it is. #047857 is
+ * 5.35:1 and is used instead for anything text-weight. Ratios for the rest:
+ * #1a1a1a 16.96, #525252 7.62, #737373 4.62, white-on-#1a1a1a 17.40. In dark
+ * mode on #0c0c0e: #10b981 7.70, #34d399 10.17.
+ *
+ * If you change a colour here, recompute. Do not assume.
  */
 
 :root {
-  /* Text-weight gold, darkened for contrast on white. */
-  --ifm-color-primary: #8a6530;
-  --ifm-color-primary-dark: #7c5b2b;
-  --ifm-color-primary-darker: #755629;
-  --ifm-color-primary-darkest: #604722;
-  --ifm-color-primary-light: #987035;
-  --ifm-color-primary-lighter: #a67c3d;
-  --ifm-color-primary-lightest: #c5a05e;
+  /* Emerald darkened to clear AA on the near-white ground. The brand green
+     (#059669) is kept below for fills and washes, where contrast rules do not
+     bind the same way. */
+  --ifm-color-primary: #047857;
+  --ifm-color-primary-dark: #046b4e;
+  --ifm-color-primary-darker: #036349;
+  --ifm-color-primary-darkest: #02523c;
+  --ifm-color-primary-light: #058563;
+  --ifm-color-primary-lighter: #059669;
+  --ifm-color-primary-lightest: #10b981;
 
-  /* The true brand gold, for accents that are not body text. */
-  --vremly-gold: #c5a05e;
-  --vremly-gold-bright: #dbb978;
-  --vremly-gold-deep: #a67c3d;
+  /* Straight from vremly.com. */
+  --vremly-ground: #fcfcfc;
+  --vremly-surface: #ffffff;
+  --vremly-ink: #1a1a1a;
+  --vremly-border: #e5e5e5;
+  --vremly-muted: #525252;
+  --vremly-muted-light: #737373;
+  --vremly-green: #059669;
+  --vremly-wash-1: #d1fae5;
+  --vremly-wash-2: #a7f3d0;
+
+  --ifm-background-color: #fcfcfc;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-font-color-base: #1a1a1a;
+  --ifm-heading-color: #1a1a1a;
+  --ifm-navbar-background-color: #fcfcfc;
+  --ifm-toc-border-color: #e5e5e5;
 
   --ifm-code-font-size: 92%;
   --ifm-heading-font-weight: 650;
-  --ifm-navbar-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
-  --docusaurus-highlighted-code-line-bg: rgba(197, 160, 94, 0.14);
+  --ifm-navbar-shadow: 0 1px 0 #e5e5e5;
+  --docusaurus-highlighted-code-line-bg: rgba(5, 150, 105, 0.1);
 }
 
 [data-theme='dark'] {
-  /* On #0c0c0e the brighter gold carries easily and stays on-brand. */
-  --ifm-color-primary: #dbb978;
-  --ifm-color-primary-dark: #d2ab60;
-  --ifm-color-primary-darker: #cda453;
-  --ifm-color-primary-darkest: #b98b34;
-  --ifm-color-primary-light: #e4c790;
-  --ifm-color-primary-lighter: #e9d09d;
-  --ifm-color-primary-lightest: #f2e3c4;
+  --ifm-color-primary: #10b981;
+  --ifm-color-primary-dark: #0ea875;
+  --ifm-color-primary-darker: #0d9e6e;
+  --ifm-color-primary-darkest: #0b825b;
+  --ifm-color-primary-light: #34d399;
+  --ifm-color-primary-lighter: #4ade9f;
+  --ifm-color-primary-lightest: #6ee7b7;
 
-  /* The landing page's ground, not Docusaurus' default slate. */
+  --vremly-ground: #0c0c0e;
+  --vremly-surface: #141417;
+  --vremly-ink: #f5f5f7;
+  --vremly-border: rgba(245, 245, 247, 0.1);
+  --vremly-muted: #a1a1aa;
+  --vremly-muted-light: #8b8b93;
+  --vremly-green: #10b981;
+  --vremly-wash-1: rgba(16, 185, 129, 0.16);
+  --vremly-wash-2: rgba(52, 211, 153, 0.08);
+
   --ifm-background-color: #0c0c0e;
   --ifm-background-surface-color: #141417;
   --ifm-navbar-background-color: #0c0c0e;
@@ -64,7 +104,7 @@
   --ifm-color-emphasis-600: #8b8b93;
   --ifm-color-emphasis-700: #a1a1aa;
 
-  --docusaurus-highlighted-code-line-bg: rgba(219, 185, 120, 0.16);
+  --docusaurus-highlighted-code-line-bg: rgba(16, 185, 129, 0.14);
 }
 
 /* Sidebar: the active page is the one thing worth colouring. */
@@ -75,13 +115,12 @@
 
 [data-theme='dark'] .menu__link:hover,
 [data-theme='dark'] .navbar__link:hover {
-  color: var(--vremly-gold-bright);
+  color: var(--ifm-color-primary-light);
 }
 
-/* A gold hairline under the navbar — the landing page's shine border, quieted
-   down to something that can sit above text all day without competing. */
+/* A hairline under the navbar, the same #e5e5e5 the marketing site uses. */
 .navbar {
-  border-bottom: 1px solid rgba(197, 160, 94, 0.22);
+  border-bottom: 1px solid var(--vremly-border);
 }
 
 /* Code is the primary content of an API reference; give it room and stop it
@@ -96,8 +135,7 @@ pre code {
   border: 1px solid rgba(245, 245, 247, 0.08);
 }
 
-/* Inline code reads as a token, not as a link — it was inheriting enough
-   colour to be mistaken for one. */
+/* Inline code reads as a token, not as a link. */
 code {
   border-radius: 4px;
 }
@@ -107,8 +145,7 @@ code {
   border-color: rgba(245, 245, 247, 0.1);
 }
 
-/* Tables carry most of the reference detail (event names, scopes, headers), so
-   they get real column separation rather than Docusaurus' default zebra. */
+/* Tables carry most of the reference detail (event names, scopes, headers). */
 table th {
   font-weight: 620;
   letter-spacing: 0.01em;
@@ -121,38 +158,39 @@ table th {
 /* Admonitions: keep the semantic colours (warning/caution must stay readable as
    warnings) but let `tip` carry the brand, since that is where the "use this
    event, not that one" guidance lives. */
+.theme-admonition-tip {
+  border-color: rgba(5, 150, 105, 0.4);
+}
+
 [data-theme='dark'] .theme-admonition-tip {
-  border-color: rgba(197, 160, 94, 0.4);
+  border-color: rgba(16, 185, 129, 0.4);
 }
 
 /* ── Scalar API reference ───────────────────────────────────────────────────
  *
  * The /api-reference route is Scalar's app, loaded from its CDN, and it keeps
  * its OWN light/dark state that knows nothing about the Docusaurus toggle. Left
- * alone it renders a light reference under this site's dark navbar.
+ * alone it renders a light reference under a dark navbar, or vice versa.
  *
- * So its palette is driven from here instead of from the plugin's `customCss`
- * option, keyed on `html[data-theme=…]` — the attribute Docusaurus actually
- * flips. The `html` in the selector is load-bearing, not decoration: it makes
- * these rules (0,2,1) outrank Scalar's own `.dark-mode .scalar-app` (0,2,0), so
- * they win regardless of which stylesheet the CDN injects last.
- *
- * Colours are the same tokens as the rest of the site: light mode uses the
- * darkened gold for contrast, dark mode the bright one.
+ * So its palette is driven from here rather than through the plugin's
+ * `customCss` option, keyed on `html[data-theme=…]` — the attribute Docusaurus
+ * actually flips. The `html` in the selector is load-bearing: it makes these
+ * rules (0,2,1) outrank Scalar's own `.dark-mode .scalar-app` (0,2,0), so they
+ * win regardless of which stylesheet the CDN injects last.
  */
 html[data-theme='light'] .scalar-app {
-  --scalar-color-accent: #8a6530;
-  --scalar-color-1: #16161a;
-  --scalar-color-2: #4a4a52;
-  --scalar-color-3: #6b6b73;
+  --scalar-color-accent: #047857;
+  --scalar-color-1: #1a1a1a;
+  --scalar-color-2: #525252;
+  --scalar-color-3: #737373;
   --scalar-background-1: #ffffff;
-  --scalar-background-2: #f7f6f3;
-  --scalar-background-3: #efece6;
-  --scalar-border-color: rgba(0, 0, 0, 0.1);
+  --scalar-background-2: #fcfcfc;
+  --scalar-background-3: #f5f5f5;
+  --scalar-border-color: #e5e5e5;
 }
 
 html[data-theme='dark'] .scalar-app {
-  --scalar-color-accent: #dbb978;
+  --scalar-color-accent: #10b981;
   --scalar-color-1: #f5f5f7;
   --scalar-color-2: #c4c4cc;
   --scalar-color-3: #a1a1aa;
