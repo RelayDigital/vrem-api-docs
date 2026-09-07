@@ -64,29 +64,18 @@ Two things about this API that will otherwise cost you an afternoon:
   your key has. That is a credential problem, not a bug — reissue the key with
   the scope it names.
 
-## Building a user-facing app instead?
+## Signing users in is not part of this API
 
-If people sign in to your product with their own Vremly accounts, they need
-tokens rather than a shared key.
+If you were looking for a way to register or log in a Vremly user from your own
+product: there isn't one, deliberately.
 
-```bash
-curl -X POST https://api.vremly.com/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{ "email": "you@example.com", "password": "your-password" }'
-```
+Vremly's own apps sign people in and hold a session, but that is first-party
+plumbing. A third party collecting someone's Vremly password would tie your
+integration to one person's account, break the day they leave, and put you in
+possession of a credential you should never hold.
 
-Registration is `POST /auth/register`, taking `email`, `name`, `password` and
-`accountType`. `accountType` is one of `AGENT`, `PROVIDER` or `COMPANY`, though
-only `AGENT` and `PROVIDER` are offered in the app's own sign-up.
-
-Bearer tokens identify a **person**, so they also need an `x-org-id` header
-naming which organization the request is for. See
-[Organization Context](/guides/organization-context).
-
-:::danger Do not store a user's password to mint tokens for a server
-It ties your integration to one employee's account and stops working the day
-they leave. Use an API key.
-:::
+Use an API key instead. It represents the **organization**, not a person, so it
+keeps working through staff changes and can be revoked on its own.
 
 ## Next
 

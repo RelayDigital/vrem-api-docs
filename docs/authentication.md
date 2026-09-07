@@ -2,20 +2,25 @@
 title: Authentication
 sidebar_position: 2
 ---
-
 # Authentication
 
-The Vremly API accepts two kinds of credential:
+Every request to the Vremly API carries an **API key** in the `x-api-key`
+header. That is the only credential this API takes.
 
-| Credential | Header | Use it for |
-|---|---|---|
-| **JWT Bearer token** | `Authorization: Bearer <token>` | A signed-in person acting in an app |
-| **API key** | `x-api-key: <key>` | A script, a server, or an automation platform |
+```bash
+curl https://api.vremly.com/projects \
+  -H "x-api-key: $VREMLY_API_KEY"
+```
 
-If you are building an integration — GoHighLevel, n8n, Zapier, a cron job, a
-`curl` one-liner — you want an **API key**. It does not expire on a schedule, it
-carries its own permissions, and it is revocable without disturbing anyone's
-login.
+A key does not expire on a schedule, carries its own permissions, belongs to one
+organization, and can be revoked on its own without disturbing anyone's login.
+
+:::note There is no user login for integrations
+Vremly's own web and mobile apps sign people in and hold a session token. That is
+first-party plumbing and is deliberately not documented here — a third party
+should never be collecting a Vremly user's password. Everything below is the
+API-key path, which is the supported one.
+:::
 
 ---
 
@@ -108,109 +113,15 @@ customers share egress IPs. See [Rate Limits](/guides/rate-limits).
 
 ---
 
-## JWT Bearer Tokens
+## Keeping a key safe
 
-Tokens identify a **person**. Use them for an app a human signs in to.
-
-### Obtaining a token
-
-**Register** a new account:
-
-```bash
-curl -X POST https://api.vremly.com/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "user@example.com",
-    "name": "Jane Doe",
-    "password": "secure-password",
-    "accountType": "AGENT"
-  }'
-```
-
-**Login** to an existing account:
-
-```bash
-curl -X POST https://api.vremly.com/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "user@example.com",
-    "password": "secure-password"
-  }'
-```
-
-Both return a response with a `token` field.
-
-### OAuth (Google & Facebook)
-
-```bash
-curl -X POST https://api.vremly.com/auth/oauth/google \
-  -H "Content-Type: application/json" \
-  -d '{
-    "token": "<google-id-token>",
-    "accountType": "AGENT"
-  }'
-```
-
-```bash
-curl -X POST https://api.vremly.com/auth/oauth/facebook \
-  -H "Content-Type: application/json" \
-  -d '{
-    "token": "<facebook-access-token>",
-    "accountType": "AGENT"
-  }'
-```
-
-The `accountType` field is only required for first-time sign-ups.
-
-### Using the token
-
-```
-Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
-```
-
-### Refreshing
-
-Tokens expire. To exchange a valid token for a fresh one without asking the user
-to sign in again:
-
-```bash
-curl -X POST https://api.vremly.com/auth/refresh \
-  -H "Content-Type: application/json" \
-  -d '{ "token": "<current-token>" }'
-```
-
-Re-authenticating through `/auth/login` also works, and is the only option once
-a token has fully expired.
-
-### Organization context
-
-A Bearer token identifies a person, and a person may belong to several
-organizations — so most resource endpoints also need an `x-org-id` header
-naming which one you mean:
-
-```
-Authorization: Bearer <token>
-x-org-id: <organization-id>
-```
-
-A few endpoints are about the user rather than an organization (`/users/me`) and
-need only the token. See [Organization Context](/guides/organization-context).
-
-API keys do not need this header — the organization comes from the key.
-
----
-
-## Choosing Between Them
-
-| | API key | Bearer token |
-|---|---|---|
-| Identifies | An integration | A person |
-| Expires | Only if you set an expiry | Yes, on a schedule |
-| Organization | Fixed to one, automatically | Chosen per request via `x-org-id` |
-| Permissions | Scopes on the key | The user's role |
-| Rate limited | Per key | Not rate limited |
-| Revoke | Individually, instantly | By changing the password |
-
-A server-to-server integration should always use an API key. Storing a user's
-password to mint tokens ties your integration to one employee's account, and it
-stops working the day they leave.
+- **Treat it like a password.** It is a bearer credential: whoever holds it has
+  the access it carries.
+- **Give it the least it needs.** A workflow that only reads delivery status
+  should hold `READ`, so a mistake in that workflow cannot change anything.
+- **One key per integration**, so revoking one does not break the others, and a
+  compromised key tells you exactly which system leaked it.
+- **Never put it in a URL.** It belongs in the header; query strings end up in
+  logs, proxies and browser history.
+- **Rotate by issuing the new key first**, switching over, then revoking the old
+  one — revocation takes effect immediately.

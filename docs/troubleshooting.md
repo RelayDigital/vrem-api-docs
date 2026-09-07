@@ -9,45 +9,48 @@ Common issues and solutions when working with the Vremly API.
 
 ## Authentication Issues
 
-### "Missing or invalid JWT token" (401)
+### 401 on every request
 
-**Cause**: The `Authorization` header is missing, malformed, or the token has expired.
+**Cause**: The key is missing, malformed, revoked, or expired.
 
 **Solution**:
 
-1. Verify the header format is `Authorization: Bearer <token>` (note the space after "Bearer").
-2. Check that the token hasn't expired — re-authenticate via `/auth/login` to get a fresh token.
-3. Ensure you're not accidentally including extra whitespace or newline characters in the token.
+1. The header is `x-api-key`, not `Authorization`. Send the key exactly as
+   issued, with no surrounding whitespace or newline.
+2. Confirm the key has not been revoked or passed its expiry in
+   **Settings → API Keys**. Revocation takes effect immediately.
+3. If you are sending an `Authorization` header as well, remove it.
 
 ```bash
-# Correct format
 curl https://api.vremly.com/projects \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..."
+  -H "x-api-key: $VREMLY_API_KEY"
 ```
 
-### "Not a member of the specified organization" (403)
+### 403 naming a scope
 
-**Cause**: The `x-org-id` header is missing or the authenticated user doesn't belong to that organization.
+**Cause**: The key is valid but does not carry the permission the endpoint
+needs.
 
-**Solution**:
-
-1. List your organizations to get valid IDs:
-
-```bash
-curl https://api.vremly.com/organizations \
-  -H "Authorization: Bearer <token>"
+```json
+{
+  "statusCode": 403,
+  "message": "API key missing required scope. Needs one of: WRITE. This key holds: READ."
+}
 ```
 
-2. Use a valid organization ID from the response in the `x-org-id` header.
+**Solution**: Issue a new key with the scope named. Scopes cannot be added to an
+existing key. See [Authentication](/guides/authentication).
 
-### OAuth token rejected
+### 404 where you expected data
 
-**Cause**: The third-party token (Google or Facebook) is invalid or expired.
+**Cause**: The id belongs to a different organization, or does not exist. A key
+is locked to one organization, so an id copied from another workspace reads as
+missing rather than forbidden — deliberately, since a `403` would confirm the
+record exists.
 
-**Solution**:
-
-- Ensure the OAuth token is fresh — these tokens have short lifespans.
-- Verify you're using the correct token type: Google requires an **ID token**, Facebook requires an **access token**.
+**Solution**: Check the id came from the same organization the key belongs to.
+There is no header to switch; see
+[Organization Context](/guides/organization-context).
 
 ## Request Issues
 
@@ -72,15 +75,20 @@ Fix each listed validation error and retry.
 
 ### "Conflict" (409)
 
-**Cause**: A resource with the same unique identifier already exists (e.g., duplicate email during registration).
+**Cause**: A resource with the same unique identifier already exists — a
+customer with that email, or a webhook subscription for that URL.
 
-**Solution**: Use different values for the conflicting field, or log in to the existing account.
+**Solution**: Fetch the existing record and update it instead of creating a
+second one.
 
 ## Rate Limiting
 
 ### "Too Many Requests" (429)
 
-**Cause**: You've exceeded the API rate limit (100 requests/minute per IP or 300/minute per user).
+**Cause**: You've exceeded a rate limit. Three windows apply at once — **3 per
+second, 20 per 10 seconds, 100 per minute** — and the burst limit catches most
+callers first. API-key traffic is counted **per key**, not per IP, so a shared
+egress address on a hosted automation platform is not the cause.
 
 **Solution**:
 
@@ -140,8 +148,13 @@ response, plus `projectId`, `filename`, `size` and `type`.
 **Solution**:
 
 - Ensure your endpoint is publicly accessible over HTTPS.
-- Return a `200` response within 5 seconds — process events asynchronously.
-- Check that your endpoint URL is correctly configured (contact support for setup).
+- Return a `2xx` within **10 seconds** — anything slower counts as a failure and
+  is retried. Acknowledge first, process asynchronously.
+- Check the subscription exists and is active:
+  `GET /webhooks/subscriptions`. Registration is self-serve, not a support
+  request.
+- Inspect what actually happened:
+  `GET /webhooks/subscriptions/:id/deliveries`.
 
 ### Duplicate webhook events
 
@@ -163,9 +176,15 @@ function handleWebhook(payload) {
 
 **Solution**:
 
-- Verify you're using the raw request body (not a parsed/re-serialized version).
-- Ensure you're comparing the full `sha256=<hash>` string, not just the hash portion.
-- Double-check your webhook secret hasn't been rotated.
+- Verify you're using the raw request body, not a parsed and re-serialised
+  version — re-serialising changes key order and whitespace, and the signature
+  will never match.
+- Parse the header correctly. It is `X-Webhook-Signature: t=<unix>,v1=<hmac>` —
+  **not** `sha256=<hash>`. Compute the HMAC-SHA256 over `` `${t}.${rawBody}` ``
+  and compare against `v1`.
+- Double-check the secret hasn't been rotated.
+
+See [Webhooks](/guides/webhooks) for a working verification example.
 
 ## Project Workflow Issues
 
