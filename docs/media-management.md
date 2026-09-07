@@ -118,7 +118,6 @@ curl https://api.vremly.com/projects/proj_abc123/media \
 |---|---|---|
 | `PATCH` | `/media/reorder` | Change display order |
 | `PATCH` | `/media/{id}/rename` | Rename a file |
-| `PATCH` | `/media/{id}/showcase` | Flag an item as a showcase image |
 | `DELETE` | `/media/{id}` | Remove an item |
 | `GET` | `/media/{id}` | Fetch one item |
 
