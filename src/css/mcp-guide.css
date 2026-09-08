@@ -23,16 +23,20 @@
 /* Columns only where there is genuinely room. Below this the steps stack and
    the dividers flip from vertical to horizontal — which is why the two border
    rules are separate rather than set once. */
-@media (min-width: 997px) {
+/* 1200px, not the theme's 997px breakpoint. These sit inside the docs column,
+   which is roughly 700px at a 1200px viewport once sidebar and TOC are taken —
+   three cards there are ~230px each, too narrow for a config snippet. Stacking
+   is the better layout until there is real width to divide. */
+@media (min-width: 1200px) {
   .vx-steps {
-    grid-template-columns: repeat(var(--vx-step-count, 3), 1fr);
+    grid-template-columns: repeat(var(--vx-step-count, 3), minmax(0, 1fr));
   }
   .vx-step + .vx-step {
     border-left: 1px solid var(--ifm-toc-border-color);
   }
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1199px) {
   .vx-step + .vx-step {
     border-top: 1px solid var(--ifm-toc-border-color);
   }
@@ -43,6 +47,12 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  /* Load-bearing. Grid items default to min-width:auto, meaning they refuse to
+     shrink below their own content — so one long line in a code block widens
+     its column, starves the others, and pushes the last card outside the
+     container entirely. min-width:0 lets the column shrink and hands the
+     overflow to the code block, which scrolls. */
+  min-width: 0;
 }
 
 .vx-step__n {
@@ -82,6 +92,21 @@
 
 .vx-step__action > div[class*='codeBlockContainer'] {
   margin-bottom: 0;
+  max-width: 100%;
+}
+
+/* The code block scrolls rather than the card growing. Paired with min-width:0
+   above — without both, one of the two always loses. */
+.vx-step__action pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Config JSON is the widest thing on the page. A step down in size keeps the
+   common lines intact without forcing a horizontal scrollbar on every card. */
+.vx-step__action code {
+  font-size: 0.8125rem;
+  line-height: 1.5;
 }
 
 .vx-btn {
