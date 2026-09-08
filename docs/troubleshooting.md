@@ -18,7 +18,7 @@ Common issues and solutions when working with the Vremly API.
 1. The header is `x-api-key`, not `Authorization`. Send the key exactly as
    issued, with no surrounding whitespace or newline.
 2. Confirm the key has not been revoked or passed its expiry in
-   **Settings → API Keys**. Revocation takes effect immediately.
+   **Settings → Developers → API Keys**. Revocation takes effect immediately.
 3. If you are sending an `Authorization` header as well, remove it.
 
 ```bash

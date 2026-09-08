@@ -9,7 +9,7 @@ Your first successful request, in about two minutes.
 
 ## 1. Create an API key
 
-In the Vremly app, go to **Settings → API Keys** and create one. Give it the
+In the Vremly app, go to **Settings → Developers → API Keys** and create one. Give it the
 least it needs — `READ` if the integration only reads.
 
 :::warning You see the key once

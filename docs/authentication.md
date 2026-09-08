@@ -28,7 +28,7 @@ API-key path, which is the supported one.
 
 ### Creating a key
 
-Keys are created from **Settings → API Keys** in the Vremly app, or through the
+Keys are created from **Settings → Developers → API Keys** in the Vremly app, or through the
 API itself with an existing key or session:
 
 ```bash
