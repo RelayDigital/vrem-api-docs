@@ -1,0 +1,148 @@
+/**
+ * Quickstart step cards — used by docs/mcp.mdx.
+ *
+ * Scoped under .vx-steps / .vx-clients rather than restyling Docusaurus
+ * internals, so a Docusaurus upgrade cannot silently reshape these and nothing
+ * else on the site inherits them by accident.
+ *
+ * Built on the --ifm-* variables the theme already defines, so light and dark
+ * both work without a second palette to maintain.
+ */
+
+.vx-steps {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5rem 0 2rem;
+  background: var(--ifm-background-surface-color);
+}
+
+/* Columns only where there is genuinely room. Below this the steps stack and
+   the dividers flip from vertical to horizontal — which is why the two border
+   rules are separate rather than set once. */
+@media (min-width: 997px) {
+  .vx-steps {
+    grid-template-columns: repeat(var(--vx-step-count, 3), 1fr);
+  }
+  .vx-step + .vx-step {
+    border-left: 1px solid var(--ifm-toc-border-color);
+  }
+}
+
+@media (max-width: 996px) {
+  .vx-step + .vx-step {
+    border-top: 1px solid var(--ifm-toc-border-color);
+  }
+}
+
+.vx-step {
+  padding: 1.5rem 1.375rem 1.625rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vx-step__n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-800);
+  font: 600 0.8125rem/1 var(--ifm-font-family-base);
+  margin-bottom: 0.75rem;
+  flex: none;
+}
+
+.vx-step__title {
+  font-size: 1.0625rem;
+  font-weight: 650;
+  line-height: 1.35;
+  color: var(--ifm-heading-color);
+}
+
+.vx-step__body {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0;
+}
+
+/* Pushes the code block or button to the bottom edge, so cards holding
+   unequal amounts of text still line their actions up. */
+.vx-step__action {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.vx-step__action > div[class*='codeBlockContainer'] {
+  margin-bottom: 0;
+}
+
+.vx-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-toc-border-color);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  color: var(--ifm-heading-color);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.vx-btn:hover {
+  text-decoration: none;
+  background: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-400);
+}
+
+.vx-btn--primary {
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: #fff;
+}
+
+.vx-btn--primary:hover {
+  background: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+  color: #fff;
+}
+
+/* The client switcher reads as a segmented control rather than document tabs:
+   it selects which set of instructions you are reading, not a subsection. */
+.vx-clients .tabs {
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.vx-clients .tabs__item {
+  border-radius: 999px;
+  border-bottom: none;
+  padding: 0.4375rem 0.9375rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.vx-clients .tabs__item--active {
+  background: var(--ifm-color-emphasis-200);
+  border-bottom: none;
+  color: var(--ifm-heading-color);
+}
+
+.vx-note {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  text-align: center;
+  margin: -1rem 0 2rem;
+}

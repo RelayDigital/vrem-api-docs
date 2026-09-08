@@ -69,7 +69,9 @@ const config: Config = {
         },
         blog: false,
         theme: {
-          customCss: './src/css/custom.css',
+          // Array, not a string: mcp-guide.css is scoped to the MCP quickstart
+          // and kept separate so it can be removed along with that page.
+          customCss: ['./src/css/custom.css', './src/css/mcp-guide.css'],
         },
       } satisfies PresetOptions,
     ],

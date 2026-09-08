@@ -1,0 +1,327 @@
+---
+title: MCP Server
+sidebar_position: 7
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# MCP Server
+
+Vremly ships a [Model Context Protocol](https://modelcontextprotocol.io) server,
+so an AI assistant can work with your projects, customers, media and invoices
+directly instead of you copying data between it and the app.
+
+It is a client of this same REST API. Everything on this page is governed by
+the API key you give it — the assistant has exactly the access that key has,
+and no more.
+
+## Quickstart
+
+<div className="vx-clients">
+<Tabs groupId="mcp-client" queryString>
+<TabItem value="claude-code" label="Claude Code" default>
+
+<div className="vx-steps" style={{'--vx-step-count': 3}}>
+  <div className="vx-step">
+    <span className="vx-step__n">1</span>
+    <div className="vx-step__title">Create an API key</div>
+    <p className="vx-step__body">
+      In the Vremly app, go to <strong>Settings → API Keys</strong>. Grant{' '}
+      <code>READ</code> unless the assistant genuinely needs to write.
+    </p>
+    <div className="vx-step__action">
+      <a className="vx-btn" href="https://app.vremly.com/settings/api-keys" target="_blank" rel="noreferrer">
+        Open API Keys
+      </a>
+    </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">2</span>
+    <div className="vx-step__title">Run one command</div>
+    <p className="vx-step__body">
+      Nothing to clone or build — <code>npx</code> fetches and compiles the
+      server on first run. Node 18 or newer.
+    </p>
+    <div className="vx-step__action">
+
+```bash
+claude mcp add vremly \
+  --env VREMLY_API_KEY=your-api-key \
+  -- npx -y github:RelayDigital/vremly-mcp
+```
+
+  </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">3</span>
+    <div className="vx-step__title">Restart, then ask</div>
+    <p className="vx-step__body">
+      Servers register at session start, so restart Claude Code before using it.
+      Then try: <em>“Which projects were delivered this week?”</em>
+    </p>
+  </div>
+</div>
+
+</TabItem>
+<TabItem value="claude-desktop" label="Claude Desktop">
+
+<div className="vx-steps" style={{'--vx-step-count': 3}}>
+  <div className="vx-step">
+    <span className="vx-step__n">1</span>
+    <div className="vx-step__title">Create an API key</div>
+    <p className="vx-step__body">
+      <strong>Settings → API Keys</strong> in the Vremly app.
+    </p>
+    <div className="vx-step__action">
+      <a className="vx-btn" href="https://app.vremly.com/settings/api-keys" target="_blank" rel="noreferrer">
+        Open API Keys
+      </a>
+    </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">2</span>
+    <div className="vx-step__title">Edit the config file</div>
+    <p className="vx-step__body">
+      <strong>Settings → Developer → Edit Config</strong>, then add this under{' '}
+      <code>mcpServers</code>.
+    </p>
+    <div className="vx-step__action">
+
+```json
+{
+  "mcpServers": {
+    "vremly": {
+      "command": "npx",
+      "args": ["-y", "github:RelayDigital/vremly-mcp"],
+      "env": { "VREMLY_API_KEY": "your-api-key" }
+    }
+  }
+}
+```
+
+  </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">3</span>
+    <div className="vx-step__title">Restart Claude</div>
+    <p className="vx-step__body">
+      Quit fully and reopen — the config is read once at launch. Vremly then
+      appears in the tools menu.
+    </p>
+  </div>
+</div>
+
+</TabItem>
+<TabItem value="cursor" label="Cursor">
+
+<div className="vx-steps" style={{'--vx-step-count': 3}}>
+  <div className="vx-step">
+    <span className="vx-step__n">1</span>
+    <div className="vx-step__title">Create an API key</div>
+    <p className="vx-step__body">
+      <strong>Settings → API Keys</strong> in the Vremly app.
+    </p>
+    <div className="vx-step__action">
+      <a className="vx-btn" href="https://app.vremly.com/settings/api-keys" target="_blank" rel="noreferrer">
+        Open API Keys
+      </a>
+    </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">2</span>
+    <div className="vx-step__title">Add to <code>.cursor/mcp.json</code></div>
+    <p className="vx-step__body">
+      Project-local, or <code>~/.cursor/mcp.json</code> to make it global.
+    </p>
+    <div className="vx-step__action">
+
+```json
+{
+  "mcpServers": {
+    "vremly": {
+      "command": "npx",
+      "args": ["-y", "github:RelayDigital/vremly-mcp"],
+      "env": { "VREMLY_API_KEY": "your-api-key" }
+    }
+  }
+}
+```
+
+  </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">3</span>
+    <div className="vx-step__title">Enable it</div>
+    <p className="vx-step__body">
+      <strong>Settings → MCP</strong>, confirm Vremly shows green, then ask in
+      Composer.
+    </p>
+  </div>
+</div>
+
+</TabItem>
+<TabItem value="other" label="Any other host">
+
+<div className="vx-steps" style={{'--vx-step-count': 2}}>
+  <div className="vx-step">
+    <span className="vx-step__n">1</span>
+    <div className="vx-step__title">Point your host at the command</div>
+    <p className="vx-step__body">
+      Any MCP host that can launch a stdio server will work. It speaks standard
+      MCP over stdio and needs nothing beyond outbound HTTPS.
+    </p>
+    <div className="vx-step__action">
+
+```bash
+VREMLY_API_KEY=your-api-key npx -y github:RelayDigital/vremly-mcp
+```
+
+  </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">2</span>
+    <div className="vx-step__title">Check the banner</div>
+    <p className="vx-step__body">
+      On start the server prints a status block to <strong>stderr</strong> —
+      operation count, API base URL, whether the key was found, and read-only
+      state. A warning on the key line means the host is not passing{' '}
+      <code>VREMLY_API_KEY</code> through.
+    </p>
+  </div>
+</div>
+
+</TabItem>
+</Tabs>
+</div>
+
+<p className="vx-note">
+  Want reproducibility? Append a tag —{' '}
+  <code>github:RelayDigital/vremly-mcp#v0.1.0</code>. Without one you track the
+  default branch and get the current server on every fresh install.
+</p>
+
+### Configuration
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `VREMLY_API_KEY` | *(required)* | Your organization API key. |
+| `VREMLY_API_URL` | `https://api.vremly.com` | API base URL. |
+| `VREMLY_MCP_READ_ONLY` | unset | `1` refuses anything but `GET`/`HEAD`/`OPTIONS`. |
+| `VREMLY_MCP_TIMEOUT_MS` | `30000` | Per-request timeout. |
+| `VREMLY_OPENAPI_PATH` | bundled | Point at a different OpenAPI document. |
+
+## What it exposes
+
+Three tools, not one per endpoint:
+
+| Tool | Purpose |
+|---|---|
+| `vremly_search_endpoints` | Find endpoints by keyword. |
+| `vremly_describe_endpoint` | The endpoint's parameters, required body fields and responses. |
+| `vremly_request` | Call it, and return the status and body. |
+
+The API has hundreds of operations. A tool per operation would cost more
+context to list than most tasks cost to do, and many assistants cap how many
+tools they will accept. Search → describe → request reaches all of them at a
+fixed cost, and because the search reads the OpenAPI document directly there is
+no generated tool list to fall out of date.
+
+:::tip Describing before calling is not optional
+The API validates with `whitelist: true`: a body field it does not recognise is
+**silently dropped**, not rejected. A request built from a guessed field name
+returns `201` having ignored the field. `vremly_describe_endpoint` is what
+stops an assistant guessing.
+:::
+
+## Permissions
+
+**What the assistant can do is decided by the key, checked on our servers, on
+every request.**
+
+| Scope | Grants |
+|---|---|
+| `READ` | `GET`, `HEAD`, `OPTIONS` |
+| `WRITE` | Everything `READ` allows, plus `POST`, `PUT`, `PATCH`, `DELETE` |
+| `ADMIN` | Everything |
+| `BULK_IMPORT` | The bulk import endpoints only |
+| `WEBHOOKS` | Managing webhook subscriptions |
+
+A key belongs to one organization and the server derives the organization from
+it, so the assistant can never reach another organization's data.
+
+:::warning Give it a READ key unless it needs to write
+That is the guarantee that holds even if the assistant is prompt-injected by
+something it reads — a listing description, an email, a web page. A read-only
+key cannot be talked into deleting a project, because the refusal happens on
+our servers and not in the assistant's judgement.
+
+`VREMLY_MCP_READ_ONLY=1` is a convenience, **not** a security boundary:
+anything able to set that variable could also unset it. The key's scopes are
+the boundary.
+:::
+
+:::danger An `ADMIN` key can mint more keys
+Revoking a leaked `ADMIN` key does not necessarily contain it, because it may
+already have issued others. Grant it only when something genuinely needs
+organization-level settings.
+:::
+
+Requests are rate limited per key — 3/second, 20/10 seconds, 100/minute. See
+[Rate Limits](/guides/rate-limits).
+
+## Verifying it works
+
+The server writes a status block to **stderr** on start — never stdout, which
+carries the MCP protocol itself. Run it directly to see it:
+
+```bash
+VREMLY_API_KEY=your-api-key npx -y github:RelayDigital/vremly-mcp
+```
+
+```text
+  ██╗   ██╗██████╗ ███████╗███╗   ███╗██╗  ██╗   ██╗
+  ██║   ██║██╔══██╗██╔════╝████╗ ████║██║  ╚██╗ ██╔╝
+  ██║   ██║██████╔╝█████╗  ██╔████╔██║██║   ╚████╔╝
+  ╚██╗ ██╔╝██╔══██╗██╔══╝  ██║╚██╔╝██║██║    ╚██╔╝
+   ╚████╔╝ ██║  ██║███████╗██║ ╚═╝ ██║███████╗██║
+    ╚═══╝  ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝╚═╝
+
+  Model Context Protocol server  v0.1.0
+
+  ✔ endpoints   268 operations
+  ✔ api         https://api.vremly.com
+  ✔ api key     VREMLY_API_KEY detected
+  ✔ mode        read + write, limited by key scopes
+  ✔ transport   stdio
+
+  Ready. Ask your assistant to search the Vremly API.
+```
+
+It appears to hang after printing. That is correct — a stdio server waits on
+stdin for the host to speak to it. Press `Ctrl+C` to exit.
+
+The key line is the one worth reading. The server reports ready whether or not
+a key was supplied, because dying during the handshake surfaces in most hosts
+as an unexplained "server failed to start" with the real reason lost. If that
+line shows a warning, the server is fine and the environment is not — the host
+is not passing `VREMLY_API_KEY` through.
+
+## Keeping it current
+
+The OpenAPI document ships inside the server, so a fresh `npx` install always
+carries the specification as of the last release. `npx -y` re-resolves the
+repository, so removing the cached copy picks up the newest server:
+
+```bash
+rm -rf ~/.npm/_npx && # then restart your assistant
+```
+
+Pin a tag instead if you would rather decide when that happens.
+
+## Other agent-readable resources
+
+- [`/llms.txt`](pathname:///llms.txt) — a machine-readable index of this
+  documentation, following the llms.txt convention.
+- [The OpenAPI document](pathname:///openapi/openapi.json) — the complete
+  contract. It is the authority whenever a guide disagrees with it.
