@@ -5,6 +5,7 @@ sidebar_position: 7
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import ClientIcon from '@site/src/components/ClientIcon';
 
 # MCP Server
 
@@ -23,7 +24,7 @@ install. The CLI tabs are for coding agents already running on your machine.
 
 <div className="vx-clients">
 <Tabs groupId="mcp-client" queryString>
-<TabItem value="claude" label="Claude" default>
+<TabItem value="claude" label={<><ClientIcon name="claude" />Claude</>} default>
 
 <div className="vx-steps" style={{'--vx-step-count': 3}}>
   <div className="vx-step">
@@ -65,7 +66,7 @@ https://api.vremly.com/mcp
 </div>
 
 </TabItem>
-<TabItem value="chatgpt" label="ChatGPT">
+<TabItem value="chatgpt" label={<><ClientIcon name="openai" />ChatGPT</>}>
 
 <div className="vx-steps" style={{'--vx-step-count': 3}}>
   <div className="vx-step">
@@ -99,7 +100,7 @@ https://api.vremly.com/mcp
 </div>
 
 </TabItem>
-<TabItem value="claude-code" label="Claude Code">
+<TabItem value="claude-code" label={<><ClientIcon name="claudecode" />Claude Code</>}>
 
 <div className="vx-steps" style={{'--vx-step-count': 2}}>
   <div className="vx-step">
@@ -128,7 +129,7 @@ claude mcp add --transport http vremly https://api.vremly.com/mcp
 </div>
 
 </TabItem>
-<TabItem value="cursor" label="Cursor">
+<TabItem value="cursor" label={<><ClientIcon name="cursor" />Cursor</>}>
 
 <div className="vx-steps" style={{'--vx-step-count': 2}}>
   <div className="vx-step">

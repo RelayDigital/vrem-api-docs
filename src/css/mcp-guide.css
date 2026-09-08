@@ -171,3 +171,42 @@
   text-align: center;
   margin: -1rem 0 2rem;
 }
+
+/* ── MDX WRAPS A BUTTON'S LABEL IN A PARAGRAPH ─────────────────────────────
+ *
+ * Writing the label on its own line inside <a className="vx-btn"> makes MDX
+ * emit <a class="vx-btn"><p>Open Claude Connectors</p></a>, and Infima's
+ * `p { margin-bottom: 1rem }` then applies INSIDE the button — because the <p>
+ * is a flex child of it. The result is a band of dead space under the text
+ * that looks like a broken button.
+ *
+ * Fixed here rather than by reflowing the MDX onto one line: the CSS holds for
+ * every button anyone adds later, whereas the formatting fix has to be
+ * remembered each time and silently regresses the moment Prettier rewraps it.
+ */
+.vx-btn > p {
+  margin: 0;
+}
+
+/* ── CLIENT BRAND MARKS ────────────────────────────────────────────────────
+ *
+ * Sized in `em` so a mark tracks its label's font-size instead of needing a
+ * pixel value per breakpoint. `flex: none` stops the tab's flex layout
+ * squashing a logo when a label wraps.
+ */
+.vx-client-icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex: none;
+  margin-right: 0.45em;
+  /* Optical, not geometric: centring on the text box sits a round mark visibly
+     high next to a cap-height label. */
+  vertical-align: -0.15em;
+}
+
+/* Docusaurus renders each tab as a flex row already; this only guarantees the
+   mark and label stay on one baseline if that changes upstream. */
+.vx-clients .tabs__item {
+  display: inline-flex;
+  align-items: center;
+}
