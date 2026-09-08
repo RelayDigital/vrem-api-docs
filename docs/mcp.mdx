@@ -18,11 +18,157 @@ and no more.
 
 ## Quickstart
 
+Pick your assistant. Most people want the **hosted connector** — one URL, no
+install. The CLI tabs are for coding agents already running on your machine.
+
 <div className="vx-clients">
 <Tabs groupId="mcp-client" queryString>
-<TabItem value="claude-code" label="Claude Code" default>
+<TabItem value="claude" label="Claude" default>
 
 <div className="vx-steps" style={{'--vx-step-count': 3}}>
+  <div className="vx-step">
+    <span className="vx-step__n">1</span>
+    <div className="vx-step__title">Copy the Vremly connector URL</div>
+    <p className="vx-step__body">
+      You&rsquo;ll paste this into Claude in the next step.
+    </p>
+    <div className="vx-step__action">
+
+```text
+https://api.vremly.com/mcp
+```
+
+  </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">2</span>
+    <div className="vx-step__title">Add it as a custom connector</div>
+    <p className="vx-step__body">
+      In Claude, go to <strong>Settings → Connectors → Add custom
+      connector</strong>, then paste the URL.
+    </p>
+    <div className="vx-step__action">
+      <a className="vx-btn" href="https://claude.ai/customize/connectors?modal=add-custom-connector" target="_blank" rel="noreferrer">
+        Open Claude Connectors
+      </a>
+    </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">3</span>
+    <div className="vx-step__title">Sign in and choose access</div>
+    <p className="vx-step__body">
+      Claude sends you to Vremly to sign in. Pick the organization and whether
+      it may write, then approve. Try:{' '}
+      <em>&ldquo;Which Vremly projects were delivered this week?&rdquo;</em>
+    </p>
+  </div>
+</div>
+
+</TabItem>
+<TabItem value="chatgpt" label="ChatGPT">
+
+<div className="vx-steps" style={{'--vx-step-count': 3}}>
+  <div className="vx-step">
+    <span className="vx-step__n">1</span>
+    <div className="vx-step__title">Copy the Vremly connector URL</div>
+    <p className="vx-step__body">The same URL every remote client uses.</p>
+    <div className="vx-step__action">
+
+```text
+https://api.vremly.com/mcp
+```
+
+  </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">2</span>
+    <div className="vx-step__title">Add it in ChatGPT</div>
+    <p className="vx-step__body">
+      <strong>Settings → Connectors → Create</strong>, paste the URL and choose
+      OAuth authentication. Custom connectors need a paid ChatGPT plan.
+    </p>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">3</span>
+    <div className="vx-step__title">Sign in and choose access</div>
+    <p className="vx-step__body">
+      You&rsquo;ll be sent to Vremly to sign in, pick the organization and
+      approve.
+    </p>
+  </div>
+</div>
+
+</TabItem>
+<TabItem value="claude-code" label="Claude Code">
+
+<div className="vx-steps" style={{'--vx-step-count': 2}}>
+  <div className="vx-step">
+    <span className="vx-step__n">1</span>
+    <div className="vx-step__title">Add the server</div>
+    <p className="vx-step__body">
+      One command. Claude Code runs the sign-in flow in your browser the first
+      time it connects — there is no key to paste.
+    </p>
+    <div className="vx-step__action">
+
+```bash
+claude mcp add --transport http vremly https://api.vremly.com/mcp
+```
+
+  </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">2</span>
+    <div className="vx-step__title">Restart, then ask</div>
+    <p className="vx-step__body">
+      Servers register at session start, so restart Claude Code first. Then
+      try: <em>&ldquo;Which projects are still awaiting delivery?&rdquo;</em>
+    </p>
+  </div>
+</div>
+
+</TabItem>
+<TabItem value="cursor" label="Cursor">
+
+<div className="vx-steps" style={{'--vx-step-count': 2}}>
+  <div className="vx-step">
+    <span className="vx-step__n">1</span>
+    <div className="vx-step__title">Add to <code>.cursor/mcp.json</code></div>
+    <p className="vx-step__body">
+      Project-local, or <code>~/.cursor/mcp.json</code> to make it global.
+    </p>
+    <div className="vx-step__action">
+
+```json
+{
+  "mcpServers": {
+    "vremly": {
+      "url": "https://api.vremly.com/mcp"
+    }
+  }
+}
+```
+
+  </div>
+  </div>
+  <div className="vx-step">
+    <span className="vx-step__n">2</span>
+    <div className="vx-step__title">Enable it</div>
+    <p className="vx-step__body">
+      <strong>Settings → MCP</strong>, confirm Vremly shows green, sign in when
+      prompted, then ask in Composer.
+    </p>
+  </div>
+</div>
+
+</TabItem>
+<TabItem value="local" label="Local install">
+
+Runs the server on your own machine over stdio, authenticating with an API key
+instead of signing in. Use it when you would rather hold the credential
+yourself, or for a host that cannot reach a remote server.
+
+<div className="vx-steps" style={{'--vx-step-count': 2}}>
   <div className="vx-step">
     <span className="vx-step__n">1</span>
     <div className="vx-step__title">Create an API key</div>
@@ -38,7 +184,7 @@ and no more.
   </div>
   <div className="vx-step">
     <span className="vx-step__n">2</span>
-    <div className="vx-step__title">Run one command</div>
+    <div className="vx-step__title">Point your host at the command</div>
     <p className="vx-step__body">
       Nothing to clone or build — <code>npx</code> fetches and compiles the
       server on first run. Node 18 or newer.
@@ -53,152 +199,6 @@ claude mcp add vremly \
 
   </div>
   </div>
-  <div className="vx-step">
-    <span className="vx-step__n">3</span>
-    <div className="vx-step__title">Restart, then ask</div>
-    <p className="vx-step__body">
-      Servers register at session start, so restart Claude Code before using it.
-      Then try: <em>“Which projects were delivered this week?”</em>
-    </p>
-  </div>
-</div>
-
-</TabItem>
-<TabItem value="claude-desktop" label="Claude Desktop">
-
-<div className="vx-steps" style={{'--vx-step-count': 3}}>
-  <div className="vx-step">
-    <span className="vx-step__n">1</span>
-    <div className="vx-step__title">Create an API key</div>
-    <p className="vx-step__body">
-      <strong>Settings → Developers → API Keys</strong> in the Vremly app.
-    </p>
-    <div className="vx-step__action">
-      <a className="vx-btn" href="https://app.vremly.com/settings/developers/api-keys" target="_blank" rel="noreferrer">
-        Open API Keys
-      </a>
-    </div>
-  </div>
-  <div className="vx-step">
-    <span className="vx-step__n">2</span>
-    <div className="vx-step__title">Edit the config file</div>
-    <p className="vx-step__body">
-      <strong>Settings → Developer → Edit Config</strong>, then add this under{' '}
-      <code>mcpServers</code>.
-    </p>
-    <div className="vx-step__action">
-
-```json
-{
-  "mcpServers": {
-    "vremly": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "github:RelayDigital/vremly-mcp"
-      ],
-      "env": {
-        "VREMLY_API_KEY": "your-api-key"
-      }
-    }
-  }
-}
-```
-
-  </div>
-  </div>
-  <div className="vx-step">
-    <span className="vx-step__n">3</span>
-    <div className="vx-step__title">Restart Claude</div>
-    <p className="vx-step__body">
-      Quit fully and reopen — the config is read once at launch. Vremly then
-      appears in the tools menu.
-    </p>
-  </div>
-</div>
-
-</TabItem>
-<TabItem value="cursor" label="Cursor">
-
-<div className="vx-steps" style={{'--vx-step-count': 3}}>
-  <div className="vx-step">
-    <span className="vx-step__n">1</span>
-    <div className="vx-step__title">Create an API key</div>
-    <p className="vx-step__body">
-      <strong>Settings → Developers → API Keys</strong> in the Vremly app.
-    </p>
-    <div className="vx-step__action">
-      <a className="vx-btn" href="https://app.vremly.com/settings/developers/api-keys" target="_blank" rel="noreferrer">
-        Open API Keys
-      </a>
-    </div>
-  </div>
-  <div className="vx-step">
-    <span className="vx-step__n">2</span>
-    <div className="vx-step__title">Add to <code>.cursor/mcp.json</code></div>
-    <p className="vx-step__body">
-      Project-local, or <code>~/.cursor/mcp.json</code> to make it global.
-    </p>
-    <div className="vx-step__action">
-
-```json
-{
-  "mcpServers": {
-    "vremly": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "github:RelayDigital/vremly-mcp"
-      ],
-      "env": {
-        "VREMLY_API_KEY": "your-api-key"
-      }
-    }
-  }
-}
-```
-
-  </div>
-  </div>
-  <div className="vx-step">
-    <span className="vx-step__n">3</span>
-    <div className="vx-step__title">Enable it</div>
-    <p className="vx-step__body">
-      <strong>Settings → MCP</strong>, confirm Vremly shows green, then ask in
-      Composer.
-    </p>
-  </div>
-</div>
-
-</TabItem>
-<TabItem value="other" label="Any other host">
-
-<div className="vx-steps" style={{'--vx-step-count': 2}}>
-  <div className="vx-step">
-    <span className="vx-step__n">1</span>
-    <div className="vx-step__title">Point your host at the command</div>
-    <p className="vx-step__body">
-      Any MCP host that can launch a stdio server will work. It speaks standard
-      MCP over stdio and needs nothing beyond outbound HTTPS.
-    </p>
-    <div className="vx-step__action">
-
-```bash
-VREMLY_API_KEY=your-api-key npx -y github:RelayDigital/vremly-mcp
-```
-
-  </div>
-  </div>
-  <div className="vx-step">
-    <span className="vx-step__n">2</span>
-    <div className="vx-step__title">Check the banner</div>
-    <p className="vx-step__body">
-      On start the server prints a status block to <strong>stderr</strong> —
-      operation count, API base URL, whether the key was found, and read-only
-      state. A warning on the key line means the host is not passing{' '}
-      <code>VREMLY_API_KEY</code> through.
-    </p>
-  </div>
 </div>
 
 </TabItem>
@@ -206,12 +206,35 @@ VREMLY_API_KEY=your-api-key npx -y github:RelayDigital/vremly-mcp
 </div>
 
 <p className="vx-note">
-  Want reproducibility? Append a tag —{' '}
-  <code>github:RelayDigital/vremly-mcp#v0.1.0</code>. Without one you track the
-  default branch and get the current server on every fresh install.
+  Both routes reach the same API and expose the same three tools. The hosted
+  connector signs you in and issues its own credential; the local install uses
+  an API key you create yourself.
 </p>
 
-### Configuration
+## What approving actually grants
+
+Approving a connector creates an ordinary **API key** in your organization,
+named after the assistant. That is the entire grant — there is no separate
+&ldquo;connector permission&rdquo; with rules of its own.
+
+Which means everything you already know about keys applies unchanged:
+
+- it belongs to **one organization**, and the server derives that organization
+  from the key, so an assistant cannot reach another one
+- its **scopes are enforced on our servers**, on every request
+- it appears in **Settings → Developers → API Keys** beside your other keys
+- **revoking it there disconnects the assistant immediately**
+
+Read-only is preselected on the approval screen. Write access is a deliberate
+choice, and worth declining unless you need it — see
+[Permissions](#permissions) for why that matters more with an assistant than
+with your own code.
+
+## Local install configuration
+
+Environment variables for the **local install** only. The hosted connector
+needs none of these — it is configured by the approval screen.
+
 
 | Variable | Default | Purpose |
 |---|---|---|
@@ -280,9 +303,11 @@ organization-level settings.
 Requests are rate limited per key — 3/second, 20/10 seconds, 100/minute. See
 [Rate Limits](/guides/rate-limits).
 
-## Verifying it works
+## Verifying a local install
 
-The server writes a status block to **stderr** on start — never stdout, which
+The hosted connector needs no verification step — if Claude shows it as
+connected, it is. For a local install, the server writes a status block to
+**stderr** on start — never stdout, which
 carries the MCP protocol itself. Run it directly to see it:
 
 ```bash
@@ -317,7 +342,7 @@ as an unexplained "server failed to start" with the real reason lost. If that
 line shows a warning, the server is fine and the environment is not — the host
 is not passing `VREMLY_API_KEY` through.
 
-## Keeping it current
+## Keeping a local install current
 
 The OpenAPI document ships inside the server, so a fresh `npx` install always
 carries the specification as of the last release. `npx -y` re-resolves the
