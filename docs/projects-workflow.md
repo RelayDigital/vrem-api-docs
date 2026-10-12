@@ -103,6 +103,11 @@ credential, and a transition your key is not entitled to make returns `403`.
 `PROJECT_STATUS_CHANGED` fires on every successful change, so you can react
 without polling.
 
+Cancelling through an API key never refunds anyone. Unpaid invoices on the job
+are voided; an invoice that is already paid stays `PAID`, and the business gets
+an email to issue the refund in Vremly. See
+[Authentication](/guides/authentication#what-no-key-can-do-move-money).
+
 ## Listing and filtering
 
 ```bash

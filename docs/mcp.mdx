@@ -207,7 +207,7 @@ claude mcp add vremly \
 </div>
 
 <p className="vx-note">
-  Both routes reach the same API and expose the same three tools. The hosted
+  Both routes reach the same API and expose the same four tools. The hosted
   connector signs you in and issues its own credential; the local install uses
   an API key you create yourself.
 </p>
@@ -241,32 +241,72 @@ needs none of these — it is configured by the approval screen.
 |---|---|---|
 | `VREMLY_API_KEY` | *(required)* | Your organization API key. |
 | `VREMLY_API_URL` | `https://api.vremly.com` | API base URL. |
-| `VREMLY_MCP_READ_ONLY` | unset | `1` refuses anything but `GET`/`HEAD`/`OPTIONS`. |
+| `VREMLY_MCP_READ_ONLY` | unset | `1` refuses anything but `GET`/`HEAD`/`OPTIONS` and a short list of reviewed preview `POST`s that change nothing, such as `/orders/prepare`. |
 | `VREMLY_MCP_TIMEOUT_MS` | `30000` | Per-request timeout. |
 | `VREMLY_OPENAPI_PATH` | bundled | Point at a different OpenAPI document. |
 
 ## What it exposes
 
-Three tools, not one per endpoint:
+Four tools, not one per endpoint:
 
 | Tool | Purpose |
 |---|---|
+| `vremly_capabilities` | The connected organization and the permissions this connection holds. |
 | `vremly_search_endpoints` | Find endpoints by keyword. |
 | `vremly_describe_endpoint` | The endpoint's parameters, required body fields and responses. |
 | `vremly_request` | Call it, and return the status and body. |
 
 The API has hundreds of operations. A tool per operation would cost more
 context to list than most tasks cost to do, and many assistants cap how many
-tools they will accept. Search → describe → request reaches all of them at a
-fixed cost, and because the search reads the OpenAPI document directly there is
-no generated tool list to fall out of date.
+tools they will accept. Capabilities → search → describe → request reaches all
+of them at a fixed cost, and because the search reads the OpenAPI document
+directly there is no generated tool list to fall out of date.
 
 :::tip Describing before calling is not optional
-The API validates with `whitelist: true`: a body field it does not recognise is
-**silently dropped**, not rejected. A request built from a guessed field name
-returns `201` having ignored the field. `vremly_describe_endpoint` is what
-stops an assistant guessing.
+A guessed body field fails one of two ways. Where the endpoint publishes a body
+schema, an unknown field is rejected with `400` and nothing changes. Where it
+does not, the field is **ignored** and the call can still return `2xx` having
+skipped it. `vremly_describe_endpoint` says which applies to each operation,
+and is what stops an assistant guessing.
 :::
+
+## Prompts
+
+The hosted connector also offers ready-made prompts. Each one names the
+endpoints and fields to use, so the assistant does not have to discover them.
+Hosts that support MCP prompts show them as commands you can pick.
+
+| Prompt | What it does |
+|---|---|
+| `just-listed-post` | Gets your latest listing's Just listed post: the story and feed images, the caption, and the facts to design your own. See [Share Cards](/guides/share-cards). |
+| `delivery-summary` | What was delivered over a period, and to whom |
+| `upcoming-schedule` | What is booked, when, and who is on it |
+| `project-status` | Everything current about one job |
+| `outstanding-invoices` | Who owes money, how much, and how overdue |
+| `cash-position` | What is owed, how overdue, and how fast it collects |
+| `profitability` | Gross profit per job, and which clients fund the business |
+| `turnaround` | Delivery speed, and how often the promise is missed |
+| `bottleneck` | Where jobs are queuing: booking, shooting or editing |
+| `crew-load` | Who is overloaded in the next 7 days |
+| `client-concentration` | How exposed the business is to its biggest customers |
+| `client-health` | Who is active, slipping, or gone |
+| `prepare-booking` | Prepares a complete booking and quote without creating anything |
+| `prepare-shoots` | Checks upcoming shoots for staffing, calendar and equipment problems |
+| `manager-review-brief` | Overdue reviews, unanswered questions and blockers |
+| `build-evaluation-rubric` | Drafts an evaluation rubric for you to approve |
+
+You do not need a prompt to ask for a share card. Things people say, and what happens:
+
+| You say | What the assistant does |
+|---|---|
+| "Get my just-listed card for 123 Main St" | `GET /me/share-cards?kind=JUST_LISTED`, then `GET /me/share-cards/just-listed/{projectId}`; returns the image URLs and the caption |
+| "Make me a carousel caption and three slide designs for my new listing" | Reads the same card and builds the slides from `data.gallery`, `data.facts`, `data.agent` and `caption`, in its own tool |
+| "Write an email blast announcing it" | Uses the card's facts and `links.listingUrl` exactly as given, so visits from the email are tracked |
+
+The share-card requests read your own listings across every media company you
+order from, so they need the connector approved on your **personal workspace**.
+Approved on a company workspace, the assistant reads a listing's card through
+`GET /listings/projects/{projectId}/share-cards/just-listed` instead.
 
 ## Permissions
 
@@ -277,12 +317,24 @@ every request.**
 |---|---|
 | `READ` | `GET`, `HEAD`, `OPTIONS` |
 | `WRITE` | Everything `READ` allows, plus `POST`, `PUT`, `PATCH`, `DELETE` |
-| `ADMIN` | Everything |
+| `ADMIN` | Everything, except moving money (below) |
 | `BULK_IMPORT` | The bulk import endpoints only |
 | `WEBHOOKS` | Managing webhook subscriptions |
 
+Keys can also hold narrower grants for one business area, such as
+`EVALUATIONS_WRITE`, which allow that area's reviewed operations and nothing
+else. `vremly_capabilities` lists what a connection holds.
+
 A key belongs to one organization and the server derives the organization from
 it, so the assistant can never reach another organization's data.
+
+**An assistant cannot move money, at any scope.** It cannot charge a card,
+issue a refund or take a card-reader payment; the server refuses those to every
+key. To get paid it sends the customer a payment link. If it cancels a job that
+is already paid, the job is cancelled, the invoice stays paid, and your
+business gets an email to issue the refund in Vremly. It never charges a
+cancellation fee either. See
+[Authentication](/guides/authentication#what-no-key-can-do-move-money).
 
 :::warning Give it a READ key unless it needs to write
 That is the guarantee that holds even if the assistant is prompt-injected by
@@ -301,7 +353,8 @@ already have issued others. Grant it only when something genuinely needs
 organization-level settings.
 :::
 
-Requests are rate limited per key — 3/second, 20/10 seconds, 100/minute. See
+Requests are rate limited per key: each key has its own per-minute budget,
+120 by default, and some endpoints add their own cap. See
 [Rate Limits](/guides/rate-limits).
 
 ## Verifying a local install

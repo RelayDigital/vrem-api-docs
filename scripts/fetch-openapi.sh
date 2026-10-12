@@ -3,7 +3,7 @@
 # Refresh static/openapi/openapi.json — the document the whole API reference is
 # rendered from.
 #
-# ── WHY THIS NO LONGER FETCHES BY DEFAULT ────────────────────────────────────
+# ── WHY THIS DOES NOT FETCH ─────────────────────────────────────────────────
 #
 # It used to curl ${API_URL}/api-json on every build, and fall back to the
 # committed copy with a warning if that failed. Production does not serve
@@ -17,73 +17,84 @@
 # guides tell integrators to call — were absent from it entirely.
 #
 # The committed copy is now the source, generated from the backend's own source
-# code by `npm run openapi:emit` in apps/backend (which walks the real
-# decorator metadata without booting a server). To refresh it:
+# code by `npm run openapi:emit` in apps/backend. That script compiles first
+# (`nest build`) and then reads the real decorator metadata from the compiled
+# app without listening on a port; run uncompiled it emits empty request bodies.
+# It writes TWO documents: openapi.json, the complete internal surface the
+# iOS client generates from, and openapi.public.json, the allowlist-filtered
+# surface (src/openapi-public-surface.ts). This site publishes the PUBLIC one.
+# To refresh it:
 #
 #     cd apps/backend && npm run openapi:emit
-#     cp openapi.json <this-repo>/static/openapi/openapi.json
+#     cp openapi.public.json <this-repo>/static/openapi/openapi.json
 #
-# A URL fetch is still supported for an environment that genuinely serves
-# /api-json — pass API_URL explicitly. When you ask for a fetch, a failed fetch
-# is a BUILD FAILURE, not a silent downgrade to whatever is on disk. That
-# silent downgrade is the entire bug this file exists to prevent repeating.
+# Copying openapi.json instead would publish every internal route (payroll,
+# platform administration, the unreleased agent hub) as public reference.
+#
+# ── WHY THERE IS NO URL FETCH ANY MORE ────────────────────────────────────────
+#
+# This script used to accept API_URL and download ${API_URL}/api-json over the
+# committed file. /api-json serves the complete INTERNAL document, never the
+# public one, so that mode could only ever overwrite the published spec with
+# every internal route. It has been removed rather than documented around.
+#
+# ── THE PUBLIC-DOCUMENT CHECK ────────────────────────────────────────────────
+#
+# The backend's public filter stamps `x-vremly-required-scopes` on every
+# operation it keeps; the internal openapi.json carries it on none. So a
+# committed file in which any operation lacks it is the internal document (or
+# not one the filter produced), and the build stops instead of publishing it.
 
 set -euo pipefail
 
 OUTPUT_PATH="./static/openapi/openapi.json"
 
-if [ -z "${API_URL:-}" ]; then
-  if [ ! -f "$OUTPUT_PATH" ]; then
-    echo "Error: no committed spec at $OUTPUT_PATH and no API_URL to fetch from." >&2
-    echo "Generate one with 'npm run openapi:emit' in apps/backend." >&2
-    exit 1
-  fi
-
-  # Report what is about to be published, so a stale spec is visible in the
-  # build log rather than something you discover from the rendered site.
-  PATH_COUNT=$(node -e "
-    try {
-      const s = require('$OUTPUT_PATH');
-      process.stdout.write(String(Object.keys(s.paths || {}).length));
-    } catch (e) {
-      process.stdout.write('unreadable');
-    }
-  ")
-  echo "Using committed OpenAPI spec ($PATH_COUNT paths). Set API_URL to fetch instead."
-
-  if [ "$PATH_COUNT" = "unreadable" ]; then
-    echo "Error: $OUTPUT_PATH is not readable JSON." >&2
-    exit 1
-  fi
-  exit 0
-fi
-
-SPEC_URL="${API_URL}/api-json"
-echo "Fetching OpenAPI spec from $SPEC_URL..."
-
-HTTP_STATUS=$(curl -s -o "$OUTPUT_PATH.tmp" -w "%{http_code}" "$SPEC_URL" --max-time 30)
-
-if [ "$HTTP_STATUS" != "200" ]; then
-  rm -f "$OUTPUT_PATH.tmp"
-  echo "Error: fetch failed (HTTP $HTTP_STATUS)." >&2
-  echo "Not falling back to the committed copy — you asked for a fetch, and" >&2
-  echo "silently publishing a different spec than the one requested is how the" >&2
-  echo "reference went 739 routes out of date without anyone noticing." >&2
+if [ -n "${API_URL:-}" ]; then
+  echo "Error: API_URL is set, but fetching the spec is no longer supported." >&2
+  echo "/api-json serves the internal document. Commit openapi.public.json instead:" >&2
+  echo "  cd apps/backend && npm run openapi:emit" >&2
+  echo "  cp openapi.public.json <this-repo>/static/openapi/openapi.json" >&2
   exit 1
 fi
 
-# A 200 that is not the document is still a failure — a login page or an error
-# body would otherwise overwrite a good spec with something that renders empty.
-if ! node -e "
-  const s = require('./$OUTPUT_PATH.tmp');
-  const n = Object.keys(s.paths || {}).length;
-  if (!n) throw new Error('spec has no paths');
-  console.log('Fetched spec has ' + n + ' paths.');
-"; then
-  rm -f "$OUTPUT_PATH.tmp"
-  echo "Error: fetched body is not a usable OpenAPI document." >&2
+if [ ! -f "$OUTPUT_PATH" ]; then
+  echo "Error: no committed spec at $OUTPUT_PATH." >&2
+  echo "Generate one with 'npm run openapi:emit' in apps/backend and copy openapi.public.json." >&2
   exit 1
 fi
 
-mv "$OUTPUT_PATH.tmp" "$OUTPUT_PATH"
-echo "OpenAPI spec updated successfully."
+# Report what is about to be published, so a stale spec is visible in the
+# build log rather than something you discover from the rendered site, and
+# refuse anything that is not the public document.
+node -e "
+  let s;
+  try {
+    s = require('$OUTPUT_PATH');
+  } catch (e) {
+    console.error('Error: $OUTPUT_PATH is not readable JSON.');
+    process.exit(1);
+  }
+  const methods = ['get', 'put', 'post', 'delete', 'patch', 'head', 'options'];
+  let ops = 0;
+  const unmarked = [];
+  for (const [path, item] of Object.entries(s.paths || {}))
+    for (const m of methods)
+      if (item && item[m]) {
+        ops += 1;
+        if (!Array.isArray(item[m]['x-vremly-required-scopes']))
+          unmarked.push(m.toUpperCase() + ' ' + path);
+      }
+  if (!ops) {
+    console.error('Error: $OUTPUT_PATH has no operations.');
+    process.exit(1);
+  }
+  if (unmarked.length) {
+    console.error(
+      'Error: ' + unmarked.length + ' of ' + ops + ' operations were not produced by the ' +
+      'public-surface filter (no x-vremly-required-scopes), e.g. ' + unmarked.slice(0, 3).join(', ') +
+      '. This looks like the INTERNAL openapi.json. Copy openapi.public.json instead.');
+    process.exit(1);
+  }
+  console.log('Using committed public OpenAPI spec (' + Object.keys(s.paths).length +
+    ' paths, ' + ops + ' operations).');
+"

@@ -22,19 +22,30 @@ Two credentials. Integrations should use an API key.
 
 ## Rate limits
 
-Three windows apply simultaneously: 3 requests/second, 20 per 10 seconds, 100
-per minute. The burst limit is the one most callers hit first. API-key traffic
-is bucketed **per key**, not per IP, so hosted automation platforms sharing
-egress addresses do not compete for one allowance. Bearer-authenticated requests
-are not rate limited. Responses carry `X-RateLimit-Limit`,
-`X-RateLimit-Remaining` and `X-RateLimit-Reset`; a 429 carries `Retry-After`.
+Every API key has its own budget, the "Rate limit (requests/min)" set when it
+was created: 120 per minute by default, 10 to 1000 allowed, counted across every
+endpoint. Some endpoints add their own per-minute cap, counted per key, with
+burst limits of 3 per second and 20 per 10 seconds on that endpoint. Requests
+without a credential are limited per client IP and endpoint: 3/second, 20 per
+10 seconds, 100 per minute or the endpoint's own cap. Header names end with the
+limit's name: `X-RateLimit-Limit-apiKey`, `X-RateLimit-Remaining-apiKey`,
+`X-RateLimit-Reset-apiKey` (seconds until reset), and on a 429
+`Retry-After-apiKey` (or `-long`, `-medium`, `-short` for an endpoint's cap).
+A key's 429 body names the limit and the seconds to wait.
 
 ## Webhooks
 
 Register at `POST /webhooks/subscriptions`. Events are upper snake case:
 `PROJECT_CREATED`, `PROJECT_ASSIGNED`, `PROJECT_STATUS_CHANGED`,
 `PROJECT_DELIVERED`, `DELIVERY_APPROVED`, `INVOICE_CREATED`, `INVOICE_SENT`,
-`INVOICE_PAID`, `INVOICE_VOIDED`, `CUSTOMER_CREATED`, `CUSTOMER_UPDATED`.
+`INVOICE_PAID`, `INVOICE_VOIDED`, `CUSTOMER_CREATED`, `CUSTOMER_UPDATED`,
+`SHARE_CARD_READY`, `PROJECT_RESCHEDULED`, `TRIP_STATUS_CHANGED`.
+
+`PROJECT_RESCHEDULED` fires when a booked shoot moves to a new time:
+`{ project: { id, scheduledTime, previousScheduledTime, visitId } }`.
+`TRIP_STATUS_CHANGED` fires when the technician's trip changes phase (EN_ROUTE,
+ARRIVED, IN_PROGRESS, COMPLETE): `{ project: { id }, visitId, phase,
+previousPhase }`. It never carries a location.
 
 `PROJECT_DELIVERED` fires when the company sends the work; `DELIVERY_APPROVED`
 fires when the client accepts it. They are different moments and a sent delivery
@@ -53,6 +64,7 @@ at-least-once — deduplicate on the `id` field.
 - [Organization Context](https://docs.vremly.com/guides/organization-context): the `x-org-id` header and when it is needed.
 - [Projects Workflow](https://docs.vremly.com/guides/projects-workflow): the shoot lifecycle and its statuses.
 - [Media Management](https://docs.vremly.com/guides/media-management): uploading, variants and delivery.
+- [Share Cards](https://docs.vremly.com/guides/share-cards): ready-to-post Just listed images (story 1080x1920, feed 1080x1350, link preview 1200x630), the caption, and the listing facts and tracked links to build your own social posts.
 - [Webhooks](https://docs.vremly.com/guides/webhooks): events, payloads, signature verification, retries.
 - [MCP Server](https://docs.vremly.com/guides/mcp): the Model Context Protocol server, for agents that would rather call tools than construct HTTP.
 - [Error Handling](https://docs.vremly.com/guides/error-handling): status codes and error shapes.
@@ -69,14 +81,28 @@ at-least-once — deduplicate on the `id` field.
 
 ## MCP
 
-There is a Model Context Protocol server at
+There is a hosted Model Context Protocol connector at
+`https://mcp.vremly.com/mcp` (OAuth sign-in), and a local server at
 https://github.com/RelayDigital/vremly-mcp, installable with
 `npx -y github:RelayDigital/vremly-mcp` and configured with a `VREMLY_API_KEY`
-environment variable. Three tools — `vremly_search_endpoints`,
-`vremly_describe_endpoint`, `vremly_request` — cover every operation without a
-per-endpoint tool list. It authenticates with the same `x-api-key`, and the
-key's scopes are enforced server-side, so a READ key cannot write regardless of
-what the agent is instructed to do.
+environment variable. Four tools — `vremly_capabilities`,
+`vremly_search_endpoints`, `vremly_describe_endpoint`, `vremly_request` — cover
+every operation without a per-endpoint tool list. Both authenticate with an API
+key whose scopes are enforced server-side, so a READ key cannot write
+regardless of what the agent is instructed to do. The hosted connector also
+offers prompts, including `just-listed-post` for share cards.
+
+## Share cards
+
+`GET /me/share-cards?kind=JUST_LISTED` then
+`GET /me/share-cards/just-listed/{projectId}` (a key minted in the agent's
+personal workspace), or `GET /listings/projects/{projectId}/share-cards/just-listed`
+(the media company's key). While `status` is `PENDING`, wait
+`retryAfterSeconds` and repeat. Build custom designs only from `data` and
+`brand`; a `null` field is unknown, never zero. Keep
+`brand.provider.creditLabel`; include `brand.platform.label` only when it is not
+null; use `links.listingUrl` exactly as given, because its UTM parameters
+credit the post.
 
 ## Notes for agents
 
@@ -85,4 +111,4 @@ what the agent is instructed to do.
   header.
 - A 403 mentioning a scope is a credential problem, not a permissions bug —
   the key needs re-issuing with the scope named in the message.
-- Respect `Retry-After` on 429 and back off; the burst limit is 3 per second.
+- Respect the `Retry-After-<limit>` header on 429 and back off.

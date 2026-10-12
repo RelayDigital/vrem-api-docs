@@ -71,7 +71,7 @@ Every key carries scopes, and they are enforced on every request.
 |---|---|
 | `READ` | Safe methods — `GET`, `HEAD`, `OPTIONS` |
 | `WRITE` | Everything `READ` allows, plus `POST`, `PUT`, `PATCH`, `DELETE` |
-| `ADMIN` | Everything, including scopes added in future |
+| `ADMIN` | Everything, including scopes added in future, except moving money (see below) |
 | `BULK_IMPORT` | The bulk import endpoints |
 | `WEBHOOKS` | Managing webhook subscriptions |
 
@@ -93,6 +93,29 @@ missing and what the key holds, so you can fix it without guessing:
   "message": "API key missing required scope. Needs one of: WRITE. This key holds: READ."
 }
 ```
+
+### What no key can do: move money
+
+No API key, whatever its scopes (`ADMIN` included), can charge a card, issue a
+refund or take a card-reader payment. The same applies to an AI assistant you
+connect, because approving one creates an API key. The routes that do those
+things are not in the API reference, and the server refuses them to every key.
+They stay available to a person signed in to Vremly.
+
+What a key does instead:
+
+- **To get paid**, send the customer a payment link with
+  `POST /invoices/{id}/send-payment-link`, and they pay on a hosted page.
+- **To get a card on file**, use `POST /customers/{id}/send-card-setup-link`,
+  which emails the customer a link to add it themselves.
+- **Cancelling a job that is already paid** cancels it but leaves the invoice
+  `PAID`. Nothing is refunded automatically: the business gets an email and
+  issues the refund in Vremly. Unpaid invoices on the job are voided, which
+  moves no money.
+- **A cancellation fee is never charged through a key.** A customer's cancel
+  that would cost a fee returns `403` with `CANCELLATION_FEE_NEEDS_APP`, and an
+  approval that asks to charge the fee returns `403` with
+  `KEY_CANNOT_CHARGE_FEE`; the person finishes either one in Vremly.
 
 ### Revoking a key
 

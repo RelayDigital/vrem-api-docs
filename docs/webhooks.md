@@ -27,6 +27,9 @@ field and the `X-Webhook-Event` header.
 | `INVOICE_VOIDED` | An invoice is voided |
 | `CUSTOMER_CREATED` | A customer is created |
 | `CUSTOMER_UPDATED` | A customer's details change |
+| `SHARE_CARD_READY` | A share card (for example a listing's Just listed post) has new images ready to post. See [below](#share_card_ready). |
+| `PROJECT_RESCHEDULED` | A booked shoot moves to a new time, including a client's reschedule request your team approves. See [below](#project_rescheduled). |
+| `TRIP_STATUS_CHANGED` | The technician's trip changes phase: heading out, arrived, shooting, finished. See [below](#trip_status_changed). |
 
 :::tip `PROJECT_DELIVERED` and `DELIVERY_APPROVED` are not the same moment
 `PROJECT_DELIVERED` fires when your team **sends** the work. `DELIVERY_APPROVED`
@@ -100,6 +103,103 @@ Requests also carry:
 | `X-Webhook-Id` | The delivery id, same as `id` in the body |
 | `X-Webhook-Event` | The event name |
 | `X-Webhook-Signature` | `t=<timestamp>,v1=<hmac>` |
+
+### `SHARE_CARD_READY`
+
+Fires each time a [share card](/guides/share-cards) reaches `READY` with new
+images: the first render after delivery, and again whenever a change to the
+listing produces a new version. It goes to the media company that delivered the
+listing. For a Just listed card it also goes to the listing agent's personal
+workspace when the agent's customer record is linked to a verified Vremly
+account. It is never sent for sample listings.
+
+The payload carries ids and URLs only, never buyer or lead details:
+
+```json
+{
+  "id": "0c6b8e1a-3f2d-4e5c-9b7a-1d2e3f4a5b6c",
+  "event": "SHARE_CARD_READY",
+  "timestamp": "1760292310",
+  "data": {
+    "event": "SHARE_CARD_READY",
+    "occurredAt": "2026-10-12T18:05:10.000Z",
+    "cardId": "6f0c1d2e-0000-4000-8000-000000000001",
+    "kind": "JUST_LISTED",
+    "variant": "JUST_LISTED",
+    "projectId": "proj_xyz789",
+    "orgId": "org_abc123",
+    "contentHash": "9c1e…",
+    "images": {
+      "story": "https://<cdn>/…-story.jpg",
+      "feed": "https://<cdn>/…-feed.jpg",
+      "linkPreview": "https://<cdn>/…-link.jpg"
+    },
+    "apiPath": "/listings/projects/proj_xyz789/share-cards/just-listed?variant=JUST_LISTED"
+  }
+}
+```
+
+`orgId` is the workspace receiving this delivery: the media company's
+organization, or the agent's personal workspace on the agent's copy.
+`contentHash` identifies the version: the same card can fire again with a new
+hash, and the image URLs change with it. To get the caption, the facts and the
+tracked links, read the card at `apiPath` with an API key from that workspace.
+On the agent's copy it is the `/me/share-cards/just-listed/...` path, which
+needs a key minted in their personal workspace.
+
+### `PROJECT_RESCHEDULED`
+
+Fires when a shoot that already had a time moves to a different one: your team
+changes the order's time or one shoot's time, or approves a client's request to
+reschedule. It does not fire the first time an order is given a time. It goes to
+the media company's organization.
+
+```json
+{
+  "id": "2b7d4c1e-8a3f-4e6b-9c0d-1e2f3a4b5c6d",
+  "event": "PROJECT_RESCHEDULED",
+  "timestamp": "1760292310",
+  "data": {
+    "project": {
+      "id": "proj_xyz789",
+      "scheduledTime": "2026-10-14T16:00:00.000Z",
+      "previousScheduledTime": "2026-10-13T16:00:00.000Z",
+      "visitId": "visit_abc123"
+    }
+  }
+}
+```
+
+`scheduledTime` is the moved shoot's new start. On an order with several shoots
+it is not always the order's own date, so read the project if you need that.
+`visitId` names the shoot that moved.
+
+### `TRIP_STATUS_CHANGED`
+
+Fires when the technician's trip changes phase: `EN_ROUTE` (heading out),
+`ARRIVED`, `IN_PROGRESS` (shooting) and `COMPLETE`. It fires once per change,
+never for the location updates in between. It goes to the media company's
+organization.
+
+```json
+{
+  "id": "7e1a9b2c-4d5f-4a6b-8c7d-9e0f1a2b3c4d",
+  "event": "TRIP_STATUS_CHANGED",
+  "timestamp": "1760292310",
+  "data": {
+    "project": { "id": "proj_xyz789" },
+    "visitId": "visit_abc123",
+    "phase": "ARRIVED",
+    "previousPhase": "EN_ROUTE"
+  }
+}
+```
+
+The payload never includes a location. To show where the technician is, read
+`GET /projects/{id}/tracking`, which applies the same rules as the app about who
+may see it. `previousPhase` is `null` when a trip starts. When an owner or admin
+closes a stuck trip, the event carries `"phase": "COMPLETE"` and
+`"adminResolution": "COMPLETED"` or `"CANCELLED"`.
 
 ## Signature Verification
 

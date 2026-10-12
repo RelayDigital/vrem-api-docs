@@ -78,8 +78,13 @@ To refresh the specification after a backend change:
 
 ```bash
 cd apps/backend && npm run openapi:emit     # in the Vremly monorepo
-cp openapi.json <this-repo>/static/openapi/openapi.json
+cp openapi.public.json <this-repo>/static/openapi/openapi.json
 ```
+
+> Copy `openapi.public.json`, never `openapi.json`. The latter is the complete
+> internal API (payroll, platform administration and more). `prebuild` refuses a
+> spec whose operations lack the public filter's `x-vremly-required-scopes`
+> marker, which is how it tells the two apart.
 
 > `openapi:emit` **must** run compiled — the script builds first for this
 > reason. Run through `ts-node` it skips the compile-time `@nestjs/swagger`

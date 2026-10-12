@@ -18,6 +18,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'projects-workflow',
         'media-management',
+        'share-cards',
       ],
     },
     {

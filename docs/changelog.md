@@ -7,6 +7,31 @@ sidebar_position: 10
 
 Notable changes and updates to the Vremly API.
 
+## 2026-10-12 — Keys no longer move money
+
+### Removed
+
+API keys, and the AI assistants that connect through them, can no longer charge
+a card, refund or take a card-reader payment. The server refuses these to every
+key, whatever its scopes, and they are gone from the reference: charging an
+invoice to a saved card, refunds (including adjustment refunds), the in-app
+payment sheet, staff card capture for a customer, and the marketplace slot and
+job cancels that capture a cancellation fee.
+
+To get paid, send `POST /invoices/{id}/send-payment-link`. Cancelling a paid job
+through a key leaves its invoice paid, and the business is emailed to refund it
+in Vremly. See [Authentication](/guides/authentication#what-no-key-can-do-move-money).
+
+### Added
+
+- [Share Cards](/guides/share-cards) guide, and the `SHARE_CARD_READY`,
+  `PROJECT_RESCHEDULED` and `TRIP_STATUS_CHANGED` webhook events
+- Reviewed operations for scheduling, dispatch, training, equipment, payroll,
+  evaluations and booking workflows. Each needs a grant for its business area (or `ADMIN`),
+  recorded on each operation in the OpenAPI document as
+  `x-vremly-required-scopes`
+- Rate limits are now a per-key budget; see [Rate Limits](/guides/rate-limits)
+
 ## v1.0 — Initial Release
 
 ### Endpoints

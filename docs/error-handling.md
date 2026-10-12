@@ -27,36 +27,45 @@ Standard HTTP status codes, with a JSON body describing what went wrong.
 {
   "statusCode": 401,
   "message": "Unauthorized",
-  "error": "Unauthorized"
+  "timestamp": "2026-10-12T18:05:10.000Z",
+  "path": "/projects"
 }
 ```
 
-Validation failures return `message` as an **array**, one entry per field:
+`message` is always a string. Validation failures summarise up to three of the
+problems in `message` and list every one in `errors`:
 
 ```json
 {
   "statusCode": 400,
-  "message": [
+  "message": "Validation failed: email must be an email; url must be a URL address",
+  "errors": [
     "email must be an email",
     "url must be a URL address"
   ],
-  "error": "Bad Request"
+  "timestamp": "2026-10-12T18:05:10.000Z",
+  "path": "/customers"
 }
 ```
 
-Handle both shapes — `message` is a string on most errors and an array on
-validation errors. Assuming a string and concatenating it produces a useless
-log line exactly when you need a good one.
+Read `errors` when it is present: it is the complete list, while `message` is
+shortened when there are many.
 
 ## The failure with no error
 
 The one that costs the most time does not produce an error at all.
 
-Validation runs with `whitelist: true`, so **a body field the endpoint does not
-recognise is silently discarded** and the request succeeds without it. Post
-`address` where the endpoint wanted `addressLine1` and you get `201` for a
-project with no address. There is no warning, and nothing in the response says
-a field was dropped.
+An unknown or misspelled body field is handled one of two ways, depending on
+the endpoint:
+
+- **The endpoint publishes a request body schema.** The body is validated with
+  unknown fields forbidden, so `address` where the endpoint wanted
+  `addressLine1` is rejected with `400` (`property address should not exist`)
+  and nothing is changed.
+- **The endpoint publishes no body schema** but still reads fields from the
+  body. There an unknown or misspelled field is **ignored**: the request can
+  succeed having skipped what you meant to send, and nothing in the response
+  says so.
 
 Check names against the [API Reference](/api-reference) — or use
 [`vremly_describe_endpoint`](/guides/mcp) if an assistant is writing the call.
@@ -98,9 +107,11 @@ record exists.
 
 ### 429
 
-Three windows apply at once: 3/second, 20/10 seconds, 100/minute. The burst
-limit catches most callers first. Respect `Retry-After` rather than retrying
-immediately. See [Rate Limits](/guides/rate-limits).
+An API key has its own per-minute budget (120 by default, set when the key is
+created), and some endpoints add their own cap with burst limits of 3 per
+second and 20 per 10 seconds. The body names the limit you hit. Wait the
+seconds in the `Retry-After-<suffix>` header rather than retrying immediately.
+See [Rate Limits](/guides/rate-limits).
 
 ## Retrying
 

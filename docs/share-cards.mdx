@@ -1,0 +1,289 @@
+---
+title: Share Cards
+sidebar_position: 6
+---
+
+# Share Cards
+
+When a listing's photos are delivered, Vremly prepares a **Just listed** post
+for it: three ready-to-post images, a caption, alt text, and every fact the
+design was built from. The same card is what the agent sees on the delivery
+page, in the iPhone app and on their property page. Through the API you get the
+images to post as they are, or the data to build your own design: a carousel,
+an email blast, a flyer.
+
+Nothing on a card is invented. A fact that is not on file is left off the image
+and is `null` in the data, never `0` and never a guess.
+
+## The images
+
+Every card is rendered at three sizes, as JPEG:
+
+| Key | Size | For |
+|---|---|---|
+| `story` | 1080 × 1920 | Instagram and Facebook stories, Reels covers |
+| `feed` | 1080 × 1350 | Instagram and Facebook feed posts |
+| `linkPreview` | 1200 × 630 | Link unfurls (Facebook, LinkedIn, messages) |
+
+The image URLs are public and permanent for that version of the card, so a
+crawler or a scheduling tool can fetch them without a credential. When the
+listing changes (a new cover photo, a price, a corrected address), the card is
+re-rendered at **new** URLs and the old files are removed. Read the card again
+rather than storing an image URL for later.
+
+## Which endpoint to call
+
+There are three ways in. They return the same card.
+
+| Who you are | Call | Credential |
+|---|---|---|
+| The listing agent | `GET /me/share-cards?kind=JUST_LISTED`, then `GET /me/share-cards/just-listed/{projectId}` | An API key minted in **your personal workspace**, or the hosted connector approved on it |
+| The media company that shot it | `GET /listings/projects/{projectId}/share-cards/just-listed` | Your organization's API key |
+| Anyone holding the delivery link | `GET /delivery/{token}/share-cards/just-listed` | None. `token` is the one in the delivery link. |
+
+:::note `/me/` routes need a personal-workspace key
+The `/me/share-cards` routes answer with your own listings across every media
+company you order from. A key minted inside a company workspace is refused
+with `403` (`Personal data needs a key minted in your personal workspace`), so a
+company integration cannot read what its staff order elsewhere. Agents create
+their key in the Vremly app under **Settings → Developers → API Keys** while
+their personal workspace is selected.
+:::
+
+As everywhere in this API, an API key carries its organization, so you never
+send `x-org-id` with one. A `404` means the card does not exist **or** is not
+visible to you; the two are deliberately indistinguishable.
+
+### Listing your cards
+
+`GET /me/share-cards` returns `{ "items": [...], "nextCursor": "..." }`, newest
+first. `nextCursor` is `null` on the last page. Each item is a summary: `id`,
+`kind`, `variant`, `status`, `withheldReason`, `isSample`, `projectId`,
+`addressLabel`, `images` (only when `READY`), `apiPath`, `renderedAt` and
+`createdAt`. `apiPath` is the request that returns the full card, with its
+caption, facts and links.
+
+| Query | Meaning |
+|---|---|
+| `kind` | `JUST_LISTED`. Omit for every kind. |
+| `workspaceOrgId` | Only listings ordered from that media company. Omit for every company you order from. |
+| `limit` | 1–50, default 20 |
+| `cursor` | The previous page's `nextCursor` |
+
+### Choosing a headline
+
+Pass `variant` on any of the three card routes. The server offers only the
+headlines the stored listing supports, in `availableVariants`:
+
+| `variant` | Headline | Offered when |
+|---|---|---|
+| `JUST_LISTED` | JUST LISTED | The listing is for sale. The default for a sale. |
+| `COMING_SOON` | COMING SOON | Always. Never the default: the agent chooses it. |
+| `FOR_RENT` | FOR RENT | The listing is for rent. The default for a rental. |
+
+Asking for a headline that is not in `availableVariants` returns the default
+one. The agent asserts the headline about their own listing; the server does
+not infer that a listing is live on the MLS.
+
+## Rendering is asynchronous
+
+The first read of a card, or the first read after the listing changed, may
+arrive before its images exist. Check `status`:
+
+| `status` | What to do |
+|---|---|
+| `READY` | `images` holds the three sizes. Use them. |
+| `PENDING` | `images` is `null`. Wait `retryAfterSeconds`, then repeat the same request. |
+| `WITHHELD` | The card cannot be shown truthfully. `withheldReason` says why. `images` is `null`. |
+| `FAILED` | Rendering failed after its retries. `images` is `null`. A later change to the listing queues it again. |
+
+`withheldReason` is one of:
+
+| Reason | Meaning |
+|---|---|
+| `NOT_DELIVERED` | The photos have not been delivered yet |
+| `PAYMENT_OUTSTANDING` | The delivery is waiting on an unpaid invoice |
+| `NO_COVER` | There is no photo to put on the card |
+| `CANCELLED` | The order was cancelled |
+| `SUBJECT_REMOVED` | The listing or its owner was deleted |
+
+When a ready card becomes withheld, its images are deleted and their URLs stop
+working.
+
+## Example response
+
+`GET /me/share-cards/just-listed/{projectId}` for a sale listing returns:
+
+```json
+{
+  "id": "6f0c1d2e-0000-4000-8000-000000000001",
+  "kind": "JUST_LISTED",
+  "variant": "JUST_LISTED",
+  "availableVariants": ["JUST_LISTED", "COMING_SOON"],
+  "status": "READY",
+  "withheldReason": null,
+  "retryAfterSeconds": null,
+  "isSample": false,
+  "images": {
+    "story":       { "url": "https://<cdn>/orgs/<orgId>/share-cards/<cardId>/<hash16>-story.jpg", "width": 1080, "height": 1920, "contentType": "image/jpeg" },
+    "feed":        { "url": "https://<cdn>/…-feed.jpg",  "width": 1080, "height": 1350, "contentType": "image/jpeg" },
+    "linkPreview": { "url": "https://<cdn>/…-link.jpg",  "width": 1200, "height": 630,  "contentType": "image/jpeg" }
+  },
+  "altText": "Just listed: 707-11826 100 Avenue NW, Edmonton. 2 bed, 2 bath, 1,104 sq ft RMS.",
+  "caption": "Just listed: 707-11826 100 Avenue NW, Edmonton.\n2 bd · 2 ba · 1,104 sq ft RMS · $389,900\nhttps://acme.example/listing/707-11826-100-ave?utm_source=share_card&utm_medium=social&utm_campaign=just_listed&utm_content=6f0c…&utm_term=api\n\nPhotos by Acme Media",
+  "data": {
+    "projectId": "…", "canonicalAddressId": "…",
+    "address": { "label": "707-11826 100 Avenue NW", "line1": "11826 100 Avenue NW", "unit": "707", "city": "Edmonton", "region": "AB", "postalCode": "T5K 0K3", "countryCode": "CA" },
+    "facts": { "beds": 2, "baths": 2, "area": { "value": 1104, "unit": "SQ_FT", "basis": "RMS" }, "priceCents": 38990000, "currency": "CAD", "listingType": "SALE", "propertyType": "CONDO", "mlsNumber": null },
+    "dates": { "deliveredAt": "2026-10-12T18:04:00.000Z", "mlsLiveDate": null, "soldDate": null },
+    "hero": { "mediaId": "…", "url": "https://<cdn>/…/web-ready.jpg", "aspectRatio": 1.5, "isVideoPoster": false },
+    "gallery": [ { "mediaId": "…", "url": "…", "aspectRatio": 1.5, "isVideoPoster": false } ],
+    "agent": { "name": "Jane Doe", "photoUrl": "…", "brokerageName": "Example Realty", "brokerageLogoUrl": null, "phone": "780-555-0100", "email": "jane@example.com" },
+    "additionalContacts": []
+  },
+  "brand": {
+    "provider": { "orgId": "…", "name": "Acme Media", "logoUrl": "…", "logoOnDarkUrl": "…", "creditLabel": "Photos by Acme Media",
+                  "bookingUrl": "https://acme.vremly.com/book?utm_source=share_card&utm_medium=credit&utm_campaign=just_listed&utm_content=6f0c…&utm_term=api" },
+    "platform": { "label": "Made with Vremly", "url": "https://www.vremly.com/?utm_source=share_card&utm_medium=platform_credit&utm_campaign=just_listed" }
+  },
+  "links": { "listingUrl": "https://acme.example/listing/…?utm_…" },
+  "stats": { "shares": 3, "websiteVisits": 41, "leads": 1, "bookings": 0 },
+  "contentHash": "9c1e…", "templateVersion": 1, "renderedAt": "2026-10-12T18:05:10.000Z", "generatedAt": "2026-10-12T18:20:00.000Z"
+}
+```
+
+## What the fields mean
+
+| Field | Notes |
+|---|---|
+| `isSample` | A demo listing. Its images carry a SAMPLE ribbon. Do not post it. |
+| `data`, `caption`, `altText` | `null` while the card is `WITHHELD`. Present while it is `PENDING`, so you can show the facts before the images exist. `brand` stays present on a withheld card, so you can name the media company; it is `null` only when the listing was deleted. |
+| `data.facts.priceCents` | The list price in cents, in `currency`. `null` when no price is on file, and always `null` on a `FOR_RENT` card, because the rent period is not stored. |
+| `data.facts.area` | A measured figure when one exists, otherwise the typed square footage, in square feet (`unit` is `SQ_FT`). `basis` says which: `RMS` (measured to the Alberta RECA standard, labelled "sq ft RMS" on the image), `MEASURED` ("sq ft measured") or `LISTED` (typed in, "sq ft"). |
+| `data.hero` | The photo on the card. Never a floor plan. `isVideoPoster` is `true` when it is a video's poster frame. |
+| `data.gallery` | Up to 10 delivered photos, in the property website's order. Material for a carousel. |
+| `data.agent` | The listing agent. `phone`, `email`, `photoUrl` and the brokerage fields are `null` when not on file. `agent` itself is `null` when the order has no customer. |
+| `data.additionalContacts` | Co-listing agents, if any: `name`, `email`, `phone` and `brokerageName`, each `null` when not on file |
+| `caption` | Ready to paste. Only facts that are present appear, and it never contains hashtags. |
+| `altText` | Describe the image with this when you post it |
+| `brand.provider` | The media company. Keep `creditLabel` ("Photos by …") on anything you build. `logoUrl`, `logoOnDarkUrl` and `bookingUrl` are `null` when there is none to show or link to. |
+| `brand.platform` | The platform credit. **`null` for companies on their own branded app or domain**: then no platform name appears anywhere on the card, and nothing you build should add one. |
+| `links.listingUrl` | The property website, with tracking. `null` while the website is not live; the card is still usable. |
+| `stats` | Counts for this card: shares recorded, website visits and leads from its links, and bookings from its credit link |
+
+## Building your own design
+
+Everything on the card is in `data` and `brand`. If you, or an assistant you
+direct, build a different layout from it:
+
+- Use only the values in `data` and `brand`. Never fill a `null` with a guess,
+  a `0`, a price, an award, a statistic or a quote.
+- Keep `brand.provider.creditLabel`.
+- Include `brand.platform.label` only when `brand.platform` is not `null`.
+- Use `links.listingUrl` and `brand.provider.bookingUrl` **exactly as given**.
+  Their tracking parameters are what credit the post with the visits, leads
+  and bookings it produces.
+
+## Tracking
+
+The server writes every link on a card. These are the parameters it adds:
+
+| Parameter | Listing link | Media company credit | Platform credit |
+|---|---|---|---|
+| `utm_source` | `share_card` | `share_card` | `share_card` |
+| `utm_medium` | `social` | `credit` | `platform_credit` |
+| `utm_campaign` | The headline: `just_listed`, `coming_soon` or `for_rent` | same | same |
+| `utm_content` | The card `id` | The card `id` | — |
+| `utm_term` | Where the card was read: `web`, `ios`, `delivery_page`, or `api` for an API key | same | — |
+
+A visit, lead or booking that arrives through these links is counted against
+the card, and shows in its `stats`.
+
+## Recording a share
+
+When your integration posts or downloads a card for someone, record it so the
+card's share count includes it. Use the events route on the same door you read
+the card from:
+
+| Door | Route |
+|---|---|
+| Personal workspace | `POST /me/share-cards/{cardId}/events` |
+| Company | `POST /share-cards/{cardId}/events` |
+| Delivery link | `POST /delivery/{token}/share-cards/{cardId}/events` |
+
+```bash
+curl -X POST https://api.vremly.com/share-cards/6f0c1d2e-0000-4000-8000-000000000001/events \
+  -H "x-api-key: <your-api-key>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "action": "SHARED",
+    "size": "STORY",
+    "surface": "WEB",
+    "dedupeKey": "0b8f4c1e-5d7a-4f3b-9a3e-2c1d0e9f8a7b"
+  }'
+```
+
+| Field | Values |
+|---|---|
+| `action` | `SHARED`, `DOWNLOADED`, `LINK_COPIED`, `CAPTION_COPIED`, `INSTAGRAM_STORY`, `VIEWED` |
+| `size` | `STORY`, `FEED`, `LINK_PREVIEW` |
+| `surface` | `WEB`, `IOS`, `DELIVERY_PAGE` |
+| `dedupeKey` | A UUID v4 you generate once per event |
+
+The response is `204`. Sending the same `dedupeKey` again for the same card is
+a no-op, so a retry after a timeout never counts twice. The body is validated:
+an unknown field is rejected with `400`.
+
+Reading a card needs `READ`. Recording an event needs `WRITE`.
+
+## Organization totals
+
+`GET /share-cards/stats?from=2026-10-01&to=2026-10-31&kind=JUST_LISTED` returns
+your company's totals per card kind. It is for owners, admins and project
+managers of the organization; `to` may be at most 366 days after `from`.
+
+```json
+{
+  "from": "…",
+  "to": "…",
+  "byKind": [
+    { "kind": "JUST_LISTED", "cardsReady": 0, "shareTaps": 0, "websiteVisits": 0, "leads": 0, "creditClicks": 0, "attributedBookings": 0 }
+  ]
+}
+```
+
+Sample listings are never counted.
+
+## Getting told when a card is ready
+
+Subscribe to the `SHARE_CARD_READY` webhook. It fires each time a card reaches
+`READY` with new images, carries the image URLs, and is never sent for sample
+listings. See [Webhooks](/guides/webhooks#share_card_ready).
+
+## Rate limits
+
+The share-card routes that take a credential allow **60 requests per minute
+per API key** each, with the burst limits that come with an endpoint's own cap,
+on top of the key's own budget. The delivery-link routes allow 60 per minute
+per address to callers without a credential. See
+[Rate Limits](/guides/rate-limits).
+
+## With an AI assistant
+
+The routes above are part of the public API, so an assistant connected through
+the [Vremly MCP server](/guides/mcp) reaches them with its standard tools. The
+hosted server also offers a ready-made prompt, `just-listed-post`, that runs the
+whole flow and applies the rules in [Building your own design](#building-your-own-design).
+
+What people ask, and what the assistant does:
+
+| You say | The assistant calls |
+|---|---|
+| "Get my just-listed card for 123 Main St" | `vremly_search_endpoints "share card just listed"` → describe → `GET /me/share-cards?kind=JUST_LISTED` → `GET /me/share-cards/just-listed/{projectId}` |
+| "Make me a carousel caption and three slide designs for my new listing" | The same card. It uses `data.gallery`, `data.facts`, `data.agent` and `caption` as the source facts, and builds the slides in its own tool (for example Canva, or HTML). |
+| "Write an email blast announcing it" | The same card. It uses `links.listingUrl` exactly as given, tracking included. |
+
+An agent should approve the connector on their **personal workspace**, so the
+`/me/` routes are reachable. A connector approved on a company workspace reads
+cards through `GET /listings/projects/{projectId}/share-cards/just-listed`
+instead.
