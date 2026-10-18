@@ -147,13 +147,13 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Vremly',
+      title: '',
       logo: {
         alt: 'Vremly',
-        src: 'img/logo.png',
-        srcDark: 'img/logo-dark.png',
-        width: 28,
-        height: 28,
+        src: 'img/vremly-wordmark-black.svg',
+        srcDark: 'img/vremly-wordmark-white.svg',
+        width: 89,
+        height: 16,
       },
       items: [
         {

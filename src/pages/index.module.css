@@ -23,15 +23,7 @@
 .hero {
   padding: 5.5rem 0 4rem;
   border-bottom: 1px solid var(--ifm-toc-border-color, rgba(0, 0, 0, 0.08));
-  /* The pale mint wash vremly.com opens with — emerald-100 fading out, not a
-     saturated banner. On the marketing site green appears exactly like this:
-     ambient, behind the copy, never as a fill on anything you click. */
-  background:
-    radial-gradient(
-      60rem 28rem at 12% -10%,
-      var(--vremly-wash-1),
-      transparent 62%
-    );
+  background:linear-gradient(to bottom,rgba(252,252,252,.97) 0%,rgba(252,252,252,.9) 45%,rgba(252,252,252,.64) 78%,#fcfcfc 100%),url('/img/hero/docs-courtyard.webp') center 70% / cover;
 }
 
 .heroGrid {
@@ -54,7 +46,7 @@
   font-size: clamp(2.1rem, 4.4vw, 3.15rem);
   line-height: 1.08;
   letter-spacing: -0.032em;
-  font-weight: 680;
+  font-weight: 700;
   text-wrap: balance;
   margin: 0 0 1.25rem;
 }
@@ -88,9 +80,9 @@
 .btnGhost {
   display: inline-flex;
   align-items: center;
-  border-radius: 7px;
-  padding: 0.62rem 1.15rem;
-  font-size: 0.94rem;
+  border-radius: 999px;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.875rem;
   font-weight: 600;
   line-height: 1.2;
   text-decoration: none;
@@ -479,3 +471,5 @@
     transform: none;
   }
 }
+
+[data-theme='dark'] .hero { background:linear-gradient(to bottom,rgba(12,12,14,.96),rgba(12,12,14,.86) 65%,#0c0c0e),url('/img/hero/docs-courtyard.webp') center 70% / cover; }
