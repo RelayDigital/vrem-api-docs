@@ -598,4 +598,12 @@ html[data-theme='light'] .navbar .navbar__search::before { background:#606060; }
   .vremly-reference-shell .scalar-app .t-doc__header { top:var(--ifm-navbar-height); min-height:49px; height:auto; }
   .vremly-reference-shell .scalar-app .t-doc__header>header { flex-shrink:0; min-height:49px; }
   .vremly-reference-shell .scalar-app .t-doc__header:has(aside) { height:calc(100dvh - var(--ifm-navbar-height)); }
+  /* The plugin theme targets an older fixed drawer. The pinned renderer nests
+     its drawer below this toolbar; keep it in that flex flow so it cannot
+     cover the close button's pointer target. */
+  .vremly-reference-shell .scalar-app .t-doc__header>aside {
+    position:static!important; inset:auto!important; width:100%!important;
+    height:auto!important; max-height:none; min-height:0; flex:1 1 auto;
+  }
+  .vremly-reference-shell .scalar-app .t-doc__header:has(aside) { z-index:50; }
 }

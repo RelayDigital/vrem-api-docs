@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-10-18
+- Fixed mobile API navigation so the sidebar cannot cover its close button after scrolling.
 - Fixed the full-page theme canvas and made the header and V mark respond to light/dark mode.
 - Replaced the native code-language menu with the same Radix Select primitive and filled styling used in the webapp. Aligned header height, logo rail, and dashboard action with the landing site.
 - Added a dedicated developer hub homepage and moved the API documentation workspace to /api.
