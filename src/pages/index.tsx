@@ -1,347 +1,39 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import styles from './index.module.css';
+import Icon, {type IconName} from '../components/DocsHome/Icon';
+import styles from './home.module.css';
+import {AuroraGradient} from '../components/DocsHome/AuroraGradient';
 
-/**
- * The documentation home page.
- *
- * Every literal on this page is copied from something verified against the
- * running server — the routes, the header names, the scope list, the webhook
- * event names, the three rate-limit windows. Nothing here is illustrative.
- * If the API changes, this page is wrong and must be changed with it; a
- * plausible-looking example that does not actually work costs a developer
- * their first hour, which is the hour they decide whether to keep going.
- *
- * There are deliberately no customer counts, logos, testimonials or
- * time-saved figures: Vremly is pre-launch, so any such claim would be
- * invented.
- */
-
-/** A minimal syntax-coloured line. Hand-rolled rather than pulling a
- *  highlighter in — the hero shows nine lines of shell and JSON, and a
- *  runtime highlighter for that is weight the first paint does not need. */
-function Ln({ children }: { children: React.ReactNode }) {
-  return <span className={styles.ln}>{children}</span>;
-}
-
-function RequestPanel() {
-  return (
-    <div className={styles.panel} aria-label="Example request and the webhook it produces">
-      <div className={styles.panelBar}>
-        <span className={styles.panelDot} />
-        <span className={styles.panelDot} />
-        <span className={styles.panelDot} />
-        <span className={styles.panelTitle}>subscribe</span>
-      </div>
-
-      <pre className={styles.code}>
-        <code>
-          {/* Broken after the method so the URL starts its own line: at the
-              panel's width the single-line form ran past the right edge and
-              the route — the most important thing here — was the part that
-              got clipped. */}
-          <Ln>
-            <span className={styles.prompt}>$</span> curl -X POST \
-          </Ln>
-          <Ln>
-            {'  '}https://api.vremly.com/webhooks/subscriptions \
-          </Ln>
-          <Ln>
-            {'  '}-H <span className={styles.str}>"x-api-key: $VREMLY_API_KEY"</span> \
-          </Ln>
-          <Ln>
-            {'  '}-d <span className={styles.str}>{"'{\"url\":\"https://example.com/hooks\","}</span>
-          </Ln>
-          <Ln>
-            {'      '}
-            <span className={styles.str}>{'"events":["DELIVERY_APPROVED"]}\''}</span>
-          </Ln>
-        </code>
-      </pre>
-
-      <div className={styles.panelSplit}>
-        <span>then, when a client signs off</span>
-      </div>
-
-      <pre className={styles.code}>
-        <code>
-          <Ln>
-            <span className={styles.punc}>{'{'}</span>
-          </Ln>
-          <Ln>
-            {'  '}
-            <span className={styles.key}>"event"</span>
-            <span className={styles.punc}>: </span>
-            <span className={styles.str}>"DELIVERY_APPROVED"</span>
-            <span className={styles.punc}>,</span>
-          </Ln>
-          <Ln>
-            {'  '}
-            <span className={styles.key}>"data"</span>
-            <span className={styles.punc}>: {'{'}</span>
-          </Ln>
-          <Ln>
-            {'    '}
-            <span className={styles.key}>"projectId"</span>
-            <span className={styles.punc}>: </span>
-            <span className={styles.str}>"proj_xyz789"</span>
-            <span className={styles.punc}>,</span>
-          </Ln>
-          <Ln>
-            {'    '}
-            <span className={styles.key}>"approvedAt"</span>
-            <span className={styles.punc}>: </span>
-            <span className={styles.str}>"2026-09-05T12:00:00.000Z"</span>
-          </Ln>
-          <Ln>
-            {'  '}
-            <span className={styles.punc}>{'}'}</span>
-          </Ln>
-          <Ln>
-            <span className={styles.punc}>{'}'}</span>
-          </Ln>
-        </code>
-      </pre>
-    </div>
-  );
-}
-
-function Hero() {
-  return (
-    <header className={styles.hero}>
-      <div className={styles.wrap}>
-        <div className={styles.heroGrid}>
-          <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}>Vremly API</p>
-            <h1 className={styles.title}>
-              Run a real-estate media business from your own tooling.
-            </h1>
-            <p className={styles.lede}>
-              A REST API over shoots, customers, media delivery, invoicing and
-              webhooks. Call it from GoHighLevel, n8n, a cron job or a single
-              line of <code>curl</code> — an API key is all it takes.
-            </p>
-            <div className={styles.actions}>
-              <Link className={styles.btnPrimary} to="/guides/getting-started">
-                Make your first request
-              </Link>
-              <Link className={styles.btnGhost} to="/api-reference">
-                API reference
-              </Link>
-            </div>
-            <p className={styles.heroNote}>
-              Authenticate with <code>x-api-key</code>. The organization comes
-              from the key, so there is no tenant header to get wrong.
-            </p>
-          </div>
-
-          <RequestPanel />
-        </div>
-      </div>
-    </header>
-  );
-}
-
-const routes = [
-  {
-    to: '/guides/getting-started',
-    label: 'Getting started',
-    body: 'Issue a key, send a first authenticated request, and read the response you get back.',
-  },
-  {
-    to: '/api-reference',
-    label: 'API reference',
-    body: 'Every endpoint, generated from the backend’s own source rather than written by hand — 854 routes, with the request and response shapes the server really uses.',
-  },
-  {
-    to: '/guides/webhooks',
-    label: 'Webhooks',
-    body: 'Subscribe to events, verify the signature over the raw body, and handle at-least-once delivery correctly.',
-  },
+const paths: {icon: IconName; title: string; body: string; href: string; action: string}[] = [
+  {icon:'code',title:'API platform',body:'Connect your own tools to projects, customers, media, and invoicing.',href:'/api',action:'Explore the API'},
+  {icon:'spark',title:'AI assistants',body:'Bring Vremly into your assistant with the MCP connector.',href:'/guides/mcp',action:'Connect an assistant'},
+  {icon:'book',title:'Platform guides',body:'Learn the concepts and workflows behind your integration.',href:'/guides/',action:'Browse the guides'},
+];
+const topics: {icon: IconName; title: string; body: string; href: string}[] = [
+  {icon:'project',title:'Projects & production',body:'Follow the lifecycle of a shoot.',href:'/guides/projects-workflow'},
+  {icon:'media',title:'Media & delivery',body:'Upload files and work with project media.',href:'/guides/media-management'},
+  {icon:'webhook',title:'Events & webhooks',body:'Build workflows around what happens next.',href:'/guides/webhooks'},
+  {icon:'key',title:'Authentication & scopes',body:'Give your integration the access it needs.',href:'/guides/authentication'},
+  {icon:'team',title:'Organization context',body:'Understand how each request is scoped.',href:'/guides/organization-context'},
+  {icon:'help',title:'Errors & troubleshooting',body:'Find the cause and keep moving.',href:'/guides/troubleshooting'},
 ];
 
-function Routes() {
-  return (
-    <section className={styles.section}>
-      <div className={styles.wrap}>
-        <div className={styles.cards}>
-          {routes.map((r) => (
-            <Link key={r.to} to={r.to} className={styles.card}>
-              <h2 className={styles.cardTitle}>{r.label}</h2>
-              <p className={styles.cardBody}>{r.body}</p>
-              <span className={styles.cardGo} aria-hidden="true">
-                →
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+export default function DeveloperHome(): React.JSX.Element {
+  return <Layout title="Vremly Developers" description="Build on Vremly with APIs, AI connectors, and integration guides for real estate media.">
+    <main className={styles.home}>
+      <header className={styles.hero}>
+        <div className={styles.heroCopy}><p className={styles.eyebrow}>VREMLY DEVELOPERS</p><h1>Build with <span>Vremly.</span></h1><p className={styles.heroDescription}>Your tools. Your workflows. Connected to the platform that handles your real estate media.</p><div className={styles.actions}><Link to="/api" className={styles.primary}>Start building <span aria-hidden="true">→</span></Link><Link to="/guides/getting-started" className={styles.textAction}>Make your first request <span aria-hidden="true">↗</span></Link></div></div>
 
-/* The real enum, in the order the guide lists it. A developer scanning for
-   "is the thing I need to react to in here?" is the whole purpose of this
-   block, so it shows the actual names rather than a prose summary. */
-const events = [
-  'PROJECT_CREATED',
-  'PROJECT_ASSIGNED',
-  'PROJECT_STATUS_CHANGED',
-  'PROJECT_DELIVERED',
-  'DELIVERY_APPROVED',
-  'INVOICE_CREATED',
-  'INVOICE_SENT',
-  'INVOICE_PAID',
-  'INVOICE_VOIDED',
-  'CUSTOMER_CREATED',
-  'CUSTOMER_UPDATED',
-];
-
-function Events() {
-  return (
-    <section className={styles.section}>
-      <div className={styles.wrap}>
-        <div className={styles.split}>
-          <div className={styles.splitCopy}>
-            <h2 className={styles.h2}>Eleven events, no polling</h2>
-            <p className={styles.body}>
-              Register a URL and Vremly posts to it. Each request carries{' '}
-              <code>X-Webhook-Signature</code> as{' '}
-              <code>t=&lt;unix&gt;,v1=&lt;hmac&gt;</code> — an HMAC-SHA256 over
-              the timestamp, a dot, and the raw body.
-            </p>
-            <p className={styles.body}>
-              <strong>
-                <code>PROJECT_DELIVERED</code> and <code>DELIVERY_APPROVED</code>{' '}
-                are different moments.
-              </strong>{' '}
-              The first fires when the company sends the work; the second when
-              the client accepts it. A sent delivery can still come back as a
-              revision request, so a pipeline stage that means “fulfilled”
-              wants approval.
-            </p>
-            <Link className={styles.textLink} to="/guides/webhooks">
-              Payloads, retries and verification →
-            </Link>
-          </div>
-          <ul className={styles.chips}>
-            {events.map((e) => (
-              <li key={e} className={styles.chip}>
-                {e}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-const scopes = [
-  ['READ', 'GET, HEAD, OPTIONS'],
-  ['WRITE', 'Everything READ allows, plus POST, PUT, PATCH, DELETE'],
-  ['ADMIN', 'Everything'],
-  ['BULK_IMPORT', 'The bulk import endpoints, and nothing else'],
-  ['WEBHOOKS', 'Managing webhook subscriptions'],
-];
-
-function Scopes() {
-  return (
-    <section className={styles.section}>
-      <div className={styles.wrap}>
-        <h2 className={styles.h2}>Scopes are enforced on every request</h2>
-        <p className={styles.bodyWide}>
-          A key carries scopes and the server checks them per route, not per
-          controller. Grant the least an integration needs — a workflow that
-          only reads delivery status should hold <code>READ</code>, so a mistake
-          in that workflow cannot change anything.
-        </p>
-        <dl className={styles.scopeList}>
-          {scopes.map(([name, grants]) => (
-            <div key={name} className={styles.scopeRow}>
-              <dt className={styles.scopeName}>{name}</dt>
-              <dd className={styles.scopeGrants}>{grants}</dd>
-            </div>
-          ))}
-        </dl>
-        <p className={styles.bodyWide}>
-          A request whose key lacks the scope returns <code>403</code> naming
-          what was needed and what the key holds. Rate limits are three
-          simultaneous windows — 3 per second, 20 per 10 seconds, 100 per minute
-          — bucketed per key, so platforms that share egress IPs do not compete
-          for one allowance.
-        </p>
-        <div className={styles.actions}>
-          <Link className={styles.btnGhost} to="/guides/authentication">
-            Authentication
-          </Link>
-          <Link className={styles.btnGhost} to="/guides/rate-limits">
-            Rate limits
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Agents() {
-  return (
-    <section className={styles.section}>
-      <div className={styles.wrap}>
-        <div className={styles.agentCard}>
-          <h2 className={styles.h2}>Built to be used by agents</h2>
-          <p className={styles.body}>
-            Vremly ships an <Link to="/guides/mcp">MCP server</Link>, so an AI
-            assistant can work with your projects, customers and invoices
-            directly. One command, nothing to clone:
-          </p>
-          <pre className={styles.installLine}>
-            <code>npx -y github:RelayDigital/vremly-mcp</code>
-          </pre>
-          <p className={styles.body}>
-            It exposes three tools — search, describe, call — which reach every
-            endpoint without a thousand-entry tool list. What the assistant may
-            do is decided by the API key you give it and enforced server-side,
-            so a read-only key cannot be talked into writing.
-          </p>
-          <p className={styles.body}>
-            For everything else there is an{' '}
-            <a href="pathname:///llms.txt">llms.txt</a> index and the
-            specification itself, which is the authority whenever prose
-            disagrees with it.
-          </p>
-          <div className={styles.actions}>
-            <Link className={styles.btnPrimary} to="/guides/mcp">
-              Set up the MCP server
-            </Link>
-            <a className={styles.btnGhost} href="pathname:///llms.txt">
-              llms.txt
-            </a>
-            <a
-              className={styles.btnGhost}
-              href="pathname:///openapi/openapi.json"
-            >
-              OpenAPI document
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export default function Home(): React.JSX.Element {
-  return (
-    <Layout
-      title="Vremly API"
-      description="REST API for real-estate media production — shoots, customers, media delivery, invoicing and webhooks. Call it from GoHighLevel, n8n, or curl."
-    >
-      <Hero />
-      <Routes />
-      <Events />
-      <Scopes />
-      <Agents />
-    </Layout>
-  );
+      </header>
+      <section className={styles.pathGrid} aria-label="Developer platforms">{paths.map(path => <Link key={path.title} to={path.href} className={styles.path}><Icon name={path.icon}/><div><h2>{path.title}</h2><p>{path.body}</p><span>{path.action} <span aria-hidden="true">→</span></span></div></Link>)}</section>
+      <section className={styles.promos} aria-label="Build with Vremly">
+        <div className={styles.promo}><div className={styles.promoCopy}><h2>Build your workflow.</h2><p>Connect your tools to projects, media, and delivery. Start with a request and build from there.</p><Link to="/guides/getting-started" className={styles.primary}>Explore the API <span aria-hidden="true">↗</span></Link></div><div className={styles.auroraVisual} aria-hidden="true"><AuroraGradient status="DELIVERED" seed="developer-api" detail highContrast/><img className={styles.visualMark} src="/img/vremly-mark-white.svg" alt=""/><span className={styles.visualLabel}>Build on Vremly</span><span className={styles.visualEndpoint}>GET /projects <span>200 OK</span></span></div></div>
+        <div className={styles.promo}><div className={styles.promoCopy}><h2>Your assistant, connected.</h2><p>Bring Vremly into Claude, ChatGPT, Cursor, or your coding agent through the MCP connector.</p><Link to="/guides/mcp" className={styles.primary}>Connect an assistant <span aria-hidden="true">↗</span></Link></div><div className={`${styles.auroraVisual} ${styles.connectorVisual}`} aria-hidden="true"><AuroraGradient status="DELIVERED" seed="developer-mcp" detail highContrast/><div className={styles.connectionMarks}><img src="/img/brands/mcp.svg" alt=""/><span>→</span><img src="/img/vremly-mark-white.svg" alt=""/></div><span className={styles.visualLabel}>Connected to your workflow.</span><span className={styles.visualEndpoint}>Model Context Protocol</span></div></div>
+      </section>
+      <section className={styles.topicSection} aria-labelledby="explore-heading"><div className={styles.sectionHeading}><h2 id="explore-heading">Build around your workflow.</h2></div><div className={styles.topics}>{topics.map(topic => <Link key={topic.href} to={topic.href}><span className={styles.topicIcon}><Icon name={topic.icon}/></span><div><h3>{topic.title}</h3><p>{topic.body}</p></div><span aria-hidden="true">↗</span></Link>)}</div></section>
+      <section className={styles.machineResources} aria-label="Machine-readable documentation"><div><img className={styles.openapiLogo} src="/img/brands/openapi.svg" alt="OpenAPI" width="56" height="40"/><h2>Documentation for your tools, too.</h2><p>Use the OpenAPI specification or pass the documentation index to your AI assistant.</p></div><div className={styles.actions}><a href="/openapi/openapi.json" className={styles.secondary}>OpenAPI <span aria-hidden="true">↗</span></a><a href="/llms.txt" className={styles.secondary}>llms.txt <span aria-hidden="true">↗</span></a></div></section>
+      <nav className={styles.resources} aria-label="More developer resources">{[{icon:'book',title:'Training academy',body:'Get to know the Vremly platform.',href:'https://training.vremly.com'},{icon:'help',title:'Help center',body:'Find answers and get support.',href:'https://vremly.com/support'},{icon:'code',title:'API reference',body:'Look up an endpoint.',href:'/api-reference'},{icon:'project',title:'Changelog',body:'See what has changed.',href:'/guides/changelog'}].map(item => <Link to={item.href} key={item.title}><Icon name={item.icon as IconName}/><h3>{item.title}</h3><p>{item.body}</p></Link>)}</nav>
+    </main>
+  </Layout>;
 }

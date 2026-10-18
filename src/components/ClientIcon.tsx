@@ -42,6 +42,7 @@ export default function ClientIcon({ name }: { name: ClientIconName }) {
   return (
     <svg
       className="vx-client-icon"
+      fill="currentColor"
       viewBox="0 0 24 24"
       width="1em"
       height="1em"

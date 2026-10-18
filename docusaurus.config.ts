@@ -1,3 +1,4 @@
+import {themes as prismThemes} from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type { Options as PresetOptions, ThemeConfig } from '@docusaurus/preset-classic';
 
@@ -13,22 +14,13 @@ import type { Options as PresetOptions, ThemeConfig } from '@docusaurus/preset-c
  * docs/ are written by hand.
  */
 
-/**
- * Scalar's renderer is loaded from a CDN at runtime — that is how its
- * Docusaurus plugin works, there is no bundled mode. Its default is the
- * UNVERSIONED `.../npm/@scalar/api-reference`, which means the reference page
- * silently re-renders with whatever jsdelivr publishes that day: a dependency
- * that can change our flagship page without us shipping anything, and break it
- * without us touching it.
- *
- * So it is pinned. Raising this is a deliberate edit, tested like any other.
- */
-const SCALAR_CDN = 'https://cdn.jsdelivr.net/npm/@scalar/api-reference@1.67.0';
+/** Pinned Scalar standalone renderer, served locally for reliable reference loading. */
+const SCALAR_CDN = '/vendor/scalar-api-reference-1.67.0.js';
 
 const config: Config = {
   title: 'Vremly API',
   tagline: 'REST API for real-estate media production',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/vremly-mark-white.svg',
   url: 'https://docs.vremly.com',
   baseUrl: '/',
   organizationName: 'RelayDigital',
@@ -48,16 +40,6 @@ const config: Config = {
     locales: ['en'],
   },
 
-  headTags: [
-    {
-      tagName: 'link',
-      attributes: {
-        rel: 'preconnect',
-        href: 'https://cdn.jsdelivr.net',
-      },
-    },
-  ],
-
   presets: [
     [
       'classic',
@@ -71,7 +53,7 @@ const config: Config = {
         theme: {
           // Array, not a string: mcp-guide.css is scoped to the MCP quickstart
           // and kept separate so it can be removed along with that page.
-          customCss: ['./src/css/custom.css', './src/css/mcp-guide.css'],
+          customCss: ['./src/css/mcp-guide.css', './src/css/custom.css'],
         },
       } satisfies PresetOptions,
     ],
@@ -101,7 +83,7 @@ const config: Config = {
 
   plugins: [
     [
-      '@scalar/docusaurus',
+      require.resolve('./plugins/scalar-reference/index.cjs'),
       {
         label: 'API Reference',
         route: '/api-reference',
@@ -116,6 +98,8 @@ const config: Config = {
           // One copy, one source of truth.
           url: '/openapi/openapi.json',
           hideDownloadButton: false,
+          showDeveloperTools: "never",
+          agent: {disabled: true},
           // The palette is NOT set here. Scalar keeps its own light/dark state,
           // independent of the site's — so configuring colours through the
           // plugin renders a light reference under a dark navbar the moment a
@@ -139,15 +123,12 @@ const config: Config = {
       },
     ],
     colorMode: {
-      // Light, because vremly.com is light — near-white ground, black buttons,
-      // green only as an ambient wash. A dark-first docs site looked like a
-      // different product, which is how this drifted into another tenant's
-      // palette in the first place. Dark remains available via the toggle.
-      defaultMode: 'light',
-      respectPrefersColorScheme: true,
+      // Developer workspace starts dark; readers can switch to light mode.
+      defaultMode: 'dark',
+      respectPrefersColorScheme: false,
     },
     navbar: {
-      title: '',
+      title: 'Developers',
       logo: {
         alt: 'Vremly',
         src: 'img/vremly-wordmark-black.svg',
@@ -156,34 +137,17 @@ const config: Config = {
         height: 16,
       },
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'guidesSidebar',
-          position: 'left',
-          label: 'Guides',
-        },
-        {
-          to: '/api-reference',
-          label: 'API Reference',
-          position: 'left',
-        },
-        {
-          to: '/guides/webhooks',
-          label: 'Webhooks',
-          position: 'left',
-        },
-        // The specification itself, one click from every page. An integrator
-        // pointing a code generator or an agent at the API wants this file, and
-        // previously the only way to find it was to read llms.txt.
-        //
-        // `pathname://` is required for anything under static/: without it
-        // Docusaurus resolves the href against its route table, finds no route,
-        // and fails the build as a broken link even though the file is served.
-        {
-          href: 'pathname:///openapi/openapi.json',
-          label: 'OpenAPI',
-          position: 'right',
-        },
+        { to: '/', label: 'Home', position: 'left', activeBaseRegex: '^/$' },
+        { to: '/api', label: 'API', position: 'left', activeBaseRegex: '^/api' },
+        { to: '/guides/mcp', label: 'AI assistants', position: 'left' },
+        { label: 'Resources', position: 'left', items: [
+          { label: 'Guides', to: '/guides/' },
+          { label: 'API reference', to: '/api-reference' },
+          { label: 'Changelog', to: '/guides/changelog' },
+          { label: 'Training', href: 'https://training.vremly.com' },
+          { label: 'Help center', href: 'https://vremly.com/support' },
+        ] },
+        { type: 'html', value: '<a href="https://app.vremly.com" class="docs-dashboard-action">Open dashboard</a>', className: 'docs-dashboard-item', position: 'right' },
       ],
     },
     footer: {
@@ -230,6 +194,8 @@ const config: Config = {
       copyright: `Copyright ${new Date().getFullYear()} Vremly. All rights reserved.`,
     },
     prism: {
+      theme: prismThemes.github,
+      darkTheme: prismThemes.vsDark,
       additionalLanguages: ['bash', 'json'],
     },
   } satisfies ThemeConfig,

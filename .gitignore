@@ -12,3 +12,4 @@ dist/
 
 # macOS Finder duplicates ("file 2.md"). They become real published routes.
 *[0-9].md
+.env*.local

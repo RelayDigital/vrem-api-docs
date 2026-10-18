@@ -6,6 +6,7 @@ sidebar_position: 7
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import ClientIcon from '@site/src/components/ClientIcon';
+import Terminal from '@site/src/components/DocsHome/Terminal';
 
 # MCP Server
 
@@ -315,6 +316,8 @@ carries the MCP protocol itself. Run it directly to see it:
 VREMLY_API_KEY=your-api-key npx -y github:RelayDigital/vremly-mcp
 ```
 
+<Terminal title="Vremly MCP · startup output">
+
 ```text
   ██╗   ██╗██████╗ ███████╗███╗   ███╗██╗  ██╗   ██╗
   ██║   ██║██╔══██╗██╔════╝████╗ ████║██║  ╚██╗ ██╔╝
@@ -333,6 +336,8 @@ VREMLY_API_KEY=your-api-key npx -y github:RelayDigital/vremly-mcp
 
   Ready. Ask your assistant to search the Vremly API.
 ```
+
+</Terminal>
 
 It appears to hang after printing. That is correct — a stdio server waits on
 stdin for the host to speak to it. Press `Ctrl+C` to exit.
