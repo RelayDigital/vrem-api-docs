@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-20
+- Preloaded the brand fonts and both navbar wordmarks to prevent fallback-font swaps and late logo paint on first load.
+
 ## 2026-10-18
 - Fixed mobile API navigation so the sidebar cannot cover its close button after scrolling.
 - Fixed the full-page theme canvas and made the header and V mark respond to light/dark mode.

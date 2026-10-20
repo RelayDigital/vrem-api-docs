@@ -23,6 +23,28 @@ const config: Config = {
   favicon: 'img/vremly-mark-white.svg',
   url: 'https://docs.vremly.com',
   baseUrl: '/',
+  // These are used above the fold on every page; fetch them before CSS/React
+  // can paint fallback glyphs or an empty wordmark and then swap them in.
+  headTags: [
+    ...[
+      'inter-latin-variable.woff2',
+      'ibm-plex-sans-latin-variable.woff2',
+      'ibm-plex-serif-latin-700-italic.woff2',
+    ].map((font) => ({
+      tagName: 'link' as const,
+      attributes: {
+        rel: 'preload',
+        as: 'font',
+        type: 'font/woff2',
+        href: `/fonts/${font}`,
+        crossorigin: 'anonymous',
+      },
+    })),
+    ...['vremly-wordmark-white.svg', 'vremly-wordmark-black.svg'].map((logo) => ({
+      tagName: 'link' as const,
+      attributes: { rel: 'preload', as: 'image', href: `/img/${logo}` },
+    })),
+  ],
   organizationName: 'RelayDigital',
   projectName: 'vrem-api-docs',
   onBrokenLinks: 'throw',
