@@ -394,9 +394,10 @@ html::-webkit-scrollbar,body::-webkit-scrollbar { display:none; width:0; height:
 .navbar__items--right>[class*='navbarSearchContainer'] { margin:0; }
 .navbar__items--right .navbar__search { padding:0; }
 /* Optical alignment matches the landing wordmark and 13px / 1.5 nav rhythm. */
-.navbar__brand { width:88.578125px; }
-.navbar__logo { display:flex; align-items:center; width:88.578125px; flex-basis:88.578125px; line-height:0; }
-.navbar__logo img { width:auto; height:16px; vertical-align:middle; }
+.navbar__brand { width:89px; }
+.navbar__logo { display:flex; align-items:center; width:89px; flex-basis:89px; line-height:0; }
+.navbar__logo img { display:block; width:89px; height:16px; object-fit:contain; vertical-align:middle; }
+[data-theme='dark'] .navbar__logo img { filter:brightness(0) invert(1); }
 .navbar__link { line-height:1.5; }
 .navbar__items:not(.navbar__items--right)>.dropdown.navbar__item { padding:0; display:flex; align-items:center; }
 .navbar__items:not(.navbar__items--right)>.dropdown.navbar__item>.navbar__link { display:inline-flex; align-items:center; gap:4px; padding:8px 12px; }

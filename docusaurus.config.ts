@@ -40,10 +40,10 @@ const config: Config = {
         crossorigin: 'anonymous',
       },
     })),
-    ...['vremly-wordmark-white.svg', 'vremly-wordmark-black.svg'].map((logo) => ({
+    {
       tagName: 'link' as const,
-      attributes: { rel: 'preload', as: 'image', href: `/img/${logo}` },
-    })),
+      attributes: { rel: 'preload', as: 'image', href: '/img/vremly-wordmark-black.svg' },
+    },
   ],
   organizationName: 'RelayDigital',
   projectName: 'vrem-api-docs',
@@ -154,7 +154,6 @@ const config: Config = {
       logo: {
         alt: 'Vremly',
         src: 'img/vremly-wordmark-black.svg',
-        srcDark: 'img/vremly-wordmark-white.svg',
         width: 89,
         height: 16,
       },
