@@ -4,6 +4,7 @@
 - Prevented late brand-font swaps from shifting headings and navigation text; preloaded fonts still render immediately when available.
 - Preloaded the brand fonts and both navbar wordmarks so they are available earlier on first load.
 - Matched the landing and training headers by keeping one preloaded 89×16 wordmark image and inverting it for dark mode, removing theme-dependent image replacement.
+- Removed the refresh-time duplicate wordmark by rendering a single navbar logo image instead of Docusaurus's two-image SSR theme wrapper.
 
 ## 2026-10-18
 - Fixed mobile API navigation so the sidebar cannot cover its close button after scrolling.
