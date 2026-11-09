@@ -207,7 +207,7 @@ claude mcp add vremly \
 </div>
 
 <p className="vx-note">
-  Both routes reach the same API and expose the same four tools. The hosted
+  Both routes reach the same API and cover the same operations. The hosted
   connector signs you in and issues its own credential; the local install uses
   an API key you create yourself.
 </p>
@@ -247,18 +247,31 @@ needs none of these — it is configured by the approval screen.
 
 ## What it exposes
 
-Four tools, not one per endpoint:
+A small set of tools, not one per endpoint. The hosted connector separates
+reading from changing data, so your assistant can ask before anything changes:
 
-| Tool | Purpose |
-|---|---|
-| `vremly_capabilities` | The connected organization and the permissions this connection holds. |
-| `vremly_search_endpoints` | Find endpoints by keyword. |
-| `vremly_describe_endpoint` | The endpoint's parameters, required body fields and responses. |
-| `vremly_request` | Call it, and return the status and body. |
+| Tool | Purpose | Changes data |
+|---|---|---|
+| `vremly_capabilities` | The connected organization and the permissions this connection holds. | No |
+| `vremly_search_endpoints` | Find endpoints by keyword. | No |
+| `vremly_describe_endpoint` | The endpoint's parameters, required body fields and responses. | No |
+| `vremly_read` | Call a `GET` endpoint. | No |
+| `vremly_preview` | Call a reviewed preview, such as a booking or delivery preview. | No |
+| `vremly_create` | Call a `POST` endpoint that creates a record or confirms an action. | Yes |
+| `vremly_update` | Call a `PATCH` or `PUT` endpoint. | Yes |
+| `vremly_delete` | Call a `DELETE` endpoint. | Yes |
+
+A read-only connection lists only the tools that do not change data. A
+connection granted `PAYROLL_READ` also gets `vremly_current_payroll_period`.
+The local install uses a single `vremly_request` tool in place of the five call
+tools.
+
+AI video generation and AI image editing are not available through the hosted
+connector. Use them in the Vremly app.
 
 The API has hundreds of operations. A tool per operation would cost more
 context to list than most tasks cost to do, and many assistants cap how many
-tools they will accept. Capabilities → search → describe → request reaches all
+tools they will accept. Capabilities → search → describe → call reaches all
 of them at a fixed cost, and because the search reads the OpenAPI document
 directly there is no generated tool list to fall out of date.
 
