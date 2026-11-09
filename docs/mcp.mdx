@@ -261,6 +261,18 @@ reading from changing data, so your assistant can ask before anything changes:
 | `vremly_update` | Call a `PATCH` or `PUT` endpoint. | Yes |
 | `vremly_delete` | Call a `DELETE` endpoint. | Yes |
 
+Real estate media organizations also get six named tools for common jobs. Each
+returns a short summary and changes nothing:
+
+| Tool | Purpose | Needs |
+|---|---|---|
+| `list_my_photography_providers` | The companies an agent can book with. | A personal agent connection |
+| `get_shoot_quote` | Check a shoot against live catalogue, price and slots. | Booking and workflows access |
+| `preview_shoot_booking` | The exact booking for the person to approve. | Booking and workflows access |
+| `track_shoot` | Status, schedule, photographer and any live trip. | Read |
+| `list_delivered_listings` | Delivered listings, most recent first. | Read |
+| `list_unpaid_invoices` | Sent invoices not yet paid. | Read |
+
 A read-only connection lists only the tools that do not change data. A
 connection granted `PAYROLL_READ` also gets `vremly_current_payroll_period`.
 The local install uses a single `vremly_request` tool in place of the five call
